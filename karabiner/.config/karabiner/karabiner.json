@@ -3340,7 +3340,16 @@
                 "delay_milliseconds_before_open_device": 1000
             },
             "selected": true,
-            "simple_modifications": [],
+            "simple_modifications": [
+                {
+                    "from": {
+                        "key_code": "delete_or_backspace"
+                    },
+                    "to": {
+                        "key_code": "vk_none"
+                    }
+                }
+            ],
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "mouse_key_xy_scale": 100
