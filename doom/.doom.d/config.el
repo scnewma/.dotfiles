@@ -37,9 +37,13 @@
 (setq display-line-numbers-type t)
 
 (setq
- projectile-project-search-path '("~/dev/"))
+ projectile-project-search-path '("~/dev/" "~/dev/eks/"))
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
+;; format jsonnet on save
+(add-hook! jsonnet-mode
+           (add-hook 'before-save-hook 'jsonnet-reformat-buffer))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;

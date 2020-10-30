@@ -50,3 +50,6 @@
 ;(unpin! t)
 
 (package! evil-escape :disable t)
+
+(package! jsonnet-mode
+  :recipe (:host github :repo "tminor/jsonnet-mode"))
