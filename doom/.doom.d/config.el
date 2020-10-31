@@ -64,27 +64,53 @@
   ("C-k" +evil/window-move-up)
   ("C-l" +evil/window-move-right)
 
-  ("s" split-window-below)
-  ("v" split-window-right)
+  ("s" scnewma/split-window-below)
+  ("v" scnewma/split-window-right)
+  ("C-s" split-window-below)
+  ("C-v" split-window-right)
 
   ("d" delete-window)
-  ("o" delete-other-windows)
+  ("o" delete-other-windows :color blue)
 
   ("b" switch-to-buffer)
   ("f" find-file)
 
   ("a" ace-window "ace")
+  ("m" ace-maximize-window "ace-one" :color blue)
   ("S" ace-swap-window "swap")
   ("D" ace-delete-window "delete")
+
+  ("+" doom/increase-font-size)
+  ("-" doom/decrease-font-size)
+  ("0" doom/reset-font-size)
 
   ("q" nil "quit"))
 ;; evil-window-map is bound in "SPC w" by default
 (map! :map evil-window-map
       ;; "overrides "w" as I never use that"
       :desc "management"        "w" #'hydra-window/body
+
       :desc "ace"               "a" #'ace-window
       :desc "ace delete"        "D" #'ace-delete-window
-      :desc "ace swap"          "S" #'ace-swap-window)
+      :desc "ace swap"          "S" #'ace-swap-window
+
+      ;; more often than not I want to move to the split that I create
+      :desc "split right"       "v" #'scnewma/split-window-right
+      :desc "split below"       "s" #'scnewma/split-window-below
+      :desc "mirror right"      "C-v" #'split-window-right
+      :desc "mirror below"      "C-s" #'split-window-below)
+
+(defun scnewma/split-window-below ()
+  "split below then move there"
+  (interactive)
+  (split-window-below)
+  (windmove-down))
+
+(defun scnewma/split-window-right ()
+  "split right then move there"
+  (interactive)
+  (split-window-right)
+  (windmove-right))
 
 ;; allows "." repeat when indenting in visual mode but sacrifices visual reselection
 ;; without this doom maps < to <gv and > to >gv
