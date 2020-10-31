@@ -45,6 +45,9 @@
 (add-hook! jsonnet-mode
            (add-hook 'before-save-hook 'jsonnet-reformat-buffer))
 
+;; easy window adjustments
+(map! :map evil-normal-state-map "SPC w a" #'+hydra/window-nav/body)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
