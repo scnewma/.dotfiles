@@ -45,6 +45,11 @@
 (add-hook! jsonnet-mode
            (add-hook 'before-save-hook 'jsonnet-reformat-buffer))
 
+;; change avy keys to dvorak homerow
+(setq avy-keys '(?a ?o ?e ?u ?h ?t ?n ?s))
+;; disable gray background it's too distracting
+(setq avy-background nil)
+
 ;; window management
 (defhydra hydra-window ()
   "window"
@@ -100,6 +105,11 @@
       :desc "mirror right"      "C-v" #'split-window-right
       :desc "mirror below"      "C-s" #'split-window-below)
 
+(map! :leader
+      ;; swap ";" and ":" since I use M-x more often
+      :desc "M-x"               ";" #'execute-extended-command
+      :desc "Eval expreession"  ":" #'pp-eval-expression)
+
 (defun scnewma/split-window-below ()
   "split below then move there"
   (interactive)
@@ -118,6 +128,22 @@
 ;; "." does not repeat in visual mode
 (map! :v ">" #'evil-shift-right
       :v "<" #'evil-shift-left)
+
+;; hydra for json-mode number formatting
+(defhydra hydra-json (:color pink)
+  "json editing mode"
+  ("+" #'json-increment-number-at-point "inc")
+  ("-" #'json-decrement-number-at-point "dec")
+  ("f" #'json-mode-beautify "format")
+  ("x" #'json-nullify-sexp "nullify")
+  ("?" #'json-mode-show-path "path")
+  ("y" #'json-mode-kill-path "copy path")
+  ("t" #'json-toggle-boolean "toggle")
+  ("q" nil "quit"))
+(map! :after json-mode
+      :map json-mode-map
+      :localleader
+      "e" #'hydra-json/body)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
