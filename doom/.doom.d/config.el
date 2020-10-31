@@ -45,8 +45,53 @@
 (add-hook! jsonnet-mode
            (add-hook 'before-save-hook 'jsonnet-reformat-buffer))
 
-;; easy window adjustments
-(map! :map evil-normal-state-map "SPC w a" #'+hydra/window-nav/body)
+;; window management
+(defhydra hydra-window ()
+  "window"
+  ("h" windmove-left)
+  ("j" windmove-down)
+  ("k" windmove-up)
+  ("l" windmove-right)
+
+  ("H" hydra-move-splitter-left)
+  ("J" hydra-move-splitter-down)
+  ("K" hydra-move-splitter-up)
+  ("L" hydra-move-splitter-right)
+  ("=" balance-windows)
+
+  ("C-h" +evil/window-move-left)
+  ("C-j" +evil/window-move-down)
+  ("C-k" +evil/window-move-up)
+  ("C-l" +evil/window-move-right)
+
+  ("s" split-window-below)
+  ("v" split-window-right)
+
+  ("d" delete-window)
+  ("o" delete-other-windows)
+
+  ("b" switch-to-buffer)
+  ("f" find-file)
+
+  ("a" ace-window "ace")
+  ("S" ace-swap-window "swap")
+  ("D" ace-delete-window "delete")
+
+  ("q" nil "quit"))
+;; evil-window-map is bound in "SPC w" by default
+(map! :map evil-window-map
+      ;; "overrides "w" as I never use that"
+      :desc "management"        "w" #'hydra-window/body
+      :desc "ace"               "a" #'ace-window
+      :desc "ace delete"        "D" #'ace-delete-window
+      :desc "ace swap"          "S" #'ace-swap-window)
+
+;; allows "." repeat when indenting in visual mode but sacrifices visual reselection
+;; without this doom maps < to <gv and > to >gv
+;; `gv` means restore previous visual selection
+;; "." does not repeat in visual mode
+(map! :v ">" #'evil-shift-right
+      :v "<" #'evil-shift-left)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
