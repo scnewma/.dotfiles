@@ -34,7 +34,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
 
 (setq
  projectile-project-search-path '("~/dev/" "~/dev/eks/"))
@@ -144,6 +144,14 @@
       :map json-mode-map
       :localleader
       "e" #'hydra-json/body)
+
+(map! :n "gsG" #'avy-goto-line ;; go to any visible line in any window
+
+      ;; copy/move text from any visible line/region to the cursor
+      :n "gsyy" #'avy-copy-line
+      :n "gsyr" #'avy-copy-region
+      :n "gsYy" #'avy-move-line
+      :n "gsYr" #'avy-move-region)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
