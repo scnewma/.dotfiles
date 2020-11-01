@@ -100,8 +100,8 @@
       :desc "ace swap"          "S" #'ace-swap-window
 
       ;; more often than not I want to move to the split that I create
-      :desc "split right"       "v" #'scnewma/split-window-right
-      :desc "split below"       "s" #'scnewma/split-window-below
+      :desc "split right"       "v"   #'scnewma/split-window-right
+      :desc "split below"       "s"   #'scnewma/split-window-below
       :desc "mirror right"      "C-v" #'split-window-right
       :desc "mirror below"      "C-s" #'split-window-below)
 
