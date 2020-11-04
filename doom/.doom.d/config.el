@@ -49,6 +49,8 @@
 (setq avy-keys '(?a ?o ?e ?u ?h ?t ?n ?s))
 ;; disable gray background it's too distracting
 (setq avy-background nil)
+;; enable avy on all windows by default
+(setq avy-all-windows t)
 
 ;; window management
 (defhydra hydra-window ()
