@@ -53,3 +53,8 @@
 
 (package! jsonnet-mode
   :recipe (:host github :repo "tminor/jsonnet-mode"))
+
+(package! jq-mode)
+
+(package! restclient-jq
+  :recipe (:host github :repo "pashky/restclient.el"))

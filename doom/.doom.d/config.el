@@ -155,6 +155,13 @@
       :n "gsYy" #'avy-move-line
       :n "gsYr" #'avy-move-region)
 
+(require 'restclient-jq)
+
+;; do not use system clipboard when killing/yanking regions
+(setq  select-enabled-clipboard nil)
+;; use Cmd+c/Cmd+v for clipboard integration
+(map! :n "s-c" #'clipboard-kill-ring-save
+      :n "s-v" #'clipboard-yank)
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
