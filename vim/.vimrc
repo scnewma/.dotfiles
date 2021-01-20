@@ -26,6 +26,7 @@ call plug#begin(expand('~/.vim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+Plug 'liuchengxu/vim-which-key'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -39,7 +40,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'b4winckler/vim-angry'
 Plug 'junegunn/vim-easy-align'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -47,6 +49,7 @@ Plug 'wellle/targets.vim'
 Plug 'tpope/vim-abolish'
 Plug 'hashivim/vim-terraform'
 Plug 'mhinz/vim-startify'
+Plug 'google/vim-jsonnet'
 
 Plug 'janko/vim-test'
 Plug 'jgdavey/tslime.vim'
@@ -63,7 +66,7 @@ Plug 'joshdick/onedark.vim'
 "" Go Lang Bundle
 Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoInstallBinaries' }
 
-Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'stephpy/vim-yaml'
 
 "*****************************************************************************
 "*****************************************************************************
@@ -168,11 +171,6 @@ set shortmess+=c
 set signcolumn=yes
 
 let no_buffers_menu=1
-" if !exists('g:not_finish_vimplug')
-"   let g:rehash256 = 1
-"   let g:molokai_original = 1
-"   colorscheme molokai
-" endif
 colorscheme onedark
 
 set mousemodel=popup
@@ -303,21 +301,6 @@ augroup END
 
 set autoread
 
-"*****************************************************************************
-"" Mappings
-"*****************************************************************************
-function Keyboard(type)
-    if a:type == "workman"
-        set langmap=qq,dw,re,wr,bt,jy,fu,ui,po,\\;p,aa,ss,hd,tf,gg,yh,nj,ek,ol,i\\;,zz,xx,mc,cv,vb,kn,lm,QQ,DW,RE,WR,BT,JY,FU,UI,PO,:P,AA,SS,HD,TF,GG,YH,NJ,EK,OL,I:,ZZ,XX,MC,CV,VB,KN,LM
-    else " qwerty
-        set langmap=aa,bb,cc,dd,ee,ff,gg,hh,ii,jj,kk,ll,mm,nn,oo,pp,qq,rr,ss,tt,uu,vv,ww,xx,yy,zz,AA,BB,CC,DD,EE,FF,GG,HH,II,JJ,KK,LL,MM,NN,OO,PP,QQ,RR,SS,TT,UU,VV,WW,XX,YY,ZZ,\\;\\;,::
-    endif
-endfunction
-
-" autocmd VimEnter * call Keyboard("workman")
-
-:noremap <Leader>w :call Keyboard("workman")<CR>:echom "Workman Keyboard Layout"<CR>
-
 " pbcopy for OSX copy/pasbegin-selectionte
 vnoremap <C-x> :!pbcopy<CR>
 vnoremap <C-c> :w !pbcopy<CR><CR>
@@ -328,54 +311,132 @@ nnoremap <silent> <leader><space> :noh<cr>
 "*****************************************************************************
 "" Spacemacs Bindings
 "*****************************************************************************
+"
+" vim-which-key
+call which_key#register('<Space>', 'g:leader_map')
+nnoremap <silent> <Leader> :WhichKey '<Space>'<CR>
 
-" editor file
+let g:leader_map = {}
+let g:leader_map['name'] = 'root'
+
+" file management
+let g:leader_map.f = { 'name': '+files' }
+
+"" editor file
+let g:leader_map.f.e = { 'name': '+editor' }
+
 nnoremap <Leader>fed :e $MYVIMRC<CR>
-nnoremap <Leader>feR :source $MYVIMRC<CR>
+let g:leader_map.f.e.d = 'open-vimrc'
 
-" windows
+nnoremap <Leader>feR :source $MYVIMRC<CR>
+let g:leader_map.f.e.R = 'source-vimrc'
+
+"" find files
+nnoremap <Leader><Space> :Leaderf file<CR>
+let g:leader_map[' '] = 'find-file'
+
+nnoremap <Leader>ff :Leaderf file<CR>
+let g:leader_map.f.f = 'find-file'
+
+"" save
+nnoremap <Leader>s :w<CR>
+let g:leader_map.f.s = 'write-file'
+
+nnoremap <Leader>S :wa<CR>
+let g:leader_map.f.S = 'write-all'
+
+" window management
+let g:leader_map.w = { 'name': '+windows' }
+
 nnoremap <Leader>ws <C-w>s<C-w>j<CR>
-nnoremap <Leader>wv <C-w>v<C-w>l<CR>
+let g:leader_map.w.s = 'split-below-focus'
+
 nnoremap <Leader>wS <C-w>s
+let g:leader_map.w.S = 'split-below'
+
+nnoremap <Leader>wv <C-w>v<C-w>l<CR>
+let g:leader_map.w.v = 'split-right-focus'
+
 nnoremap <Leader>wV <C-w>v
+let g:leader_map.w.V = 'split-right'
+
 nnoremap <Leader>wd :q<CR>
-nnoremap <Leader>wq :q<CR>
+let g:leader_map.w.d = 'delete-window'
+
 nnoremap <Leader>wh <C-w>h
+let g:leader_map.w.h = 'focus-left'
+
 nnoremap <Leader>wj <C-w>j
+let g:leader_map.w.j = 'focus-down'
+
 nnoremap <Leader>wk <C-w>k
+let g:leader_map.w.k = 'focus-up'
+
 nnoremap <Leader>wl <C-w>l
+let g:leader_map.w.l = 'focus-right'
+
 nnoremap <Leader>wo <C-w>o
+let g:leader_map.w.o = 'focus-only'
 
 " buffers
-" nnoremap <Leader>bb :buffers<CR>:buffer<Space> 
+let g:leader_map.b = { 'name': '+buffers' }
+
+nnoremap <Leader>bb :Leaderf buffer<CR>
+let g:leader_map.b.b = 'find-buffer'
+
 nnoremap <Leader>bd :bdelete<CR>
-nnoremap <Leader>bk :bdelete<CR>
+let g:leader_map.b.d = 'delete-buffer'
+
 nnoremap <Leader>bn :bn<CR>
+let g:leader_map.b.n = 'next-buffer'
+
 nnoremap <Leader>bp :bp<CR>
+let g:leader_map.b.p = 'prev-buffer'
+
 nnoremap <Leader>bR :e<CR>
+let g:leader_map.b.R = 'reload-buffer'
 
-" files
-nnoremap <Leader>ff :e <C-R>=substitute(expand("%:p:h"), $HOME, "~", "")<CR>/
-
-" save
-nnoremap <Leader>s :w<CR>
-nnoremap <Leader>S :wa<CR>
 
 " projects
 nnoremap <Leader>pf :e 
 
 " toggles
+let g:leader_map.t = { 'name': '+toggles' }
+
 nnoremap <Leader>tn :set number!<CR>
+let g:leader_map.t.n = 'toggle-line-numbers'
+
 nnoremap <Leader>tl :set wrap!<CR>
+let g:leader_map.t.l = 'toggle-line-wrap'
+
+" searching
+let g:leader_map.s = { 'name': '+searching' }
+
+nnoremap <Leader>ss :Leaderf line<CR> 
+let g:leader_map.s.s = 'search-line'
+
+nnoremap <Leader>sc :Leaderf cmdHistory<CR>
+let g:leader_map.s.c = 'search-cmd-hist'
+
+nnoremap <Leader>sh :Leaderf searchHistory<CR>
+let g:leader_map.s.c = 'search-search-hist'
+
+nnoremap <Leader>sw :Leaderf window<CR>
+let g:leader_map.s.w = 'search-open-windows'
 
 " help
 nnoremap <Leader>h :help 
 
 "" Plugins
 
-" CtrlP
-nnoremap <Leader><Space> :CtrlPRoot<CR>
-nnoremap <Leader>bb :CtrlPBuffer<CR>
+" Fuzzy Finder
+"" CtrlP
+" nnoremap <Leader><Space> :CtrlPRoot<CR>
+" nnoremap <Leader>bb :CtrlPBuffer<CR>
+
+"" Leaderf
+
+" Searching
 
 " Fugitive
 nnoremap <Leader>gs :Gstatus<CR>
@@ -440,6 +501,10 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
+" Leaderf
+let g:Lf_ShortcutF = ''
+let g:LF_ShortcutB = ''
+
 augroup yaml
     autocmd!
 
@@ -453,8 +518,6 @@ augroup markdown
     autocmd FileType markdown vmap <localleader>f :EasyAlign*<Bar><Enter>
 augroup END
 
-" vim-which-key
-nnoremap <silent> <Leader> :WhichKey '<Space>'<CR>
 
 "*****************************************************************************
 "" Convenience variables
