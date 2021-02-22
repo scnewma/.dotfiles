@@ -58,3 +58,5 @@
 
 (package! restclient-jq
   :recipe (:host github :repo "pashky/restclient.el"))
+(package! kubernetes)
+(package! kubernetes-evil)

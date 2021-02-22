@@ -50,6 +50,7 @@ Plug 'tpope/vim-abolish'
 Plug 'hashivim/vim-terraform'
 Plug 'mhinz/vim-startify'
 Plug 'google/vim-jsonnet'
+Plug 'jjo/vim-cue'
 
 Plug 'janko/vim-test'
 Plug 'jgdavey/tslime.vim'
