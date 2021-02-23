@@ -165,6 +165,8 @@
       :n "s-v" #'clipboard-yank
       :i "s-c" #'clipboard-kill-ring-save
       :i "s-v" #'clipboard-yank)
+k
+(setq org-log-done t)
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
