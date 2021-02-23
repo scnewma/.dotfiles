@@ -50,6 +50,7 @@ Plug 'tpope/vim-abolish'
 Plug 'hashivim/vim-terraform'
 Plug 'mhinz/vim-startify'
 Plug 'google/vim-jsonnet'
+Plug 'jjo/vim-cue'
 
 Plug 'janko/vim-test'
 Plug 'jgdavey/tslime.vim'
@@ -504,6 +505,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 " Leaderf
 let g:Lf_ShortcutF = ''
 let g:LF_ShortcutB = ''
+let g:Lf_UseMemoryCache = 0 " disable cache since <F5> refresh isn't working for some reason
 
 augroup yaml
     autocmd!
