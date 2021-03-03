@@ -1,57 +1,12 @@
-let mapleader="\<SPACE>"
+local has_lsp, lspconfig = pcall(require, 'lspconfig')
+if not has_lsp then
+    return
+end
 
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin(expand('~/.config/nvim/plugged'))
-Plug 'sainnhe/gruvbox-material'
-
-" nvim-telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-project.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
-
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-" substitution for abbreviations, case-respecting replacement
-Plug 'tpope/vim-abolish'
-
-" argument text objects
-Plug 'b4winckler/vim-angry'
-
-" allows forward searching for text objects among other things
-Plug 'wellle/targets.vim'
-
-" LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-
-"   Lua LSP
-Plug 'tjdevries/nlua.nvim'
-Plug 'euclidianAce/BetterLua.vim' " better syntax highlighting
-
-" Languages
-Plug 'hashivim/vim-terraform'
-Plug 'google/vim-jsonnet'
-Plug 'jjo/vim-cue'
-Plug 'stephpy/vim-yaml'
-
-call plug#end()
-
-lua << EOF
-local lspconfig = require('lspconfig')
 local on_attach = function(client, bufnr)
     local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
 
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     -- Mappings
     local opts = { noremap=true, silent=true }
@@ -126,4 +81,3 @@ require('nlua.lsp.nvim').setup(lspconfig, {
         "Color", "c", "Group", "g", "s",
     }
 })
-EOF
