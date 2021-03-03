@@ -2,6 +2,9 @@ vim.fn['plug#begin']('~/.config/nvim/plugged')
 
 vim.cmd [[Plug 'sainnhe/gruvbox-material']]
 
+-- always be improving
+vim.cmd [[Plug 'tjdevries/train.nvim']]
+
 -- nvim-telescope
 vim.cmd [[Plug 'nvim-lua/popup.nvim']]
 vim.cmd [[Plug 'nvim-lua/plenary.nvim']]
