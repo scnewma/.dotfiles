@@ -28,3 +28,18 @@ nnoremap <leader>sh <cmd>lua require('telescope.builtin').help_tags()<CR>
 
 " search-colorscheme
 nnoremap <leader>tc <cmd>lua require('telescope.builtin').colorscheme()<CR>
+
+lua << EOF
+require('telescope').setup {
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        }
+    }
+}
+
+require('telescope').load_extension('project')
+require('telescope').load_extension('fzy_native')
+EOF
+
