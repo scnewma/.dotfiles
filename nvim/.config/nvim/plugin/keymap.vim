@@ -18,8 +18,6 @@ cnoreabbrev Qall qall
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " file management
-nnoremap <Leader>fed :e $MYVIMRC<CR>
-nnoremap <Leader>feR :source $MYVIMRC<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader>S :wa<CR>
 
