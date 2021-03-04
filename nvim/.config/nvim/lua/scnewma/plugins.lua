@@ -19,9 +19,6 @@ vim.cmd [[Plug 'tpope/vim-surround']]
 -- substitution for abbreviations, case-respecting replacement
 vim.cmd [[Plug 'tpope/vim-abolish']]
 
--- argument text objects
-vim.cmd [[Plug 'b4winckler/vim-angry']]
-
 -- allows forward searching for text objects among other things
 vim.cmd [[Plug 'wellle/targets.vim']]
 
@@ -38,5 +35,9 @@ vim.cmd [[Plug 'hashivim/vim-terraform']]
 vim.cmd [[Plug 'google/vim-jsonnet']]
 vim.cmd [[Plug 'jjo/vim-cue']]
 vim.cmd [[Plug 'stephpy/vim-yaml']]
+
+-- Treesitter
+vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}]] -- update parsers on update
+vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter-textobjects']]
 
 vim.fn['plug#end']()
