@@ -1,5 +1,15 @@
+local actions = require('telescope.actions')
+
 require('telescope').setup {
-    defaults = {},
+    defaults = {
+        mappings = {
+            i = {
+                -- change split horizontal to <C-s>
+                ["<C-x>"] = false,
+                ["<C-s>"] = actions.select_horizontal,
+            }
+        }
+    },
 
     extensions = {
         fzy_native = {
