@@ -42,6 +42,10 @@ nnoremap <Leader>wk <C-w>k
 nnoremap <Leader>wl <C-w>l
 "   focus-only
 nnoremap <Leader>wo <C-w>o
+"   focus-top-left
+nnoremap <Leader>wt <C-w>t
+"   focus-bot-right
+nnoremap <Leader>wb <C-w>b
 
 " buffer management
 "   find-buffer -- in fuzzy finder .after/plugin/*
