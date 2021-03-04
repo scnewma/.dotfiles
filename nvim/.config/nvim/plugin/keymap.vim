@@ -67,3 +67,15 @@ nnoremap <Leader>tl :set wrap!<CR>
 " random
 "   yank-to-eol
 nnoremap Y y$
+
+"   interact with system clipboard
+nnoremap <Leader>p "*p
+vnoremap <Leader>p "*p
+nnoremap <Leader>P "*P
+vnoremap <Leader>P "*P
+nnoremap <Leader>y "*y
+vnoremap <Leader>y "*y
+
+"   blackhole register FTW!!
+nnoremap <Leader>d "_d
+vnoremap <Leader>d "_d

@@ -15,9 +15,11 @@ vim.cmd [[Plug 'nvim-telescope/telescope-fzy-native.nvim']]
 vim.cmd [[Plug 'tpope/vim-fugitive']]
 vim.cmd [[Plug 'tpope/vim-commentary']]
 vim.cmd [[Plug 'tpope/vim-repeat']]
-vim.cmd [[Plug 'tpope/vim-surround']]
 -- substitution for abbreviations, case-respecting replacement
 vim.cmd [[Plug 'tpope/vim-abolish']]
+
+-- best surround plugin since sliced bread
+vim.cmd [[Plug 'machakann/vim-sandwich']]
 
 -- allows forward searching for text objects among other things
 vim.cmd [[Plug 'wellle/targets.vim']]
