@@ -37,6 +37,8 @@ vim.cmd [[Plug 'hashivim/vim-terraform']]
 vim.cmd [[Plug 'google/vim-jsonnet']]
 vim.cmd [[Plug 'jjo/vim-cue']]
 vim.cmd [[Plug 'stephpy/vim-yaml']]
+-- install from pre build since I don't always have nodejs and yarn
+vim.cmd [[Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}]]
 
 -- Treesitter
 vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}]] -- update parsers on update
