@@ -81,3 +81,5 @@ require('nlua.lsp.nvim').setup(lspconfig, {
         "Color", "c", "Group", "g", "s",
     }
 })
+
+lspconfig.pyls.setup{}
