@@ -83,3 +83,5 @@ require('nlua.lsp.nvim').setup(lspconfig, {
 })
 
 lspconfig.pyls.setup{}
+
+lspconfig.bashls.setup{}
