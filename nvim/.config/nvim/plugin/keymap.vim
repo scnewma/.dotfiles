@@ -18,8 +18,8 @@ cnoreabbrev Qall qall
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " file management
-nnoremap <Leader>bs :w<CR>
-nnoremap <Leader>bS :wa<CR>
+nnoremap <Leader>, :w<CR>
+nnoremap <Leader>< :wa<CR>
 
 " window management
 "   split-below-focus
