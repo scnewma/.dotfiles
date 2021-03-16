@@ -20,7 +20,7 @@ map('<leader>fe', 'edit_dotfiles')
 -- files
 map('<leader>ff', 'find_files')
 map('<leader>fg', 'git_files')
-map('<leader><space>', 'git_files')
+map('<leader><space>', 'find_files_prefer_git')
 map('<leader>fb', 'file_browser')
 
 -- buffers
