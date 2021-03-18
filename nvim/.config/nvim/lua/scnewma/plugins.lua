@@ -27,7 +27,8 @@ vim.cmd [[Plug 'wellle/targets.vim']]
 
 -- LSP
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
-vim.cmd [[Plug 'nvim-lua/completion-nvim']]
+-- vim.cmd [[Plug 'nvim-lua/completion-nvim']]
+vim.cmd [[Plug 'hrsh7th/nvim-compe']]
 
 --   Lua LSP
 vim.cmd [[Plug 'tjdevries/nlua.nvim']]
