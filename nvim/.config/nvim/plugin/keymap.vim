@@ -79,3 +79,7 @@ vnoremap <Leader>y "*y
 "   blackhole register FTW!!
 nnoremap <Leader>d "_d
 vnoremap <Leader>d "_d
+
+" Store relative line number jumps in the jumplist if they exceed a threshold.
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
