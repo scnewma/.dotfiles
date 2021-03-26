@@ -26,6 +26,8 @@ vim.cmd [[Plug 'machakann/vim-sandwich']]
 -- allows forward searching for text objects among other things
 vim.cmd [[Plug 'wellle/targets.vim']]
 
+vim.cmd [[Plug 'junegunn/vim-easy-align']]
+
 -- LSP
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
 -- vim.cmd [[Plug 'nvim-lua/completion-nvim']]
