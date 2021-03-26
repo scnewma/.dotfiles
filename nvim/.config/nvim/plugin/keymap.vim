@@ -80,9 +80,9 @@ vnoremap <Leader>y "*y
 nnoremap <Leader>d "_d
 vnoremap <Leader>d "_d
 
-" Store relative line number jumps in the jumplist if they exceed a threshold.
-nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
-nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
+" Store relative line number jumps in the jumplist if they are given a count
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 " Easier remap for accessing alternate file. Neither ^ or 6 are easy to hit on
 " my keyboard layout.
