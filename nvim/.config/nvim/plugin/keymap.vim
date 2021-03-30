@@ -87,3 +87,11 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 " Easier remap for accessing alternate file. Neither ^ or 6 are easy to hit on
 " my keyboard layout.
 nnoremap <Leader>a <C-^>
+
+" Easier quickfix list navigation
+nnoremap <C-j> :cnext<CR>
+nnoremap <C-k> :cprev<CR>
+
+" Easier location list navigation
+nnoremap <Leader>j :lnext<CR>
+nnoremap <Leader>k :lprev<CR>
