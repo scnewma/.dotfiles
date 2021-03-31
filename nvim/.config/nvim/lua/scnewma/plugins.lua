@@ -30,11 +30,10 @@ vim.cmd [[Plug 'junegunn/vim-easy-align']]
 
 -- LSP
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
--- vim.cmd [[Plug 'nvim-lua/completion-nvim']]
 vim.cmd [[Plug 'hrsh7th/nvim-compe']]
+vim.cmd [[Plug 'kabouzeid/nvim-lspinstall']]
 
 --   Lua LSP
-vim.cmd [[Plug 'tjdevries/nlua.nvim']]
 vim.cmd [[Plug 'euclidianAce/BetterLua.vim']] -- better syntax highlighting
 
 -- Languages
