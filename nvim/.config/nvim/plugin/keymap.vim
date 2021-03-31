@@ -96,3 +96,10 @@ nnoremap <C-k> :cprev<CR>
 " Easier location list navigation
 nnoremap <Leader>j :lnext<CR>
 nnoremap <Leader>k :lprev<CR>
+
+" Rename word under cursor on this line
+nnoremap <Leader>rl :s/\<<C-r><C-w>\>//g<Left><Left>
+" Rename word under cursor in this buffer
+nnoremap <Leader>rb :%s/\<<C-r><C-w>\>//g<Left><Left>
+" Rename word under cursor in this buffer, with confirmation
+nnoremap <Leader>rB :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
