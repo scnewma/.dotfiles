@@ -17,9 +17,10 @@ cnoreabbrev Qall qall
 " expands %% into the relative directory of the current buffer in cmd mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-" file management
-nnoremap <Leader>, :w<CR>
-nnoremap <Leader>< :wa<CR>
+" Maps <CR> to :write, which saves the file. This mapping only executes when
+" in a normal buffer to avoid breaking things like the terminal or quickfix
+" list
+nnoremap <silent> <expr> <CR> empty(&buftype) ? ':write<CR>' : '<CR>'
 
 " window management
 "   split-below-focus
