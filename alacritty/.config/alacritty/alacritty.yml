@@ -1,0 +1,57 @@
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty itself.
+env:
+  TERM: xterm-256color
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+# Font configuration
+font:
+  size: 14.0
+  normal:
+    family: MesloLGS NF
+  bold:
+    family: MesloLGS NF
+  italic:
+    family: MesloLGS NF
+  bold_italic:
+    family: MesloLGS NF
+
+colors:
+  primary:
+    background: '0x282828'
+    foreground: '0xdfbf8e'
+
+  normal:
+    black:   '0x665c54'
+    red:     '0xea6962'
+    green:   '0xa9b665'
+    yellow:  '0xe78a4e'
+    blue:    '0x7daea3'
+    magenta: '0xd3869b'
+    cyan:    '0x89b482'
+    white:   '0xdfbf8e'
+
+  bright:
+    black:   '0x928374'
+    red:     '0xea6962'
+    green:   '0xa9b665'
+    yellow:  '0xe3a84e'
+    blue:    '0x7daea3'
+    magenta: '0xd3869b'
+    cyan:    '0x89b482'
+    white:   '0xdfbf8e'
+
+background_opacity: 1.0
+
+cursor:
+  style:
+    shape: Block
+    blinking: Never
+
+key_bindings:
+  # needed for tmux prefix
+  # source: https://github.com/alacritty/alacritty/issues/99
+  - { key: Space, mods: Control, chars: "\x00" }
