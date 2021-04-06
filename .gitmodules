@@ -10,3 +10,6 @@
 [submodule "zsh/.config/zsh/external/fzf"]
 	path = zsh/.config/zsh/external/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "zsh/.config/zsh/external/zsh-autosuggestions"]
+	path = zsh/.config/zsh/external/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions

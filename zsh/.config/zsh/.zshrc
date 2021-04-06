@@ -81,12 +81,18 @@ source "$ZDOTDIR/.p10k.zsh"
 hash -d zdot="$HOME/.dotfiles/zsh/.config/zsh"
 hash -d nvdot="$HOME/.dotfiles/nvim/.config/nvim"
 
+autoload -Uz compinit
+compinit
+
 if [[ -s "$HOME/.fzf/bin/fzf" ]]; then
     path=("$HOME/.fzf/bin" $path)
 fi
 
 source "$ZDOTDIR/external/fzf/shell/key-bindings.zsh"
 source "$ZDOTDIR/external/fzf/shell/completion.zsh"
+
+source "$ZDOTDIR/external/zsh-autosuggestions/zsh-autosuggestions.zsh"
+bindkey '^n' autosuggest-accept
 
 if [[ -f "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases" ]]; then
     source "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases"
@@ -168,7 +174,7 @@ fi
 
 if type kubectl >/dev/null; then
     # TODO: need to setup completion
-    # source <(kubectl completion zsh)
+    source <(kubectl completion zsh)
 fi
 
 [ -d "$HOME/dev/bin" ] && path=("$HOME/dev/bin" $path)
