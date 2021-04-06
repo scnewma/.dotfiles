@@ -1,0 +1,10 @@
+# cd into directory with fzf
+local file
+file="$(fzf +m -q "$*" \
+    --preview="${FZF_PREVIEW_CMD}" \
+    --preview-window='right:hidden:wrap' \
+    --bind=ctrl-v:toggle-preview \
+    --bind=ctrl-x:toggle-sort \
+    --header='(view:ctrl-v) (sort:ctrl-x)' \
+)"
+cd "$(dirname "$file")" || return

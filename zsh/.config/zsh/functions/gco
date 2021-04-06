@@ -1,0 +1,7 @@
+local branch
+if [ ! -z "$1" ]; then
+    branch="$1"
+else
+    branch="$(git branch --all | fzf +m | tr -d '[:space:]')"
+fi
+git checkout $branch
