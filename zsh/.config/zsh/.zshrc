@@ -173,7 +173,6 @@ if type nvim >/dev/null; then
 fi
 
 if type kubectl >/dev/null; then
-    # TODO: need to setup completion
     source <(kubectl completion zsh)
 fi
 
