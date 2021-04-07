@@ -1,0 +1,34 @@
+(defcfg
+    input (iokit-name "Apple Internal Keyboard / Trackpad")
+    output (kext)
+    fallthrough true
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+  fn   lctl lalt lmet           spc            rmet ralt left down rght
+)
+
+(defalias 
+    sft (layer-toggle shifted-rpd)
+    ctl_esc (tap-hold-next-release 200 esc lctl)
+)
+
+(deflayer real-programmers-dvorak
+  $         +    [    {    \(   &    =    \)   }    ]    *    !    |    _
+  _         ;    ,    .    p    y    f    g    c    r    l    /    @    \
+  @ctl_esc  a    o    e    u    i    d    h    t    n    s    -    _
+  @sft      '    q    j    k    x    b    m    w    v    z    @sft _
+  _         _    _    _              _              _    _    _    _    _
+)
+
+(deflayer shifted-rpd
+  ~    1    2    3    4    5    6    7    8    9    0    %    `    _
+  _    :    <    >    P    Y    F    G    C    R    L    ?    ^    #
+  _    A    O    E    U    I    D    H    T    N    S    \_   _
+  _    "    Q    J    K    X    B    M    W    V    Z    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
