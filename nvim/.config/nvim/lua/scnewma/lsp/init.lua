@@ -20,8 +20,10 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<Leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<Leader>cR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
-    --      location-list
-    buf_set_keymap('n', '<Leader>cl', '<cmd>lua vim.lsp.buf.set_loclist()<CR>', opts)
+    --  diagnostics
+    buf_set_keymap('n', '<Leader>cl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
     --      automatic formatting
     if vim.tbl_contains({"go"}, filetype) then
@@ -73,7 +75,7 @@ end
 -- that the server is installed in the expected directory and is executable,
 -- which works as expected but is extremely slow. this patch lowered my startup
 -- time from 300ms to 100ms
-local installed_servers = { bash=true, dockerfile=true, go=true, json=true, lua=true, vim=true, yaml=true }
+local installed_servers = { bash=true, dockerfile=true, go=true, json=true, lua=true, python=true, vim=true, yaml=true }
 require('lspinstall').is_server_installed = function(lang)
     return installed_servers[lang]
 end
