@@ -110,3 +110,7 @@ inoremap <C-]> <C-r>0
 " Add newline above/below current cursor; retain cursor position
 noremap <Leader>o mlo<Esc>`l
 noremap <Leader>O mlO<Esc>`l
+
+" Remove trailing whitespace within current buffer
+command! Chomp %s/\s\+$// | normal! ``
+nnoremap <Leader>w :Chomp<CR>
