@@ -5,6 +5,7 @@ vim.cmd [[Plug 'sainnhe/gruvbox-material']]
 -- always be improving
 vim.cmd [[Plug 'tjdevries/train.nvim']]
 vim.cmd [[Plug 'takac/vim-hardtime']]
+vim.cmd [[Plug 'ThePrimeagen/vim-be-good']]
 
 -- nvim-telescope
 vim.cmd [[Plug 'nvim-lua/popup.nvim']]
