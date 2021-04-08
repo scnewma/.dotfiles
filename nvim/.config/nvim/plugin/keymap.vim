@@ -103,3 +103,6 @@ nnoremap <Leader>rl :s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <Leader>rb :%s/\<<C-r><C-w>\>//g<Left><Left>
 " Rename word under cursor in this buffer, with confirmation
 nnoremap <Leader>rB :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+
+" Quickly insert the previously yanked text.
+inoremap <C-]> <C-r>0
