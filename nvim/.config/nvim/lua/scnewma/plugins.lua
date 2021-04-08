@@ -19,6 +19,7 @@ vim.cmd [[Plug 'tpope/vim-repeat']]
 -- substitution for abbreviations, case-respecting replacement
 vim.cmd [[Plug 'tpope/vim-abolish']]
 vim.cmd [[Plug 'tpope/vim-vinegar']]
+vim.cmd [[Plug 'tpope/vim-eunuch']]
 
 -- best surround plugin since sliced bread
 vim.cmd [[Plug 'machakann/vim-sandwich']]
