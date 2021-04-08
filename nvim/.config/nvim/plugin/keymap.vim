@@ -90,12 +90,12 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 nnoremap <Leader>a <C-^>
 
 " Easier quickfix list navigation
-nnoremap <C-j> :cnext<CR>
-nnoremap <C-k> :cprev<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprev<CR>
 
 " Easier location list navigation
-nnoremap <Leader>j :lnext<CR>
-nnoremap <Leader>k :lprev<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprev<CR>
 
 " Rename word under cursor on this line
 nnoremap <Leader>rl :s/\<<C-r><C-w>\>//g<Left><Left>
