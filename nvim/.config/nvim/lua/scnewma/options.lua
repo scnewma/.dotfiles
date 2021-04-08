@@ -41,6 +41,8 @@ opt.modelines=10
 opt.title=true
 opt.titleold="Terminal"
 opt.titlestring="%F"
+opt.list=true
+opt.listchars={"trail:·","tab:»·"}
 
 vim.cmd [[set statusline=\ %f%m%r%h%w%=\ %{fugitive#statusline()}\ \|\ %p%%\ \|\ L%l:%c\ ]]
 
