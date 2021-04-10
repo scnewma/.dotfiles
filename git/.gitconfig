@@ -1,0 +1,11 @@
+[pull]
+	rebase = false
+[core]
+    pager = delta
+[delta]
+    syntax-theme = gruvbox-dark
+    navigate = true
+[interactive]
+    diffFilter = delta --color-only
+[include]
+    path = "~/.gitconfig.local"
