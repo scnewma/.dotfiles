@@ -2,6 +2,37 @@
 # if a tmux session already exists for that directory then attach to it
 
 local dir="$PWD"
+local move_window=0
+local kill_window=0
+
+while getopts 'mk' opt; do
+    case $opt in
+        m)
+            if [ -z "$TMUX" ]; then
+                print "Ignoring -m as you aren't in tmux"
+            else
+                move_window=1
+            fi
+            ;;
+        k)
+            if [ -z "$TMUX" ]; then
+                print "Ignoring -k as you aren't in tmux"
+            else
+                kill_window=1
+            fi
+            ;;
+        *)
+            print Bad option, aborting.
+            return 1
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [[ $kill_window -eq 1 && $move_window -eq 1 ]]; then
+    print "How do you expect me to move the window and also kill it? Aborting..."
+    return 1
+fi
 
 # if a directory is provided; then try to use that
 if [ ! -z "$1" ]; then
@@ -19,6 +50,16 @@ local session_name=$(basename $dir | sed 's/\./_/g')
 # create a new session if one with that name doesn't exist
 if ! tmux has-session -t $session_name 2>/dev/null; then
     tmux new-session -d -c "$dir" -s $session_name
+fi
+
+# move current window to the session, if necessary
+if [[ $move_window -eq 1 ]]; then
+    tmux move-window -t $session_name 2>/dev/null
+fi
+
+# kill current window before attaching to next session
+if [[ $kill_window -eq 1 ]]; then
+    tmux kill-window 2>/dev/null
 fi
 
 # if we aren't in tmux then attach to the given session otherwise switch
