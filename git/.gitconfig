@@ -1,7 +1,10 @@
 [pull]
-	rebase = false
+    rebase = false
 [core]
     pager = delta
+    editor = nvim
+[init]
+    defaultBranch = master
 [delta]
     syntax-theme = gruvbox-dark
     navigate = true
