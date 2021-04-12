@@ -62,6 +62,10 @@ setopt PUSHD_IGNORE_DUPS
 
 # Use vi key bindings
 setopt VI
+# use standard delete backward to avoid vim functionaly where backspace doesn't
+# remove characters before the insertion point. this mode should be equivalent
+# to vim's `set backspace=indent,eol,start'
+bindkey -v '^?' backward-delete-char
 
 HISTSIZE=10000
 SAVEHIST=10000
