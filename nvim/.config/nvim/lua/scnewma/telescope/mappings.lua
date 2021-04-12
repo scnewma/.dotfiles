@@ -27,7 +27,12 @@ map('<leader>fb', 'file_browser')
 map('<leader>bb', 'buffers')
 
 -- search
-map('<leader>sp', 'live_grep')
+-- live_grep has too many performance problems on larger projects because
+-- it's attempting to execute rg for every keypress. until some debounce or
+-- min character support is added i will just do non-live grepping
+-- (:roosad:)
+-- map('<leader>sp', 'live_grep')
+map('<leader>sp', 'grep_string_prompt')
 map('<leader>ss', 'current_buffer_fuzzy_find')
 map('<leader>sc', 'command_history')
 map('<leader>:', 'commands')

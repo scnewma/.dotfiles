@@ -4,6 +4,9 @@ require('telescope').setup {
     defaults = {
         mappings = {
             i = {
+                -- do not exit to normal mode in prompt
+                ["<esc>"] = actions.close,
+
                 -- change split horizontal to <C-s>
                 ["<C-x>"] = false,
                 ["<C-s>"] = actions.select_horizontal,
@@ -41,6 +44,13 @@ function M.find_files_prefer_git()
     end
 
     return require('telescope.builtin').git_files()
+end
+
+function M.grep_string_prompt()
+    require('telescope.builtin').grep_string {
+        shorten_path = true,
+        search = vim.fn.input("Grep for > "),
+    }
 end
 
 return setmetatable({}, {
