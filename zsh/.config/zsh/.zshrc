@@ -163,16 +163,16 @@ alias dcomlo='docker-compose logs -f'
 
 alias tdot='t $HOME/.dotfiles'
 
-if type go >/dev/null; then
+if (( $+commands[go] )); then
     export GOPATH=~/go/
     path=($path ${GOPATH}bin)
 fi
 
-if type nvim >/dev/null; then
+if (( $+commands[nvim] )); then
     alias vim=nvim
 fi
 
-if type kubectl >/dev/null; then
+if (( $+commands[kubectl] )); then
     source <(kubectl completion zsh)
 fi
 
