@@ -30,7 +30,7 @@ local M = {}
 function M.edit_dotfiles()
     require('telescope.builtin').git_files {
         prompt_title = "~ dotfiles ~",
-        cwd = "~/.dotfiles", 
+        cwd = "~/.dotfiles",
     }
 end
 
@@ -46,10 +46,23 @@ function M.find_files_prefer_git()
     return require('telescope.builtin').git_files()
 end
 
+-- use an rg wrapper script if it's where it's expected to be. this wrapper
+-- script automatically sets RIPGREP_CONFIG_PATH if a .ripgreprc file is found
+-- so that grepping is customizable and works the same in zsh as it does in nvim
+local rgexec = "rg"
+do
+    local rgfuncpath = vim.env.HOME .. '/.config/zsh/functions/rg'
+    if vim.fn.filereadable(rgfuncpath) then
+        rgexec = rgfuncpath
+    end
+end
+
 function M.grep_string_prompt()
     require('telescope.builtin').grep_string {
         shorten_path = true,
         search = vim.fn.input("Grep for > "),
+        vimgrep_arguments =
+            {rgexec, '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
     }
 end
 
