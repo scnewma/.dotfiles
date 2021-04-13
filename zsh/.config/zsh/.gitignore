@@ -3,3 +3,6 @@
 
 # ZSH completion-optimization dumpfile
 *zcompdump*
+
+# ZSH compiled scripts
+**/*.zwc

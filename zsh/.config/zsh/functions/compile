@@ -1,0 +1,12 @@
+# compile all internal and external scripts
+
+zcompile $HOME/.zshenv
+zcompile $ZDOTDIR/.zshrc
+zcompile $ZDOTDIR/.p10k.zsh
+zcompile $ZDOTDIR/functions functions/*
+zcompile $ZDOTDIR/external/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zcompile $ZDOTDIR/external/powerlevel10k/powerlevel10k.zsh-theme
+zcompile $ZDOTDIR/external/fzf/shell/key-bindings.zsh
+zcompile $ZDOTDIR/external/fzf/shell/completion.zsh
+zcompile $ZDOTDIR/external/zsh-autosuggestions/zsh-autosuggestions.zsh
+zcompile $ZDOTDIR/external/kubectl-aliases/.kubectl_aliases
