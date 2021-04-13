@@ -105,7 +105,10 @@ nnoremap <Leader>rb :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <Leader>rB :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 " Quickly insert the previously yanked text.
-inoremap <C-]> <C-r>0
+inoremap <C-]> <C-g>u<C-r>0
+
+" Start a new change before pasting from register so it's easily undoable
+inoremap <C-r> <C-g>u<C-r>
 
 " Add newline above/below current cursor; retain cursor position
 noremap <Leader>o mlo<Esc>`l
