@@ -120,23 +120,3 @@ nnoremap <Leader>w :Chomp<CR>
 
 " Split line moving to the right of the cursor upward
 nnoremap <Leader><C-j> DO<Esc>pj:s/\s\+$//<CR>
-
-" emacs-style command-line editing
-" start of line
-cnoremap <C-a> <Home>
-" back one char
-cnoremap <C-b> <Left>
-" delete char under cursor
-cnoremap <C-d> <Del>
-" end of line
-cnoremap <C-e> <End>
-" forward one char
-cnoremap <C-f> <Right>
-" recall newer command-line
-cnoremap <C-n> <Down>
-" recall previous command-line
-cnoremap <C-p> <Up>
-" back one word
-cnoremap <Esc><C-b> <S-Left>
-" forward one word
-cnoremap <Esc><C-f> <S-Right>
