@@ -120,3 +120,6 @@ nnoremap <Leader>w :Chomp<CR>
 
 " Split line moving to the right of the cursor upward
 nnoremap <Leader><C-j> DO<Esc>pj:s/\s\+$//<CR>
+
+" Toggle scratch buffer
+nnoremap <Leader>ts :lua require('scnewma/scratch').toggle()<CR>
