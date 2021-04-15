@@ -10,5 +10,7 @@
     navigate = true
 [interactive]
     diffFilter = delta --color-only
+[alias]
+    root = rev-parse --show-toplevel
 [include]
     path = "~/.gitconfig.local"
