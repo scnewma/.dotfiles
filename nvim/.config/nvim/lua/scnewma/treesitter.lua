@@ -11,9 +11,12 @@ require('nvim-treesitter.configs').setup {
         enable = true,
     },
 
-    indent = {
-        enable = true,
-    },
+    -- having many issues with treesitter indent since this commit:
+    -- 6863f79118d3cb331fd4e726cdb2384bbd8bf8f2
+    -- try again later
+    -- indent = {
+    --     enable = true,
+    -- },
 
     textobjects = {
         select = {
