@@ -5,6 +5,11 @@ P = function(v)
   return v
 end
 
+function _G.dump(...)
+    local objects = vim.tbl_map(vim.inspect, {...})
+    print(unpack(objects))
+end
+
 if pcall(require, 'plenary') then
   RELOAD = require('plenary.reload').reload_module
 
