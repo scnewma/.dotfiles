@@ -105,6 +105,8 @@ if [[ -f "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases" ]]; then
     source "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases"
 fi
 
+alias zrc="vim ~zdot/.zshrc"
+
 alias c=clear
 
 alias g='git'
