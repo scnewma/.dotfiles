@@ -66,6 +66,9 @@ setopt VI
 # remove characters before the insertion point. this mode should be equivalent
 # to vim's `set backspace=indent,eol,start'
 bindkey -v '^?' backward-delete-char
+# more standard vi behavior for deleting to beginning of line instead of to
+# last insertion point
+bindkey -M viins '^U' backward-kill-line
 
 HISTSIZE=10000
 SAVEHIST=10000
