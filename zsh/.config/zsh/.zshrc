@@ -172,6 +172,9 @@ alias dcomlo='docker-compose logs -f'
 
 alias tdot='t $HOME/.dotfiles'
 
+alias exa='exa --icons'
+alias exag='exa --icons --long --git --git-ignore'
+
 if (( $+commands[go] )); then
     export GOPATH=~/go/
     path=($path ${GOPATH}bin)
