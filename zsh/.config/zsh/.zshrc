@@ -107,7 +107,8 @@ fi
 
 alias zrc="vim ~zdot/.zshrc"
 
-alias c=clear
+alias c=' clear'
+alias clear=' clear'
 
 alias g='git'
 
