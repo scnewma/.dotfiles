@@ -45,7 +45,7 @@ fi
 
 # name the new session the same as the cwd name
 # replace disallowed characters with _
-local session_name=$(basename $dir | sed 's/\./_/g') 
+local session_name=$(basename $dir | sed 's/\./_/g')
 
 # create a new session if one with that name doesn't exist
 if ! tmux has-session -t $session_name 2>/dev/null; then
@@ -63,7 +63,7 @@ if [[ $kill_window -eq 1 ]]; then
 fi
 
 # if we aren't in tmux then attach to the given session otherwise switch
-# the current client to the given session 
+# the current client to the given session
 # NOTE: attach-session is supposed to do this automatically, but it doesn't
 # seem to be working as expected.
 if [ -z "$TMUX" ]; then
