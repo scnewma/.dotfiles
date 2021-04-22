@@ -69,6 +69,9 @@ bindkey -v '^?' backward-delete-char
 # more standard vi behavior for deleting to beginning of line instead of to
 # last insertion point
 bindkey -M viins '^U' backward-kill-line
+# push line into buffer stack for later execution
+bindkey -M viins '^Y' push-line-or-edit
+bindkey -M vicmd '^Y' push-line-or-edit
 
 HISTSIZE=10000
 SAVEHIST=10000
