@@ -62,6 +62,9 @@ setopt PUSHD_IGNORE_DUPS
 
 # Use vi key bindings
 setopt VI
+# remove all keybindings with ESC as a prefix so that ESC doesn't have a prefix
+# delay.
+bindkey -rpM viins '\e'
 # use standard delete backward to avoid vim functionaly where backspace doesn't
 # remove characters before the insertion point. this mode should be equivalent
 # to vim's `set backspace=indent,eol,start'
