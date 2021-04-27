@@ -181,6 +181,7 @@ alias tdot='t $HOME/.dotfiles'
 
 alias exa='exa --icons'
 alias exag='exa --icons --long --git --git-ignore'
+alias tree='exa --icons --tree'
 
 if (( $+commands[go] )); then
     export GOPATH=~/go/
