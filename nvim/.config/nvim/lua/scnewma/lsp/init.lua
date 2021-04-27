@@ -28,6 +28,7 @@ local on_attach = function(client, bufnr)
     --      automatic formatting
     if vim.tbl_contains({"go"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+        vim.cmd [[autocmd BufWritePre <buffer> :lua require('scnewma.lsp').goimports(1000)]]
     end
 end
 
@@ -116,6 +117,21 @@ function M.install_servers()
     for server in pairs(installed_servers) do
         require('lspinstall').install_server(server)
     end
+end
+
+-- Source: https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-656372575
+function M.goimports(timeout_ms)
+    local context = { source = { organizeImports = true } }
+    vim.validate { context = { context, "t", true } }
+    local params = vim.lsp.util.make_range_params()
+    params.context = context
+
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+    if not result then return end
+    result = result[1].result
+    if not result then return end
+    local edit = result[1].edit
+    vim.lsp.util.apply_workspace_edit(edit)
 end
 
 return M
