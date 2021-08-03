@@ -79,9 +79,21 @@ profiles: [
 					modifiers: to_modifiers
 				},
 			]
-			parameters: "basic.simultaneous_threshold_milliseconds": 300
+			parameters: "basic.simultaneous_threshold_milliseconds": 500
 		},
 	]
+}
+
+#single_key: {
+	type: "basic"
+	from: {
+		key_code: string
+		modifiers: optional: ["any"]
+	}
+	to: {
+		key_code: string
+		...
+	}
 }
 
 _profiles: [Name=string]: {
@@ -186,94 +198,129 @@ _profiles: [Name=string]: {
 
 _profiles: "default": {
 	complex_modifications: {
-		rules: [{
-			description: "change caps_lock to control; escape when alone"
-			manipulators: [{
-				from: key_code: "caps_lock"
-				to: [{
-					key_code: "left_control"
-					lazy:     true
+		rules: [
+			{
+				description: "change caps_lock to control; escape when alone"
+				manipulators: [{
+					from: key_code: "caps_lock"
+					to: [{
+						key_code: "left_control"
+						lazy:     true
+					}]
+					to_if_alone: [{
+						key_code: "escape"
+					}]
+					type: "basic"
 				}]
-				to_if_alone: [{
-					key_code: "escape"
+			},
+			{
+				description: "shift + caps lock is caps lock"
+				manipulators: [{
+					from: {
+						key_code: "caps_lock"
+						modifiers: mandatory: ["left_shift"]
+					}
+					to: [{
+						key_code: "caps_lock"
+					}]
+					type: "basic"
 				}]
-				type: "basic"
-			}]
-		}, {
-			description: "shift + caps lock is caps lock"
-			manipulators: [{
-				from: {
-					key_code: "caps_lock"
-					modifiers: mandatory: ["left_shift"]
+			},
+			{
+				#tptc: #two_part_trigger_combo & {
+					trigger_key: "spacebar"
+					variable:    "ergo_keys_\(trigger_key)"
 				}
-				to: [{
-					key_code: "caps_lock"
-				}]
-				type: "basic"
+
+				description:  "Ergo Keys"
+				manipulators: list.FlattenN([
+
+					// left_command => left_shift
+					#single_key & {
+						from: key_code: "left_command"
+						to: key_code:   "left_shift"
+					},
+
+					// right_command => right_shift
+					#single_key & {
+						from: key_code: "right_command"
+						to: key_code:   "right_shift"
+					},
+
+					// left_option => left_command
+					#single_key & {
+						from: key_code: "left_option"
+						to: key_code:   "left_command"
+					},
+
+					// right_option => right_command
+					#single_key & {
+						from: key_code: "right_option"
+						to: key_code:   "right_command"
+					},
+
+					// left_shift => left_option
+					#single_key & {
+						from: key_code: "left_shift"
+						to: key_code:   "left_option"
+					},
+
+					// right_shift => nop
+					#single_key & {
+						from: key_code: "right_shift"
+						to: key_code:   "vk_none"
+					},
+
+					// left_control => hyper,
+					#single_key & {
+						from: key_code: "left_control"
+						to: {
+							key_code: "left_shift"
+							modifiers: ["left_command", "left_control", "left_option"]
+						}
+					},
+
+					// o => [
+					(#tptc & {
+						from_key_code: "s"
+						to_key_code:   "hyphen"
+					}).manipulators,
+
+					// e => {
+					(#tptc & {
+						from_key_code: "d"
+						to_key_code:   "hyphen"
+						to_modifiers: ["left_shift"]
+					}).manipulators,
+
+					// u => (
+					(#tptc & {
+						from_key_code: "f"
+						to_key_code:   "9"
+						to_modifiers: ["left_shift"]
+					}).manipulators,
+
+					// n => ]
+					(#tptc & {
+						from_key_code: "l"
+						to_key_code:   "equal_sign"
+					}).manipulators,
+
+					// t => }
+					(#tptc & {
+						from_key_code: "k"
+						to_key_code:   "equal_sign"
+						to_modifiers: ["left_shift"]
+					}).manipulators,
+
+					// h => )
+					(#tptc & {
+						from_key_code: "j"
+						to_key_code:   "0"
+						to_modifiers: ["left_shift"]
+					}).manipulators,
+				], -1)
 			}]
-		}, {
-			description: "Right Option -> Hyper Key (⌃⌥⇧⌘)"
-			manipulators: [{
-				type: "basic"
-				from: {
-					key_code: "right_option"
-					modifiers: optional: ["caps_lock"]
-				}
-				to: [{
-					key_code: "left_shift"
-					modifiers: ["left_command", "left_control", "left_option"]
-				}]
-			}]
-		}, {
-			#tptc: #two_part_trigger_combo & {
-				trigger_key: "spacebar"
-				variable:    "ergo_keys_\(trigger_key)"
-			}
-
-			description:  "Ergo Keys"
-			manipulators: list.FlattenN([
-
-				// o => [
-				(#tptc & {
-					from_key_code: "s"
-					to_key_code:   "hyphen"
-				}).manipulators,
-
-				// e => {
-				(#tptc & {
-					from_key_code: "d"
-					to_key_code:   "hyphen"
-					to_modifiers: ["left_shift"]
-				}).manipulators,
-
-				// u => (
-				(#tptc & {
-					from_key_code: "f"
-					to_key_code:   "9"
-					to_modifiers: ["left_shift"]
-				}).manipulators,
-
-				// n => ]
-				(#tptc & {
-					from_key_code: "l"
-					to_key_code:   "equal_sign"
-				}).manipulators,
-
-				// t => }
-				(#tptc & {
-					from_key_code: "k"
-					to_key_code:   "equal_sign"
-					to_modifiers: ["left_shift"]
-				}).manipulators,
-
-				// h => )
-				(#tptc & {
-					from_key_code: "j"
-					to_key_code:   "0"
-					to_modifiers: ["left_shift"]
-				}).manipulators,
-			], -1)
-		}]
 	}
 	selected: true
 }
