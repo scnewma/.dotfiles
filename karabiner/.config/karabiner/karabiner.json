@@ -81,8 +81,486 @@
                                 ]
                             }
                         ]
-                    }
-                ]
+                    },
+{
+  "description": "Ergo Keys",
+  "manipulators": [
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "s",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "hyphen",
+          "modifiers": []
+        }
+      ],
+      "conditions": [
+        {
+          "type": "variable_if",
+          "name": "ergo_keys_spacebar",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "simultaneous": [
+          {
+            "key_code": "spacebar"
+          },
+          {
+            "key_code": "s"
+          }
+        ],
+        "simultaneous_options": {
+          "key_down_order": "strict",
+          "key_up_order": "strict_inverse",
+          "detect_key_down_uninterruptedly": true,
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "ergo_keys_spacebar",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "set_variable": {
+            "name": "ergo_keys_spacebar",
+            "value": 1
+          }
+        },
+        {
+          "set_variable": {
+            "name": "DEBUG simultaneous",
+            "value": 1
+          }
+        },
+        {
+          "key_code": "hyphen",
+          "modifiers": []
+        }
+      ],
+      "parameters": {
+        "basic.simultaneous_threshold_milliseconds": 300
+      }
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "d",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "hyphen",
+          "modifiers": [
+            "left_shift"
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "variable_if",
+          "name": "ergo_keys_spacebar",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "simultaneous": [
+          {
+            "key_code": "spacebar"
+          },
+          {
+            "key_code": "d"
+          }
+        ],
+        "simultaneous_options": {
+          "key_down_order": "strict",
+          "key_up_order": "strict_inverse",
+          "detect_key_down_uninterruptedly": true,
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "ergo_keys_spacebar",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "set_variable": {
+            "name": "ergo_keys_spacebar",
+            "value": 1
+          }
+        },
+        {
+          "set_variable": {
+            "name": "DEBUG simultaneous",
+            "value": 1
+          }
+        },
+        {
+          "key_code": "hyphen",
+          "modifiers": [
+            "left_shift"
+          ]
+        }
+      ],
+      "parameters": {
+        "basic.simultaneous_threshold_milliseconds": 300
+      }
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "f",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "9",
+          "modifiers": [
+            "left_shift"
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "variable_if",
+          "name": "ergo_keys_spacebar",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "simultaneous": [
+          {
+            "key_code": "spacebar"
+          },
+          {
+            "key_code": "f"
+          }
+        ],
+        "simultaneous_options": {
+          "key_down_order": "strict",
+          "key_up_order": "strict_inverse",
+          "detect_key_down_uninterruptedly": true,
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "ergo_keys_spacebar",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "set_variable": {
+            "name": "ergo_keys_spacebar",
+            "value": 1
+          }
+        },
+        {
+          "set_variable": {
+            "name": "DEBUG simultaneous",
+            "value": 1
+          }
+        },
+        {
+          "key_code": "9",
+          "modifiers": [
+            "left_shift"
+          ]
+        }
+      ],
+      "parameters": {
+        "basic.simultaneous_threshold_milliseconds": 300
+      }
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "l",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "equal_sign",
+          "modifiers": []
+        }
+      ],
+      "conditions": [
+        {
+          "type": "variable_if",
+          "name": "ergo_keys_spacebar",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "simultaneous": [
+          {
+            "key_code": "spacebar"
+          },
+          {
+            "key_code": "l"
+          }
+        ],
+        "simultaneous_options": {
+          "key_down_order": "strict",
+          "key_up_order": "strict_inverse",
+          "detect_key_down_uninterruptedly": true,
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "ergo_keys_spacebar",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "set_variable": {
+            "name": "ergo_keys_spacebar",
+            "value": 1
+          }
+        },
+        {
+          "set_variable": {
+            "name": "DEBUG simultaneous",
+            "value": 1
+          }
+        },
+        {
+          "key_code": "equal_sign",
+          "modifiers": []
+        }
+      ],
+      "parameters": {
+        "basic.simultaneous_threshold_milliseconds": 300
+      }
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "k",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "equal_sign",
+          "modifiers": [
+            "left_shift"
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "variable_if",
+          "name": "ergo_keys_spacebar",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "simultaneous": [
+          {
+            "key_code": "spacebar"
+          },
+          {
+            "key_code": "k"
+          }
+        ],
+        "simultaneous_options": {
+          "key_down_order": "strict",
+          "key_up_order": "strict_inverse",
+          "detect_key_down_uninterruptedly": true,
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "ergo_keys_spacebar",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "set_variable": {
+            "name": "ergo_keys_spacebar",
+            "value": 1
+          }
+        },
+        {
+          "set_variable": {
+            "name": "DEBUG simultaneous",
+            "value": 1
+          }
+        },
+        {
+          "key_code": "equal_sign",
+          "modifiers": [
+            "left_shift"
+          ]
+        }
+      ],
+      "parameters": {
+        "basic.simultaneous_threshold_milliseconds": 300
+      }
+    },
+    {
+      "type": "basic",
+      "from": {
+        "key_code": "j",
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "key_code": "0",
+          "modifiers": [
+            "left_shift"
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "type": "variable_if",
+          "name": "ergo_keys_spacebar",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "type": "basic",
+      "from": {
+        "simultaneous": [
+          {
+            "key_code": "spacebar"
+          },
+          {
+            "key_code": "j"
+          }
+        ],
+        "simultaneous_options": {
+          "key_down_order": "strict",
+          "key_up_order": "strict_inverse",
+          "detect_key_down_uninterruptedly": true,
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "ergo_keys_spacebar",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "modifiers": {
+          "optional": [
+            "any"
+          ]
+        }
+      },
+      "to": [
+        {
+          "set_variable": {
+            "name": "ergo_keys_spacebar",
+            "value": 1
+          }
+        },
+        {
+          "set_variable": {
+            "name": "DEBUG simultaneous",
+            "value": 1
+          }
+        },
+        {
+          "key_code": "0",
+          "modifiers": [
+            "left_shift"
+          ]
+        }
+      ],
+      "parameters": {
+        "basic.simultaneous_threshold_milliseconds": 300
+      }
+    }
+  ]
+}
+                             ]
+
             },
             "devices": [
                 {
