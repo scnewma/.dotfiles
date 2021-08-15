@@ -58,7 +58,7 @@ end
 
 function M.grep_string_prompt()
     require('telescope.builtin').grep_string {
-        shorten_path = true,
+        path_display = { "shorten" },
         search = vim.fn.input("Grep for > "),
         vimgrep_arguments =
             {rgexec, '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
