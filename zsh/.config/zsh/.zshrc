@@ -64,7 +64,7 @@ setopt PUSHD_IGNORE_DUPS
 setopt VI
 # remove all keybindings with ESC as a prefix so that ESC doesn't have a prefix
 # delay.
-bindkey -rpM viins '\e'
+# bindkey -rpM viins '\e'
 # use standard delete backward to avoid vim functionaly where backspace doesn't
 # remove characters before the insertion point. this mode should be equivalent
 # to vim's `set backspace=indent,eol,start'
@@ -110,6 +110,16 @@ bindkey '^n' autosuggest-accept
 if [[ -f "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases" ]]; then
     source "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases"
 fi
+
+# allow ctrl-z to toggle between suspend and resume
+function suspend-resume() {
+    fg
+    zle push-input
+    BUFFER=""
+    zle accept-line
+}
+zle -N suspend-resume
+bindkey "^z" suspend-resume
 
 alias zrc="vim ~zdot/.zshrc"
 
@@ -179,6 +189,7 @@ alias dcomlo='docker-compose logs -f'
 
 alias tdot='t $HOME/.dotfiles'
 
+alias ls='exa --icons'
 alias exa='exa --icons'
 alias exag='exa --icons --long --git --git-ignore'
 alias tree='exa --icons --tree'
