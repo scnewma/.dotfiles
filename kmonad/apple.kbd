@@ -1,0 +1,62 @@
+(defcfg
+  input (iokit-name) ;; "Apple Internal Keyboard / Trackpad")
+  output (kext)
+  fallthrough true
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+  fn   lctl lalt lmet           spc            rmet ralt left down rght
+)
+
+;; Below, I use `around' to compose `layer-toggle' with `fn' (instead
+;; of using `layer-toggle' directly) so that the `fn' keypress
+;; actually gets emitted. This matters when using an application that
+;; can use `fn' as a modifier (like Emacs).
+
+(defalias fn (around (layer-toggle function) fn))
+
+(defalias
+  ec  (tap-next esc lctl)
+  a (tap-hold-next-release 175 a (layer-toggle regex)))
+
+;; default layer
+;; (deflayer dvorak
+;;   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+;;   grv  1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+;;   tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
+;;   @ec  a    o    e    u    i    d    h    t    n    s    -    ret
+;;   lsft ;    q    j    k    x    b    m    w    v    z    rsft up
+;;   @fn  lctl lalt lmet           spc            rmet ralt left down rght
+;; )
+(deflayer dvorak
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+  tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
+  @ec  @a   o    e    u    i    d    h    t    n    s    -    ret
+  _    ;    q    j    k    x    b    m    w    v    z    ralt    up
+  @fn  lctl lmet lsft           spc            rsft rmet left down rght
+)
+
+(deflayer function
+  _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
+(deflayer regex
+  _    _    _    _    _    _    _    _    _    _    _   _   _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    *    [    ^    ]    _    _    _    _
+  _    _    _    _    _    _    ?    S-9  $    S-0  _    _    _
+  _    _    _    _    _    _    |    {    #    }    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
