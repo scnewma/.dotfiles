@@ -76,7 +76,7 @@ end
 -- that the server is installed in the expected directory and is executable,
 -- which works as expected but is extremely slow. this patch lowered my startup
 -- time from 300ms to 100ms
-local installed_servers = { bash=true, dockerfile=true, go=true, json=true, lua=true, python=true, vim=true, yaml=true }
+local installed_servers = { bash=true, dockerfile=true, elixir=true, go=true, json=true, lua=true, python=true, vim=true, yaml=true }
 require('lspinstall').is_server_installed = function(lang)
     return installed_servers[lang]
 end
