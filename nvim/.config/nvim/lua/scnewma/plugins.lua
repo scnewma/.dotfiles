@@ -43,6 +43,8 @@ vim.cmd [[Plug 'hashivim/vim-terraform']]
 vim.cmd [[Plug 'google/vim-jsonnet']]
 vim.cmd [[Plug 'jjo/vim-cue']]
 vim.cmd [[Plug 'stephpy/vim-yaml']]
+vim.cmd [[Plug 'elixir-editors/vim-elixir']]
+vim.cmd [[Plug 'mhinz/vim-mix-format']]
 -- install from pre build since I don't always have nodejs and yarn
 vim.cmd [[Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}]]
 
