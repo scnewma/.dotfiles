@@ -6,3 +6,5 @@
 
 # ZSH compiled scripts
 **/*.zwc
+
+.zsh_sessions
