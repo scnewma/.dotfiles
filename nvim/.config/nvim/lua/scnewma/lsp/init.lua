@@ -25,6 +25,8 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
+    buf_set_keymap('n', '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opts)
+
     --      automatic formatting
     if vim.tbl_contains({"go"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
@@ -69,16 +71,6 @@ local function make_config()
         capabilities = capabilities,
         on_attach = on_attach,
     }
-end
-
--- this is a hack to override lspinstalls builtin function for checking if a
--- server is installed. the builtin function executes an os command to verify
--- that the server is installed in the expected directory and is executable,
--- which works as expected but is extremely slow. this patch lowered my startup
--- time from 300ms to 100ms
-local installed_servers = { bash=true, dockerfile=true, elixir=true, go=true, json=true, lua=true, python=true, vim=true, yaml=true }
-require('lspinstall').is_server_installed = function(lang)
-    return installed_servers[lang]
 end
 
 local function setup_servers()
