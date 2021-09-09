@@ -110,6 +110,13 @@ inoremap <C-]> <C-g>u<C-r>0
 " Start a new change before pasting from register so it's easily undoable
 inoremap <C-r> <C-g>u<C-r>
 
+" append ; to end of line
+inoremap ;; <C-o>$;
+nnoremap ;; A;<Esc>
+
+" append . to end of line - useful when chaining function calls
+inoremap .. <C-o>$.
+
 " Add newline above/below current cursor; retain cursor position
 noremap <Leader>o mlo<Esc>`l
 noremap <Leader>O mlO<Esc>`l

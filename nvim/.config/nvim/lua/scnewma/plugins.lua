@@ -34,6 +34,8 @@ vim.cmd [[Plug 'junegunn/vim-easy-align']]
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
 vim.cmd [[Plug 'hrsh7th/nvim-compe']]
 vim.cmd [[Plug 'kabouzeid/nvim-lspinstall']]
+vim.cmd [[Plug 'glepnir/lspsaga.nvim']]
+vim.cmd [[Plug 'windwp/nvim-autopairs']]
 
 --   Lua LSP
 vim.cmd [[Plug 'euclidianAce/BetterLua.vim']] -- better syntax highlighting
