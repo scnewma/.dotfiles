@@ -40,6 +40,11 @@ vim.cmd [[Plug 'windwp/nvim-autopairs']]
 --   Lua LSP
 vim.cmd [[Plug 'euclidianAce/BetterLua.vim']] -- better syntax highlighting
 
+-- Snippets
+vim.cmd [[Plug 'hrsh7th/vim-vsnip']]
+vim.cmd [[Plug 'hrsh7th/vim-vsnip-integ']]
+vim.cmd [[Plug 'rafamadriz/friendly-snippets']]
+
 -- Languages
 vim.cmd [[Plug 'hashivim/vim-terraform']]
 vim.cmd [[Plug 'google/vim-jsonnet']]
