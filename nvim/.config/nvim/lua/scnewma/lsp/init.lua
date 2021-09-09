@@ -106,7 +106,8 @@ local M = {}
 
 -- use lspinstall to install all servers in the installed_servers table
 function M.install_servers()
-    for server in pairs(installed_servers) do
+    local wanted = { bash=true, dockerfile=true, elixir=true, go=true, json=true, lua=true, python=true, vim=true, yaml=true }
+    for server in pairs(wanted) do
         require('lspinstall').install_server(server)
     end
 end
