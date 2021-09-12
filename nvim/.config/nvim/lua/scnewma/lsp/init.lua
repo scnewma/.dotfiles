@@ -63,6 +63,14 @@ local go_settings = {
     }
 }
 
+local rust_settings = {
+    ["rust-analyzer"] = {
+        checkOnSave = {
+            command = "clippy"
+        }
+    }
+}
+
 -- config that activets keymaps and enabled snippet support
 local function make_config()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -86,8 +94,13 @@ local function setup_servers()
         if server == "lua" then
             config.settings = lua_settings
         end
+
         if server == "go" then
             config.settings = go_settings
+        end
+
+        if server == "rust" then
+            config.settings = rust_settings
         end
 
         require('lspconfig')[server].setup(config)
