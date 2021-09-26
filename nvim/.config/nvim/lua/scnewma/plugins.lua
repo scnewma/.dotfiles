@@ -17,6 +17,7 @@ vim.cmd [[Plug 'nvim-telescope/telescope-fzy-native.nvim']]
 vim.cmd [[Plug 'tpope/vim-fugitive']]
 vim.cmd [[Plug 'tpope/vim-commentary']]
 vim.cmd [[Plug 'tpope/vim-repeat']]
+vim.cmd [[Plug 'ggandor/lightspeed.nvim']]
 -- substitution for abbreviations, case-respecting replacement
 vim.cmd [[Plug 'tpope/vim-abolish']]
 vim.cmd [[Plug 'tpope/vim-vinegar']]

@@ -28,6 +28,8 @@ require('scnewma.telescope.mappings')
 -- Treesitter
 require('scnewma.treesitter')
 
+require('scnewma.lightspeed')
+
 require('nvim-autopairs').setup{}
 require('nvim-autopairs.completion.compe').setup({
     map_cr = true,
