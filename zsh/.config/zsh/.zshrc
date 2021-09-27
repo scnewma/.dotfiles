@@ -101,6 +101,8 @@ if [[ -s "$HOME/.fzf/bin/fzf" ]]; then
     path=("$HOME/.fzf/bin" $path)
 fi
 
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --no-ignore"
 source "$ZDOTDIR/external/fzf/shell/key-bindings.zsh"
 source "$ZDOTDIR/external/fzf/shell/completion.zsh"
 
