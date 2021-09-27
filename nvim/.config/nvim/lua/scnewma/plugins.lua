@@ -10,9 +10,12 @@ vim.cmd [[Plug 'ThePrimeagen/vim-be-good']]
 -- nvim-telescope
 vim.cmd [[Plug 'nvim-lua/popup.nvim']]
 vim.cmd [[Plug 'nvim-lua/plenary.nvim']]
-vim.cmd [[Plug 'nvim-telescope/telescope.nvim']]
-vim.cmd [[Plug 'nvim-telescope/telescope-project.nvim']]
-vim.cmd [[Plug 'nvim-telescope/telescope-fzy-native.nvim']]
+-- vim.cmd [[Plug 'nvim-telescope/telescope.nvim']]
+-- vim.cmd [[Plug 'nvim-telescope/telescope-project.nvim']]
+-- vim.cmd [[Plug 'nvim-telescope/telescope-fzy-native.nvim']]
+
+vim.cmd [[Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }]]
+vim.cmd [[Plug 'junegunn/fzf.vim']]
 
 vim.cmd [[Plug 'tpope/vim-fugitive']]
 vim.cmd [[Plug 'tpope/vim-commentary']]

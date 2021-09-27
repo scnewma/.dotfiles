@@ -22,8 +22,8 @@ require('scnewma.options')
 require('scnewma.lsp')
 
 -- Telescope
-require('scnewma.telescope')
-require('scnewma.telescope.mappings')
+-- require('scnewma.telescope')
+-- require('scnewma.telescope.mappings')
 
 -- Treesitter
 require('scnewma.treesitter')

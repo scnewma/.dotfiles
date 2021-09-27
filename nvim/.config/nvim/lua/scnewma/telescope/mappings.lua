@@ -29,6 +29,7 @@ map('<leader>bb', 'buffers')
 -- search
 map('<leader>sp', 'live_grep')
 map('<leader>sP', 'grep_string_prompt')
+map('<leader>sw', 'grep_string')
 map('<leader>ss', 'current_buffer_fuzzy_find')
 map('<leader>sc', 'command_history')
 map('<leader>:', 'commands')

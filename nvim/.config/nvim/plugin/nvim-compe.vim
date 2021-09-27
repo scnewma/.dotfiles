@@ -4,10 +4,10 @@ let g:compe = {}
 let g:compe.preselect = "always"
 let g:compe.source = {}
 let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
+let g:compe.source.buffer = v:false
 let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
-let g:compe.source.nvim_treesitter = v:true
+let g:compe.source.nvim_treesitter = v:false
 let g:compe.source.vsnip = v:true
 
 " inoremap <silent><expr> <CR> compe#confirm('<CR>')

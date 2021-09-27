@@ -114,7 +114,7 @@ inoremap <C-r> <C-g>u<C-r>
 inoremap ;; <C-o>$;
 
 " append . to end of line - useful when chaining function calls
-inoremap ., <C-o>$.
+inoremap ,. <C-o>$.
 
 " Add newline above/below current cursor; retain cursor position
 noremap <Leader>o mlo<Esc>`l
