@@ -56,8 +56,11 @@ vim.cmd [[Plug 'jjo/vim-cue']]
 vim.cmd [[Plug 'stephpy/vim-yaml']]
 vim.cmd [[Plug 'elixir-editors/vim-elixir']]
 vim.cmd [[Plug 'mhinz/vim-mix-format']]
+vim.cmd [[Plug 'simrat39/rust-tools.nvim']]
 -- install from pre build since I don't always have nodejs and yarn
 vim.cmd [[Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}]]
+
+vim.cmd [[Plug 'jpalardy/vim-slime']]
 
 -- Treesitter
 vim.cmd [[Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}]] -- update parsers on update

@@ -33,6 +33,10 @@ local on_attach = function(client, bufnr)
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
         vim.cmd [[autocmd BufWritePre <buffer> :lua require('scnewma.lsp').goimports(1000)]]
     end
+
+    if vim.tbl_contains({"rust"}, filetype) then
+        vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+    end
 end
 
 -- Configure lua language server for neovim development
@@ -65,9 +69,9 @@ local go_settings = {
 
 local rust_settings = {
     ["rust-analyzer"] = {
-        checkOnSave = {
-            command = "clippy"
-        }
+        -- checkOnSave = {
+        --     command = "clippy"
+        -- }
     }
 }
 

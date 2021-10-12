@@ -20,6 +20,7 @@ require('scnewma.options')
 
 -- Neovim builtin LSP configuration
 require('scnewma.lsp')
+require('rust-tools').setup({})
 
 -- Telescope
 -- require('scnewma.telescope')

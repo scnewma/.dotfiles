@@ -75,6 +75,7 @@ vnoremap <Leader>p "*p
 nnoremap <Leader>P "*P
 vnoremap <Leader>P "*P
 nnoremap <Leader>y "*y
+nnoremap <Leader>Y "*y$
 vnoremap <Leader>y "*y
 
 "   blackhole register FTW!!
@@ -112,9 +113,6 @@ inoremap <C-r> <C-g>u<C-r>
 
 " append ; to end of line
 inoremap ;; <C-o>$;
-
-" append . to end of line - useful when chaining function calls
-inoremap ,. <C-o>$.
 
 " Add newline above/below current cursor; retain cursor position
 noremap <Leader>o mlo<Esc>`l
