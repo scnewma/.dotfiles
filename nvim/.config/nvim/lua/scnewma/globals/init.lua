@@ -19,6 +19,3 @@ if pcall(require, 'plenary') then
   end
 end
 
--- `vim.opt`
-require('scnewma.globals.opt')
-

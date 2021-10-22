@@ -1,6 +1,3 @@
--- This will be available for everyone when tj merges:
---  https://github.com/neovim/neovim/pull/13479
--- Until then, it is patched here `./lua/scnewma/globals/opt.lua
 local opt = vim.opt
 
 opt.guicursor=""
@@ -20,7 +17,7 @@ opt.backup=false
 opt.writebackup=false
 opt.swapfile=false
 opt.undolevels=1000
-opt.undodir="~/.vim/undodir"
+opt.undodir=vim.fn.expand("~/.vim/undodir")
 opt.undofile=true
 opt.incsearch=true
 opt.termguicolors=true
@@ -41,7 +38,7 @@ opt.modelines=10
 opt.title=true
 opt.titleold="Terminal"
 opt.titlestring="%F"
-opt.listchars={"trail:·","tab:»·"}
+opt.listchars={ trail = "·", tab = "»·" }
 
 vim.cmd [[set statusline=\ %f%m%r%h%w%=\ %{fugitive#statusline()}\ \|\ %p%%\ \|\ L%l:%c\ ]]
 
