@@ -23,8 +23,8 @@ require('scnewma.lsp')
 require('rust-tools').setup({})
 
 -- Telescope
--- require('scnewma.telescope')
--- require('scnewma.telescope.mappings')
+require('scnewma.telescope')
+require('scnewma.telescope.mappings')
 
 -- Treesitter
 require('scnewma.treesitter')
