@@ -80,6 +80,7 @@ local function make_config()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.snippetSupport = true
     capabilities.textDocument.codeLens = { dynamicRegistration = false }
+    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
     return {
         capabilities = capabilities,
         on_attach = on_attach,

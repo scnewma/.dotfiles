@@ -2,11 +2,6 @@ vim.fn['plug#begin']('~/.config/nvim/plugged')
 
 vim.cmd [[Plug 'sainnhe/gruvbox-material']]
 
--- always be improving
-vim.cmd [[Plug 'tjdevries/train.nvim']]
-vim.cmd [[Plug 'takac/vim-hardtime']]
-vim.cmd [[Plug 'ThePrimeagen/vim-be-good']]
-
 -- nvim-telescope
 vim.cmd [[Plug 'nvim-lua/popup.nvim']]
 vim.cmd [[Plug 'nvim-lua/plenary.nvim']]
@@ -33,13 +28,21 @@ vim.cmd [[Plug 'junegunn/vim-easy-align']]
 
 -- LSP
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
-vim.cmd [[Plug 'hrsh7th/nvim-compe']]
 vim.cmd [[Plug 'kabouzeid/nvim-lspinstall']]
 vim.cmd [[Plug 'glepnir/lspsaga.nvim']]
 vim.cmd [[Plug 'windwp/nvim-autopairs']]
 
+-- completion
+vim.cmd [[Plug 'hrsh7th/nvim-cmp']]
+vim.cmd [[Plug 'hrsh7th/cmp-buffer']]
+vim.cmd [[Plug 'hrsh7th/cmp-path']]
+vim.cmd [[Plug 'hrsh7th/cmp-nvim-lua']]
+vim.cmd [[Plug 'hrsh7th/cmp-nvim-lsp']]
+vim.cmd [[Plug 'hrsh7th/cmp-vsnip']]
+
 --   Lua LSP
 vim.cmd [[Plug 'euclidianAce/BetterLua.vim']] -- better syntax highlighting
+vim.cmd [[Plug 'onsails/lspkind-nvim']]
 
 -- Snippets
 vim.cmd [[Plug 'hrsh7th/vim-vsnip']]
