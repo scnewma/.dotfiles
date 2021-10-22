@@ -4,7 +4,7 @@ if (( $+commands[ls] )); then
     export EDITOR="nvim"
 
     # use nvim as the man pager
-    export MANPAGER="nvim -c 'set ft=man' -"
+    export MANPAGER="nvim +Man! -"
 fi
 if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
