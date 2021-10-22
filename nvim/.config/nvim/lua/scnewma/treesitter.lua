@@ -2,9 +2,17 @@ require('nvim-treesitter.configs').setup {
     ensure_installed = {
         'bash',
         'go',
+        'gomod',
         'json',
         'lua',
         'python',
+        'dockerfile',
+        'hcl',
+        'java',
+        'ruby',
+        'rust',
+        'yaml',
+        'vim',
     },
 
     highlight = {
