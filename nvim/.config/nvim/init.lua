@@ -40,6 +40,10 @@ require('nvim-autopairs.completion.cmp').setup({
     auto_select = false,
 })
 
+vim.cmd[[
+command! -nargs=* -range GoAddTags lua require('go-tools').add_tags(<line1>, <line2>)
+]]
+
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
 vim.cmd [[
