@@ -1,0 +1,4 @@
+# git diff with fzf selection
+preview="git diff $@ --color=always -- {-1}"
+file="$(git diff $@ --name-only | fzf -m --ansi --preview $preview)"
+[ ! -z "$file" ] && git diff "$file"

@@ -156,7 +156,21 @@ alias gsta='git stash'
 alias gstd='git stash drop'
 alias gstp='git stash pop'
 
-alias ga='git add'
+FZF_GIT_DIFF_PREVIEW="git diff $@ --color=always -- {-1}"
+ga() {
+    if [ -z "$1" ]; then
+        # git diff --name-only only includes modified files. need to append
+        # untracked files as well
+        files=$(cat <(git diff --name-only) <(git ls-files --others --exclude-standard -z))
+        file="$(echo $files | fzf +m -q "$*" \
+            --preview="${FZF_GIT_DIFF_PREVIEW}")"
+    else
+        file="$1"
+    fi
+
+    git add $file
+}
+
 alias gaa='git add --all'
 alias grm='git rm'
 alias grmca='git rm --cached'
@@ -217,3 +231,5 @@ export PATH
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 source "$ZDOTDIR/external/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+eval "$(zoxide init zsh)"
