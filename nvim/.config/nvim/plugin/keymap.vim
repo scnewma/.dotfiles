@@ -2,6 +2,9 @@
 "
 "   Plugin keymaps will all be found in their respective files.
 
+" ex mode be gone
+nmap Q <Nop>
+
 " prevent fat-fingering commands
 cnoreabbrev W! w!
 cnoreabbrev Q! q!

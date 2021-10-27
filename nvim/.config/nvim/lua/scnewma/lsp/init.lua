@@ -9,6 +9,11 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
     border = 'single',
 })
 
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+    border = 'single',
+})
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = true,
@@ -35,6 +40,7 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', 'g<C-d>', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('i', '<C-k>', '<cmd>lua require("scnewma/lsp").signature_line()<CR>', opts)
 
     --      code-rename
     buf_set_keymap('n', '<Leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -163,6 +169,11 @@ function M.goimports(timeout_ms)
     if not result then return end
     local edit = result[1].edit
     vim.lsp.util.apply_workspace_edit(edit)
+end
+
+function M.signature_line()
+    local params = vim.lsp.utils.make_position_params()
+    vim.lsp.buf_request(0, 'textDocument/signatureHelp', params)
 end
 
 return M
