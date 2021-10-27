@@ -41,8 +41,8 @@ require('nvim-autopairs.completion.cmp').setup({
 })
 
 vim.cmd[[
-command! -nargs=* -range GoAddTags lua require('go-tools').add_tags(<line1>, <line2>)
-command! -nargs=* -range GoRemoveTags lua require('go-tools').remove_tags(<line1>, <line2>)
+command! -nargs=? -range GoAddTags lua require('go-tools').add_tags({<line1>, <line2>, <f-args>})
+command! -nargs=? -range GoRemoveTags lua require('go-tools').remove_tags({<line1>, <line2>, <f-args>})
 ]]
 
 local saga = require 'lspsaga'

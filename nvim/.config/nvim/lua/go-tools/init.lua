@@ -6,21 +6,33 @@ local function binary_exists(executable)
     return false
 end
 
-local function exec(start, fin, mode, fname)
+local function exec(mode, args)
     if not binary_exists('gomodifytags') then
         return
     end
-    local line = string.format('%d,%d', start, fin)
+
+    local line_start = args[1]
+    local line_end = args[2]
+    local fname = vim.fn.expand('%:p')
+
+    local line = string.format('%d,%d', line_start, line_end)
     local cmd = { 'gomodifytags', '-format', 'json', '-file', fname, '-line', line }
+
+    local tags = 'json'
+    if #args >= 3 then
+        tags = args[3]
+    end
+
     if mode == 'add' then
         table.insert(cmd, '-add-tags')
-        table.insert(cmd, 'json')
+        table.insert(cmd, tags)
     elseif mode == 'remove' then
         table.insert(cmd, '-remove-tags')
-        table.insert(cmd, 'json')
+        table.insert(cmd, tags)
     else
         return
     end
+
     local response = vim.fn.json_decode(vim.fn.system(cmd))
 
     local i = 1
@@ -32,14 +44,14 @@ end
 
 local M = {}
 
-function M.add_tags(start, fin)
-    local file_path = vim.fn.expand('%:p')
-    exec(start, fin, 'add', file_path)
+-- { <line1>, <line2>, <f-args> }
+function M.add_tags(args)
+    exec('add', args)
 end
 
-function M.remove_tags(start, fin)
-    local file_path = vim.fn.expand('%:p')
-    exec(start, fin, 'remove', file_path)
+-- { <line1>, <line2>, <f-args> }
+function M.remove_tags(args)
+    exec('remove', args)
 end
 
 return M
