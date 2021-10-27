@@ -28,7 +28,6 @@ vim.cmd [[Plug 'junegunn/vim-easy-align']]
 -- LSP
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
 vim.cmd [[Plug 'kabouzeid/nvim-lspinstall']]
-vim.cmd [[Plug 'glepnir/lspsaga.nvim']]
 vim.cmd [[Plug 'windwp/nvim-autopairs']]
 
 -- completion
