@@ -40,7 +40,7 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', 'g<C-d>', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('i', '<C-k>', '<cmd>lua require("scnewma/lsp").signature_line()<CR>', opts)
+    buf_set_keymap('i', '<C-s>', '<cmd>lua require("scnewma/lsp").signature_line()<CR>', opts)
 
     --      code-rename
     buf_set_keymap('n', '<Leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -172,8 +172,34 @@ function M.goimports(timeout_ms)
 end
 
 function M.signature_line()
-    local params = vim.lsp.utils.make_position_params()
-    vim.lsp.buf_request(0, 'textDocument/signatureHelp', params)
+    local ts_utils = require('nvim-treesitter.ts_utils')
+    local current_node  = ts_utils.get_node_at_cursor()
+    local current_node_range = ts_utils.node_to_lsp_range(current_node)
+
+    local params = vim.lsp.util.make_position_params()
+    params.position.character = current_node_range["end"].character
+
+    vim.lsp.buf_request(0, "textDocument/signatureHelp", params, function(_, result, _, _)
+        if not (result and result.signatures and result.signatures[1]) then
+            print("No signature help available")
+            return
+        end
+        local active_signature = result.activeSignature or 0
+        -- If the activeSignature is not inside the valid range, then clip it.
+        if active_signature >= #result.signatures then
+            active_signature = 0
+        end
+        local signature = result.signatures[active_signature + 1]
+        if not signature then
+            return
+        end
+        local label = signature.label
+        local prefix = ""
+        if #result.signatures > 1 then
+            prefix = string.format("(1/%d) ", #result.signatures)
+        end
+        print(prefix .. label)
+    end)
 end
 
 return M
