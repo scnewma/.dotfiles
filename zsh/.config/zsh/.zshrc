@@ -175,6 +175,7 @@ fi
 export PATH
 
 source "$ZDOTDIR/git.zsh"
+source "$ZDOTDIR/kubernetes.zsh"
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
