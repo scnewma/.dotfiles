@@ -128,61 +128,6 @@ alias zrc="vim ~zdot/.zshrc"
 alias c=' clear'
 alias clear=' clear'
 
-alias g='git'
-
-alias gb='git branch -vv'
-alias gbd='git branch -d'
-alias gbD='git branch -D'
-
-alias gcom='git checkout master'
-alias gcb='git checkout -b'
-
-alias gc='git commit -v'
-alias gc!='git commit -v --amend'
-alias gcm='git commit -m'
-
-alias gd='git diff'
-alias gdca='git diff --cached'
-
-alias glg='git log --stat --max-count=10'
-alias glo='git log --oneline --decorate --color'
-
-alias gl='git pull'
-alias gp='git push'
-alias ggp='git push origin "$(git-branch-current 2> /dev/null)"'
-alias gpu='ggp --set-upstream'
-
-alias gsta='git stash'
-alias gstd='git stash drop'
-alias gstp='git stash pop'
-
-FZF_GIT_DIFF_PREVIEW="git diff $@ --color=always -- {-1}"
-ga() {
-    if [ -z "$1" ]; then
-        # git diff --name-only only includes modified files. need to append
-        # untracked files as well
-        files=$(cat <(git diff --name-only) <(git ls-files --others --exclude-standard -z))
-        file="$(echo $files | fzf +m -q "$*" \
-            --preview="${FZF_GIT_DIFF_PREVIEW}")"
-    else
-        file="$1"
-    fi
-
-    git add $file
-}
-
-alias gaa='git add --all'
-alias grm='git rm'
-alias grmca='git rm --cached'
-
-alias gcl='git clone'
-alias gf='git fetch'
-alias gm='git merge'
-alias grh='git reset HEAD'
-alias grhh='git reset HEAD --hard'
-alias gst='git status'
-alias gclean='git clean -di'
-
 alias d='docker'
 
 alias dc='docker container'
