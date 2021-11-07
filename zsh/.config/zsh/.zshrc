@@ -149,6 +149,8 @@ alias dcomudb='docker-compose up -d --build'
 alias dcomd='docker-compose down'
 alias dcomlo='docker-compose logs -f'
 
+alias t='~/.tmux/scripts/dir-session.sh'
+alias td='~/.tmux/scripts/fzf-dev-session.sh'
 alias tdot='t $HOME/.dotfiles'
 
 alias ls='exa --icons'

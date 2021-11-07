@@ -1,9 +1,11 @@
+#!/bin/bash
+
 # create a tmux session from a given directory
 # if a tmux session already exists for that directory then attach to it
 
-local dir="$PWD"
-local move_window=0
-local kill_window=0
+dir="$PWD"
+move_window=0
+kill_window=0
 
 while getopts 'mk' opt; do
     case $opt in
@@ -45,7 +47,7 @@ fi
 
 # name the new session the same as the cwd name
 # replace disallowed characters with _
-local session_name=$(basename $dir | sed 's/\./_/g')
+session_name=$(basename $dir | sed 's/\./_/g')
 
 # create a new session if one with that name doesn't exist
 if ! tmux has-session -t $session_name 2>/dev/null; then
