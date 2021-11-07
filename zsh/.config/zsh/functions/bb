@@ -1,0 +1,40 @@
+py_prog='''
+import json
+import os
+
+def build(parent, item):
+    if parent:
+        name = parent + "/" + item["name"]
+    else:
+        name = item["name"]
+
+    if item["type"] == "folder":
+        return [build(name, child) for child in item["children"]]
+    else:
+        return { "name": name, "url": item["url"] }
+
+def flatten(S):
+    if S == []:
+        return S
+    if isinstance(S[0], list):
+        return flatten(S[0]) + flatten(S[1:])
+    return S[:1] + flatten(S[1:])
+
+def main():
+    bookmark_file = os.environ["CHROME_PROFILE_LOCATION"] + "/Bookmarks"
+    width = int(os.popen("tput cols", "r").read()) // 2
+    with open(bookmark_file) as f:
+        bookmarks = json.load(f)
+
+    items = [build(None, bookmarks["roots"][category]) for category in ["bookmark_bar", "synced", "other"]]
+    for item in flatten(items):
+        name = item["name"][:width]
+        print(name.ljust(width) + "\t\x1b[36m" + item["url"] + "\x1b[m")
+
+main()
+'''
+
+python3 -c "$py_prog" \
+    | fzf --ansi --multi --no-hscroll --tiebreak=begin \
+    | awk 'BEGIN { FS = "\t" } { print $2 }' \
+    | xargs open
