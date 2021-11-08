@@ -3,7 +3,10 @@ require('lightspeed').setup {
     limit_ft_matches = 1,
 }
 
+-- use builtins for singe character search
 vim.cmd [[
-    nmap ; <Plug>Lightspeed_;_ft
-    nmap , <Plug>Lightspeed_,_ft
+unmap t
+unmap T
+unmap f
+unmap F
 ]]
