@@ -72,6 +72,18 @@ bind-git-helper() {
 bind-git-helper f b t r h s
 unset -f bind-git-helper
 
+git-main-branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local ref
+  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}; do
+    if command git show-ref -q --verify $ref; then
+      echo ${ref:t}
+      return
+    fi
+  done
+  echo master
+}
+
 # --- Aliases
 alias g='git'
 
@@ -79,7 +91,7 @@ alias gb='git branch -vv'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
 
-alias gcom='git checkout master'
+alias gcom='git checkout $(git-main-branch)'
 alias gcb='git checkout -b'
 
 alias gc='git commit -v'
