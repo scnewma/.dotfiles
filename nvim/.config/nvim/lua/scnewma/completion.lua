@@ -15,6 +15,7 @@ cmp.setup({
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.close(),
         ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
     },
 
     sources = {
@@ -42,3 +43,6 @@ cmp.setup({
         ghost_text = true,
     }
 })
+
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' }}))

@@ -20,7 +20,6 @@ require('scnewma.options')
 
 -- Neovim builtin LSP configuration
 require('scnewma.lsp')
-require('rust-tools').setup({})
 
 -- Telescope
 require('scnewma.telescope')
@@ -34,11 +33,6 @@ require('scnewma.treesitter')
 require('scnewma.lightspeed')
 
 require('nvim-autopairs').setup{}
-require('nvim-autopairs.completion.cmp').setup({
-    map_cr = true,
-    map_complete = true,
-    auto_select = false,
-})
 
 vim.cmd [[
     imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'

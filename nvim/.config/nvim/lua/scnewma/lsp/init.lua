@@ -94,7 +94,7 @@ local rust_settings = {
     }
 }
 
--- config that activets keymaps and enabled snippet support
+-- config that activates keymaps and enabled snippet support
 local function make_config()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.snippetSupport = true
@@ -106,49 +106,45 @@ local function make_config()
     }
 end
 
-local function setup_servers()
-    require('lspinstall').setup()
+local lsp_installer = require("nvim-lsp-installer")
 
-    local servers = require('lspinstall').installed_servers()
+local servers = {
+    "bashls",
+    "dockerls",
+    "elixirls",
+    "gopls",
+    "jsonls",
+    "sumneko_lua",
+    "pyright",
+    "rust_analyzer",
+    "vimls",
+    "yamlls",
+}
 
-    for _, server in pairs(servers) do
-        local config = make_config()
-
-        -- language specific config
-        if server == "lua" then
-            config.settings = lua_settings
+for _, name in pairs(servers) do
+    local server_is_found, server = lsp_installer.get_server(name)
+    if server_is_found then
+        if not server:is_installed() then
+            print("Installing " .. name)
+            server:install()
         end
-
-        if server == "go" then
-            config.settings = go_settings
-        end
-
-        if server == "rust" then
-            config.settings = rust_settings
-        end
-
-        require('lspconfig')[server].setup(config)
     end
 end
 
-setup_servers()
+lsp_installer.on_server_ready(function(server)
+    local opts = make_config()
 
--- automatically reload after `:LspInstall <server>` so we don't have to
--- restart neovim
-require('lspinstall').post_install_hook = function()
-    setup_servers() -- reload installed servers
-    vim.cmd("bufdo e") -- triggers the FileType autocmd that starts the server
-end
+    if server.name == "rust_analyzer" then
+        require("rust-tools").setup {
+            server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
+        }
+        server:attach_buffers()
+    else
+        server:setup(opts)
+    end
+end)
 
 local M = {}
-
--- use lspinstall to install all servers in the installed_servers table
-function M.install_servers()
-    local wanted = { bash=true, dockerfile=true, elixir=true, go=true, json=true, lua=true, python=true, vim=true, yaml=true }
-    for server in pairs(wanted) do
-        require('lspinstall').install_server(server)
-    end
-end
 
 -- Source: https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-656372575
 function M.goimports(timeout_ms)
