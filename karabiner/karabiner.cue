@@ -113,19 +113,35 @@ _profiles: [Name=string]: {
 	}
 
 	// common
-	devices: [{
-		disable_built_in_keyboard_if_exists: false
-		fn_function_keys: []
-		identifiers: {
-			is_keyboard:        true
-			is_pointing_device: false
-			product_id:         50475
-			vendor_id:          1133
-		}
-		ignore:                   false
-		manipulate_caps_lock_led: false
-		simple_modifications: []
-	}]
+	devices: [
+		{
+			disable_built_in_keyboard_if_exists: false
+			fn_function_keys: []
+			identifiers: {
+				is_keyboard:        true
+				is_pointing_device: false
+				product_id:         50475
+				vendor_id:          1133
+			}
+			ignore:                   false
+			manipulate_caps_lock_led: false
+			simple_modifications: []
+		},
+		// ignore kinesis advantage keyboard
+		{
+			disable_built_in_keyboard_if_exists: false
+			fn_function_keys: []
+			identifiers: {
+				is_keyboard:        true
+				is_pointing_device: false
+				product_id:         24672
+				vendor_id:          65261
+			}
+			ignore:                   true
+			manipulate_caps_lock_led: false
+			simple_modifications: []
+		},
+	]
 	fn_function_keys: [{
 		from: key_code: "f1"
 		to: [{
@@ -224,6 +240,19 @@ _profiles: "default": {
 						key_code: "caps_lock"
 					}]
 					type: "basic"
+				}]
+			},
+			{
+				description: "left_control => hyper"
+				manipulators: [{
+					type: "basic"
+					from: {
+						key_code: "left_control"
+					}
+					to: [{
+						key_code: "left_shift"
+						modifiers: ["left_command", "left_control", "left_option"]
+					}]
 				}]
 			},
 		]
