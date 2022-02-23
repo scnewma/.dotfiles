@@ -9,4 +9,5 @@ unmap t
 unmap T
 unmap f
 unmap F
+unmap ;
 ]]
