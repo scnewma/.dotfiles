@@ -14,3 +14,7 @@
     root = rev-parse --show-toplevel
 [include]
     path = "~/.gitconfig.local"
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[submodule]
+	recurse = true
