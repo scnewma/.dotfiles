@@ -1,5 +1,4 @@
 require('lightspeed').setup {
-    grey_out_search_area = false,
     limit_ft_matches = 1,
 }
 

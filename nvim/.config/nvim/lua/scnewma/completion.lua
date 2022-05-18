@@ -16,6 +16,8 @@ cmp.setup({
         ["<C-e>"] = cmp.mapping.close(),
         ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+        ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
     },
 
     sources = {
