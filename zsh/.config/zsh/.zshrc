@@ -97,6 +97,9 @@ hash -d nvdot="$HOME/.dotfiles/nvim/.config/nvim"
 autoload -Uz compinit
 compinit
 
+autoload -Uz bashcompinit
+bashcompinit
+
 if [[ -s "$HOME/.fzf/bin/fzf" ]]; then
     path=("$HOME/.fzf/bin" $path)
 fi
@@ -182,5 +185,3 @@ source "$ZDOTDIR/kubernetes.zsh"
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 source "$ZDOTDIR/external/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-eval "$(zoxide init zsh)"
