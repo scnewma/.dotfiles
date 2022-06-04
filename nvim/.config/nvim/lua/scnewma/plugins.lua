@@ -11,7 +11,6 @@ vim.cmd [[Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }]]
 vim.cmd [[Plug 'tpope/vim-fugitive']]
 vim.cmd [[Plug 'tpope/vim-commentary']]
 vim.cmd [[Plug 'tpope/vim-repeat']]
-vim.cmd [[Plug 'ggandor/lightspeed.nvim']]
 -- substitution for abbreviations, case-respecting replacement
 vim.cmd [[Plug 'tpope/vim-abolish']]
 vim.cmd [[Plug 'tpope/vim-vinegar']]
@@ -55,6 +54,8 @@ vim.cmd [[Plug 'stephpy/vim-yaml']]
 vim.cmd [[Plug 'elixir-editors/vim-elixir']]
 vim.cmd [[Plug 'mhinz/vim-mix-format']]
 vim.cmd [[Plug 'simrat39/rust-tools.nvim']]
+vim.cmd [[Plug 'pangloss/vim-javascript']]
+vim.cmd [[Plug 'maxmellon/vim-jsx-pretty']]
 -- install from pre build since I don't always have nodejs and yarn
 vim.cmd [[Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}]]
 

@@ -30,8 +30,6 @@ require('scnewma.completion')
 -- Treesitter
 require('scnewma.treesitter')
 
-require('scnewma.lightspeed')
-
 require('nvim-autopairs').setup{}
 
 vim.cmd [[
