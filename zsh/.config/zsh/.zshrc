@@ -94,8 +94,8 @@ source "$ZDOTDIR/.p10k.zsh"
 hash -d zdot="$HOME/.dotfiles/zsh/.config/zsh"
 hash -d nvdot="$HOME/.dotfiles/nvim/.config/nvim"
 
-autoload -Uz compinit
-compinit
+autoload -U +X bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 
 autoload -Uz bashcompinit
 bashcompinit
@@ -156,6 +156,8 @@ alias t='~/.tmux/scripts/dir-session.sh'
 alias td='~/.tmux/scripts/fzf-dev-session.sh'
 alias tdot='t $HOME/.dotfiles'
 
+alias tf='terraform'
+
 alias ls='exa --icons'
 alias exa='exa --icons'
 alias exag='exa --icons --long --git --git-ignore'
@@ -163,7 +165,7 @@ alias tree='exa --icons --tree'
 
 if (( $+commands[go] )); then
     export GOPATH=~/go/
-    path=($path ${GOPATH}bin)
+    path=("/usr/local/go/bin" $path ${GOPATH}bin)
 fi
 
 if (( $+commands[nvim] )); then
@@ -172,6 +174,10 @@ fi
 
 if (( $+commands[kubectl] )); then
     source <(kubectl completion zsh)
+fi
+
+if (( $+commands[terraform] )); then
+    complete -o nospace -C /usr/local/bin/terraform terraform
 fi
 
 [ -d "$HOME/dev/bin" ] && path=("$HOME/dev/bin" $path)

@@ -112,7 +112,7 @@ inoremap <C-]> <C-g>u<C-r>0
 inoremap <C-r> <C-g>u<C-r>
 
 " append ; to end of line
-inoremap ;; <C-o>$;
+" inoremap ;; <C-o>$;
 
 " Add newline above/below current cursor; retain cursor position
 noremap <Leader>o mlo<Esc>`l
