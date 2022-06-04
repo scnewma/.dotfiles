@@ -211,7 +211,7 @@ export PATH
 source "$ZDOTDIR/git.zsh"
 source "$ZDOTDIR/kubernetes.zsh"
 
-source /usr/local/opt/asdf/libexec/asdf.sh
+[ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
