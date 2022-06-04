@@ -20,6 +20,9 @@ require('scnewma.options')
 
 -- Neovim builtin LSP configuration
 require('scnewma.lsp')
+require('go').setup({
+    build_tags = "integration",
+})
 
 -- Telescope
 require('scnewma.telescope')

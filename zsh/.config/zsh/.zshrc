@@ -127,6 +127,28 @@ function suspend-resume() {
 zle -N suspend-resume
 bindkey "^z" suspend-resume
 
+function cd-project() {
+    dir="$(fd --max-depth 1 --type d . $HOME/dev \
+        | fzf --preview="${FZF_PREVIEW_CMD}" \
+        --preview-window="right:hidden:wrap")"
+
+    zle push-line # clear buffer. restored on next prompt
+    BUFFER="builtin cd -- ${(q)dir}"
+    if [ ! -z "$TMUX" ]; then
+        win_name=$(basename ${(q)dir}) # only keep dir name
+        win_name="${win_name#cloud-}"  # trim "cloud-" prefix if any
+        BUFFER="$BUFFER && tmux rename-window ${win_name}"
+    fi
+    BUFFER="$BUFFER && clear"
+    zle accept-line
+    local ret=$?
+    unset dir win_name # ensure this doesn't end up appearing in prompt expansion
+    zle reset-prompt
+    return $ret
+}
+zle -N cd-project
+bindkey "\ep" cd-project
+
 alias zrc="vim ~zdot/.zshrc"
 
 alias c=' clear'
@@ -163,6 +185,7 @@ alias exa='exa --icons'
 alias exag='exa --icons --long --git --git-ignore'
 alias tree='exa --icons --tree'
 
+path=($path /usr/local/go/bin)
 if (( $+commands[go] )); then
     export GOPATH=~/go/
     path=("/usr/local/go/bin" $path ${GOPATH}bin)
@@ -188,6 +211,9 @@ export PATH
 source "$ZDOTDIR/git.zsh"
 source "$ZDOTDIR/kubernetes.zsh"
 
+source /usr/local/opt/asdf/libexec/asdf.sh
+
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 source "$ZDOTDIR/external/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+

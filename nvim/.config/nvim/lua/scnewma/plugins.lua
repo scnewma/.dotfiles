@@ -48,6 +48,7 @@ vim.cmd [[Plug 'rafamadriz/friendly-snippets']]
 
 -- Languages
 vim.cmd [[Plug 'hashivim/vim-terraform']]
+vim.cmd [[Plug 'jvirtanen/vim-hcl']]
 vim.cmd [[Plug 'google/vim-jsonnet']]
 vim.cmd [[Plug 'jjo/vim-cue']]
 vim.cmd [[Plug 'stephpy/vim-yaml']]
@@ -56,6 +57,7 @@ vim.cmd [[Plug 'mhinz/vim-mix-format']]
 vim.cmd [[Plug 'simrat39/rust-tools.nvim']]
 vim.cmd [[Plug 'pangloss/vim-javascript']]
 vim.cmd [[Plug 'maxmellon/vim-jsx-pretty']]
+vim.cmd [[Plug 'ray-x/go.nvim']]
 -- install from pre build since I don't always have nodejs and yarn
 vim.cmd [[Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}]]
 

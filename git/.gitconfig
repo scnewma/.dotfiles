@@ -4,7 +4,7 @@
     pager = delta
     editor = nvim
 [init]
-    defaultBranch = master
+	defaultBranch = main
 [delta]
     syntax-theme = gruvbox-dark
     navigate = true

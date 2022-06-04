@@ -48,10 +48,10 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opts)
 
     --      automatic formatting
-    if vim.tbl_contains({"go"}, filetype) then
-        vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
-        vim.cmd [[autocmd BufWritePre <buffer> :lua require('scnewma.lsp').goimports(1000)]]
-    end
+    -- if vim.tbl_contains({"go"}, filetype) then
+    --     vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+    --     vim.cmd [[autocmd BufWritePre <buffer> :lua require('scnewma.lsp').goimports(1000)]]
+    -- end
 
     if vim.tbl_contains({"rust"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
