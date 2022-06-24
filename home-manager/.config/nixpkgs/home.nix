@@ -19,23 +19,48 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
+    _1password
+    asciinema
     aspell
     awscli2
+    bash
     bat
     coreutils
     curl
     delta # syntax highlighting for git
+    direnv
     exa
     fd
     fzf
+    gh
     git
+    goreleaser
+    graphviz
+    grpcurl
     htop
+    iterm2
+    jd-diff-patch
     jq
+    mysql80
+    neovim
+    nomad
+    postgresql
+    pre-commit
+    protobuf
+    pv
+    python310
     ripgrep
+    shellcheck
     stow
     tmux
+    tshark
+    unixtools.watch
     wget
+    wireguard-go
+    wireguard-tools
     yq
   ];
 }

@@ -150,6 +150,7 @@ zle -N cd-project
 bindkey "\ep" cd-project
 
 alias zrc="vim ~zdot/.zshrc"
+alias zrclocal="vim ~/.zshrc.local"
 
 alias c=' clear'
 alias clear=' clear'
@@ -219,3 +220,4 @@ source "$ZDOTDIR/kubernetes.zsh"
 source "$ZDOTDIR/external/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+eval "$(direnv hook zsh)"
