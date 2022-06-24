@@ -100,9 +100,9 @@ autoload -Uz compinit && compinit
 autoload -Uz bashcompinit
 bashcompinit
 
-if [[ -s "$HOME/.fzf/bin/fzf" ]]; then
-    path=("$HOME/.fzf/bin" $path)
-fi
+# if [[ -s "$HOME/.fzf/bin/fzf" ]]; then
+#     path=("$HOME/.fzf/bin" $path)
+# fi
 
 export FZF_DEFAULT_OPTS='--bind ctrl-y:preview-up,ctrl-e:preview-down,left:toggle+up,right:toggle+down'
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
@@ -217,3 +217,4 @@ source "$ZDOTDIR/kubernetes.zsh"
 
 source "$ZDOTDIR/external/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
