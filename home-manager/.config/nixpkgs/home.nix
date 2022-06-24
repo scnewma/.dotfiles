@@ -22,11 +22,20 @@
   home.packages = with pkgs; [
     aspell
     awscli2
+    bat
     coreutils
     curl
+    delta # syntax highlighting for git
     exa
     fd
     fzf
+    git
     htop
+    jq
+    ripgrep
+    stow
+    tmux
+    wget
+    yq
   ];
 }
