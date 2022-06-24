@@ -46,53 +46,12 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = \"single\" }})<CR>', opts)
 
     buf_set_keymap('n', '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opts)
+    buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-    --      automatic formatting
-    -- if vim.tbl_contains({"go"}, filetype) then
-    --     vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
-    --     vim.cmd [[autocmd BufWritePre <buffer> :lua require('scnewma.lsp').goimports(1000)]]
-    -- end
-
-    if vim.tbl_contains({"rust"}, filetype) then
+    if vim.tbl_contains({"rust", "go"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
     end
 end
-
--- Configure lua language server for neovim development
-local lua_settings = {
-    Lua = {
-        runtime = {
-            -- LuaJIT for neovim
-            version = 'LuaJIT',
-            path = vim.split(package.path, ';'),
-        },
-        diagnostics = {
-            -- get the language server to recognize the `vim` global
-            globals = {'vim'},
-        },
-        workspace = {
-            -- make the server aware of neovim runtime files
-            library = {
-                [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-            },
-        },
-    }
-}
-
-local go_settings = {
-    gopls = {
-        codelenses = { test = true },
-    }
-}
-
-local rust_settings = {
-    ["rust-analyzer"] = {
-        -- checkOnSave = {
-        --     command = "clippy"
-        -- }
-    }
-}
 
 -- config that activates keymaps and enabled snippet support
 local function make_config()
@@ -160,5 +119,7 @@ function M.goimports(timeout_ms)
     local edit = result[1].edit
     vim.lsp.util.apply_workspace_edit(edit)
 end
+
+require("fidget").setup({})
 
 return M

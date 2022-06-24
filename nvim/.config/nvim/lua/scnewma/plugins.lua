@@ -7,8 +7,8 @@ vim.cmd [[Plug 'nvim-lua/popup.nvim']]
 vim.cmd [[Plug 'nvim-lua/plenary.nvim']]
 vim.cmd [[Plug 'nvim-telescope/telescope.nvim']]
 vim.cmd [[Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }]]
+vim.cmd [[Plug 'nvim-telescope/telescope-ui-select.nvim']]
 
-vim.cmd [[Plug 'tpope/vim-fugitive']]
 vim.cmd [[Plug 'tpope/vim-commentary']]
 vim.cmd [[Plug 'tpope/vim-repeat']]
 -- substitution for abbreviations, case-respecting replacement
@@ -28,6 +28,7 @@ vim.cmd [[Plug 'junegunn/vim-easy-align']]
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
 vim.cmd [[Plug 'williamboman/nvim-lsp-installer']]
 vim.cmd [[Plug 'windwp/nvim-autopairs']]
+vim.cmd [[Plug 'j-hui/fidget.nvim']]
 
 -- completion
 vim.cmd [[Plug 'hrsh7th/nvim-cmp']]

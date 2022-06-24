@@ -40,7 +40,7 @@ opt.titleold="Terminal"
 opt.titlestring="%F"
 opt.listchars={ trail = "·", tab = "»·" }
 
-vim.cmd [[set statusline=\ %f%m%r%h%w%=\ %{fugitive#statusline()}\ \|\ %p%%\ \|\ L%l:%c\ ]]
+vim.cmd [[set statusline=\ %f%m%r%h%w%=\ \|\ %p%%\ \|\ L%l:%c\ ]]
 
 opt.shell = "/bin/sh"
 if vim.env.SHELL then
