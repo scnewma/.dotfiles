@@ -62,5 +62,18 @@
     wireguard-go
     wireguard-tools
     yq
+    zsh
+
+    # neovim language servers
+    gopls
+    nodePackages.bash-language-server
+    nodePackages.dockerfile-language-server-nodejs
+    nodePackages.pyright
+    nodePackages.vim-language-server
+    nodePackages.vscode-langservers-extracted
+    nodePackages.yaml-language-server
+    rnix-lsp
+    rust-analyzer
+    sumneko-lua-language-server
   ];
 }

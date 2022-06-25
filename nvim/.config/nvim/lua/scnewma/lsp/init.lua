@@ -65,43 +65,34 @@ local function make_config()
     }
 end
 
-local lsp_installer = require("nvim-lsp-installer")
+local lspconfig = require('lspconfig');
+lspconfig.bashls.setup(make_config())
+lspconfig.dockerls.setup(make_config())
+lspconfig.gopls.setup(make_config())
+lspconfig.jsonls.setup(make_config())
+lspconfig.pyright.setup(make_config())
+lspconfig.rnix.setup(make_config())
+lspconfig.rust_analyzer.setup(make_config())
+lspconfig.vimls.setup(make_config())
+lspconfig.yamlls.setup(make_config())
 
-local servers = {
-    "bashls",
-    "dockerls",
-    "elixirls",
-    "gopls",
-    "jsonls",
-    "sumneko_lua",
-    "pyright",
-    "rust_analyzer",
-    "vimls",
-    "yamlls",
-}
-
-for _, name in pairs(servers) do
-    local server_is_found, server = lsp_installer.get_server(name)
-    if server_is_found then
-        if not server:is_installed() then
-            print("Installing " .. name)
-            server:install()
-        end
-    end
-end
-
-lsp_installer.on_server_ready(function(server)
-    local opts = make_config()
-
-    if server.name == "rust_analyzer" then
-        require("rust-tools").setup {
-            server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
-        }
-        server:attach_buffers()
-    else
-        server:setup(opts)
-    end
-end)
+local lua_config = vim.tbl_deep_extend("force", make_config(), {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      telemetry = { enable = false },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+    },
+  },
+})
+lspconfig.sumneko_lua.setup(lua_config)
 
 local M = {}
 

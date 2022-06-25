@@ -26,7 +26,6 @@ vim.cmd [[Plug 'junegunn/vim-easy-align']]
 
 -- LSP
 vim.cmd [[Plug 'neovim/nvim-lspconfig']]
-vim.cmd [[Plug 'williamboman/nvim-lsp-installer']]
 vim.cmd [[Plug 'windwp/nvim-autopairs']]
 vim.cmd [[Plug 'j-hui/fidget.nvim']]
 
@@ -61,6 +60,7 @@ vim.cmd [[Plug 'maxmellon/vim-jsx-pretty']]
 vim.cmd [[Plug 'ray-x/go.nvim']]
 -- install from pre build since I don't always have nodejs and yarn
 vim.cmd [[Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}]]
+vim.cmd [[Plug 'LnL7/vim-nix']]
 
 vim.cmd [[Plug 'jpalardy/vim-slime']]
 

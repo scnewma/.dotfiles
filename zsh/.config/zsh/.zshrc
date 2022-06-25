@@ -189,7 +189,7 @@ alias tree='exa --icons --tree'
 path=($path /usr/local/go/bin)
 if (( $+commands[go] )); then
     export GOPATH=~/go/
-    path=("/usr/local/go/bin" ${GOPATH}bin $path)
+    path=($path "/usr/local/go/bin" ${GOPATH}bin)
 fi
 
 if (( $+commands[nvim] )); then
