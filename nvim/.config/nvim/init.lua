@@ -12,7 +12,7 @@ vim.g.mapleader = ' '
 -- Setup globals that I expect to be always available.
 require('scnewma.globals')
 
--- Load vim-plug plugins
+-- Load packer plugins
 require('scnewma.plugins')
 
 -- Load neovim options
