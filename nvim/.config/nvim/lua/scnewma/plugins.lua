@@ -35,6 +35,10 @@ return require('packer').startup(function (use)
     -- allows forward searching for text objects among other things
     use 'wellle/targets.vim'
 
+    -- gives :GBrowse functionality
+    use "tpope/vim-fugitive"
+    use "tpope/vim-rhubarb"
+
     use 'junegunn/vim-easy-align'
 
     -- LSP
