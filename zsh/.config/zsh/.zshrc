@@ -87,6 +87,13 @@ typeset -U path
 fpath=( "$ZDOTDIR/functions" "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
 
+if [[ -n $KITTY_INSTALLATION_DIR ]]; then
+    export KITTY_SHELL_INTEGRATION="no-rc no-cursor"
+    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+    kitty-integration
+    unfunction kitty-integration
+fi
+
 source "$ZDOTDIR/external/powerlevel10k/powerlevel10k.zsh-theme"
 source "$ZDOTDIR/.p10k.zsh"
 

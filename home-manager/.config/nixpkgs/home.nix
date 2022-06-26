@@ -42,6 +42,7 @@
     grpcurl
     htop
     iterm2
+    kitty
     jd-diff-patch
     jq
     mysql80
