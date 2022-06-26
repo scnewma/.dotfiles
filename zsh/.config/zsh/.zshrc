@@ -94,8 +94,7 @@ if [[ -n $KITTY_INSTALLATION_DIR ]]; then
     unfunction kitty-integration
 fi
 
-source "$ZDOTDIR/external/powerlevel10k/powerlevel10k.zsh-theme"
-source "$ZDOTDIR/.p10k.zsh"
+eval "$(starship init zsh)"
 
 # add some commonly used named directories
 hash -d zdot="$HOME/.dotfiles/zsh/.config/zsh"
@@ -106,10 +105,6 @@ autoload -Uz compinit && compinit
 
 autoload -Uz bashcompinit
 bashcompinit
-
-# if [[ -s "$HOME/.fzf/bin/fzf" ]]; then
-#     path=("$HOME/.fzf/bin" $path)
-# fi
 
 export FZF_DEFAULT_OPTS='--bind ctrl-y:preview-up,ctrl-e:preview-down,left:toggle+up,right:toggle+down'
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"

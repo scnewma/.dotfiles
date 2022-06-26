@@ -55,6 +55,7 @@
     python310
     ripgrep
     shellcheck
+    starship
     stow
     tmux
     tshark

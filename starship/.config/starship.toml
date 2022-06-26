@@ -1,0 +1,36 @@
+add_newline = true
+command_timeout = 125
+
+[status]
+disabled = false
+
+[directory]
+truncate_to_repo = false
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[git_status]
+stashed = "" # don't care to see this
+
+[golang]
+symbol = " "
+
+[ruby]
+disabled = true
+
+[python]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[shlvl]
+disabled = false
+symbol = " "
+
+[vagrant]
+disabled = true
