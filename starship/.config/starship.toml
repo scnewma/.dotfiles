@@ -1,5 +1,5 @@
 add_newline = true
-command_timeout = 125
+command_timeout = 250
 
 [status]
 disabled = false
@@ -17,7 +17,7 @@ disabled = true
 stashed = "" # don't care to see this
 
 [golang]
-symbol = " "
+disabled = true
 
 [ruby]
 disabled = true
