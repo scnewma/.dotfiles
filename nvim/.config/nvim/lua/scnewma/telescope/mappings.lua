@@ -14,6 +14,8 @@ local map = function(key, tele_fn, options, buffer)
     vim.api.nvim_set_keymap(mode, key, rhs, opts)
 end
 
+map('<leader>-', 'resume')
+
 -- dotfiles
 map('<leader>fe', 'edit_dotfiles')
 
@@ -37,3 +39,9 @@ map('<leader>sh', 'help_tags')
 map('<leader>tc', 'colorscheme')
 map('<leader>lst', 'treesitter')
 map('<leader>lsd', 'lsp_document_symbols')
+map('<leader>lsw', 'lsp_workspace_symbols')
+map('<leader>cR', 'lsp_references')
+map('<leader>cd', 'diagnostics')
+map('<leader>ci', 'lsp_implementations')
+map('gd', 'lsp_definitions')
+map('g<C-d>', 'lsp_type_definitions')
