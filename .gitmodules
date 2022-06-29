@@ -1,10 +1,6 @@
 [submodule "zsh/.config/zsh/external/powerlevel10k"]
 	path = zsh/.config/zsh/external/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
-[submodule "zsh/.config/zsh/external/kubectl-aliases"]
-	path = zsh/.config/zsh/external/kubectl-aliases
-	url = https://github.com/ahmetb/kubectl-aliases
-    ignore = dirty
 [submodule "tmux/.tmux/plugins/tmux-thumbs"]
 	path = tmux/.tmux/plugins/tmux-thumbs
 	url = https://github.com/fcsonline/tmux-thumbs.git

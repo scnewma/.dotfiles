@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
-{
+let
+  customPackages = {
+    kubectlAliases = pkgs.callPackage ./kubectl-aliases/default.nix { inherit pkgs; };
+  };
+in
+  {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "shaun";
@@ -22,6 +27,8 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    customPackages.kubectlAliases
+
     _1password
     asciinema
     aspell

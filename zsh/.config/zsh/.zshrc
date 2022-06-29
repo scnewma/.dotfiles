@@ -116,9 +116,7 @@ source "$PROFILE_DIR/share/fzf/completion.zsh"
 source "$PROFILE_DIR/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^n' autosuggest-accept
 
-if [[ -f "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases" ]]; then
-    source "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases"
-fi
+source "$PROFILE_DIR/share/kubectl-aliases/.kubectl_aliases"
 
 # allow ctrl-z to toggle between suspend and resume
 function suspend-resume() {
