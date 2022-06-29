@@ -5,10 +5,6 @@
 	path = zsh/.config/zsh/external/kubectl-aliases
 	url = https://github.com/ahmetb/kubectl-aliases
     ignore = dirty
-[submodule "zsh/.config/zsh/external/zsh-autosuggestions"]
-	path = zsh/.config/zsh/external/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
-    ignore = dirty
 [submodule "tmux/.tmux/plugins/tmux-thumbs"]
 	path = tmux/.tmux/plugins/tmux-thumbs
 	url = https://github.com/fcsonline/tmux-thumbs.git

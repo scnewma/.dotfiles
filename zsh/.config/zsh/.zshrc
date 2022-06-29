@@ -113,7 +113,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --no-ignore"
 source "$PROFILE_DIR/share/fzf/key-bindings.zsh"
 source "$PROFILE_DIR/share/fzf/completion.zsh"
 
-source "$ZDOTDIR/external/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$PROFILE_DIR/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^n' autosuggest-accept
 
 if [[ -f "$ZDOTDIR/external/kubectl-aliases/.kubectl_aliases" ]]; then
