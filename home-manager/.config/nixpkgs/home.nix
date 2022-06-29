@@ -65,6 +65,7 @@
     wireguard-tools
     yq
     zsh
+    zsh-syntax-highlighting
 
     # neovim language servers
     gopls

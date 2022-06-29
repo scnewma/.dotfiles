@@ -220,7 +220,7 @@ source "$ZDOTDIR/kubernetes.zsh"
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
-source "$ZDOTDIR/external/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$PROFILE_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+source "$PROFILE_DIR/etc/profile.d/hm-session-vars.sh"
 eval "$(direnv hook zsh)"

@@ -5,9 +5,6 @@
 	path = zsh/.config/zsh/external/kubectl-aliases
 	url = https://github.com/ahmetb/kubectl-aliases
     ignore = dirty
-[submodule "zsh/.config/zsh/external/zsh-syntax-highlighting"]
-	path = zsh/.config/zsh/external/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "zsh/.config/zsh/external/zsh-autosuggestions"]
 	path = zsh/.config/zsh/external/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
