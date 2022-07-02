@@ -1,3 +1,4 @@
 .DS_Store
 nvim/.config/nvim/autoload/
 nvim/.config/nvim/plugged/
+gh/.config/gh/hosts.yml

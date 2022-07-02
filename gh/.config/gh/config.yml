@@ -1,0 +1,6 @@
+git_protocol: https
+editor: nvim
+prompt: enabled
+aliases:
+  # opens the current branch in github.com
+  open: '!gh browse --branch $(git rev-parse --abbrev-ref HEAD) $@'
