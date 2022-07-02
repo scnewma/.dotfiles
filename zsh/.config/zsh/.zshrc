@@ -100,11 +100,8 @@ eval "$(starship init zsh)"
 hash -d zdot="$HOME/.dotfiles/zsh/.config/zsh"
 hash -d nvdot="$HOME/.dotfiles/nvim/.config/nvim"
 
-autoload -U +X bashcompinit && bashcompinit
+autoload -Uz +X bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
-
-autoload -Uz bashcompinit
-bashcompinit
 
 PROFILE_DIR="$HOME/.nix-profile"
 export FZF_DEFAULT_OPTS='--bind ctrl-y:preview-up,ctrl-e:preview-down,left:toggle+up,right:toggle+down'
