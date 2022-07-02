@@ -93,6 +93,7 @@ alias gbD='git branch -D'
 
 alias gcom='git checkout $(git-main-branch)'
 alias gcb='git checkout -b'
+alias grs='git restore'
 
 alias gc='git commit -v'
 alias gc!='git commit -v --amend'
