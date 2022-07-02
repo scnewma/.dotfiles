@@ -1,5 +1,16 @@
 local actions = require('telescope.actions')
 
+-- use an rg wrapper script if it's where it's expected to be. this wrapper
+-- script automatically sets RIPGREP_CONFIG_PATH if a .ripgreprc file is found
+-- so that grepping is customizable and works the same in zsh as it does in nvim
+local rgexec = "rg"
+do
+    local rgfuncpath = vim.env.HOME .. '/.config/zsh/functions/rg'
+    if vim.fn.filereadable(rgfuncpath) then
+        rgexec = rgfuncpath
+    end
+end
+
 require('telescope').setup {
     defaults = {
         -- layout_config = {
@@ -39,7 +50,17 @@ require('telescope').setup {
                 ["<C-x>"] = false,
                 ["<C-s>"] = actions.select_horizontal,
             }
-        }
+        },
+
+        vimgrep_arguments = {
+            rgexec,
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case"
+        },
     },
 
     extensions = {
@@ -79,16 +100,6 @@ function M.find_files_prefer_git()
     return require('telescope.builtin').git_files()
 end
 
--- use an rg wrapper script if it's where it's expected to be. this wrapper
--- script automatically sets RIPGREP_CONFIG_PATH if a .ripgreprc file is found
--- so that grepping is customizable and works the same in zsh as it does in nvim
-local rgexec = "rg"
-do
-    local rgfuncpath = vim.env.HOME .. '/.config/zsh/functions/rg'
-    if vim.fn.filereadable(rgfuncpath) then
-        rgexec = rgfuncpath
-    end
-end
 
 function M.grep_string_prompt()
     require('telescope.builtin').grep_string {
