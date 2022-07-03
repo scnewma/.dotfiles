@@ -1,0 +1,41 @@
+export GH_FORCE_TTY="y"
+
+repo=""
+if test -n "$1"; then
+    repo="--repo $1"
+fi
+
+pr_list_template='{{range .}}{{tablerow .number .state .author.login .title}}{{end}}'
+base_command="gh pr list --json number,state,title,author $repo --template '${pr_list_template}'"
+
+out=( ${(@f)$(eval "${base_command}" \
+    | fzf \
+        --bind="ctrl-a:reload(${base_command} --state all)" \
+        --bind="ctrl-o:reload(${base_command} --state open)" \
+        --bind="ctrl-x:reload(${base_command} --state closed)" \
+        --bind="ctrl-g:reload(${base_command} --state merged)" \
+        --expect='ctrl-m,ctrl-l' \
+        --preview-window='up' \
+        --preview="gh pr view {1} ${repo}" \
+        --header='Open (browser:enter) (clone:ctrl-l) States: (all:ctrl-a) (open:ctrl-o) (closed:ctrl-x) (merged:ctrl-g)' \
+        --prompt='PR> ')} )
+
+if test -z "${out}"; then
+    return
+fi
+
+unset GH_FORCE_TTY
+
+key="${out[1]}"
+pr_id="${out[2]}"
+
+if [ "${key}" = "ctrl-m" ]; then
+    eval "gh pr view ${repo} --web ${pr_id}"
+elif [ "${key}" = "ctrl-l" ]; then
+    if [ -n "${repo}" ]; then
+        echo "Passing a repository name to checkout a PR branch is not supported!"
+        return 1
+    fi
+
+    eval "gh pr checkout ${pr_id}"
+fi

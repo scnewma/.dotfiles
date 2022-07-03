@@ -2,5 +2,7 @@ git_protocol: https
 editor: nvim
 prompt: enabled
 aliases:
-  # opens the current branch in github.com
-  open: '!gh browse --branch $(git rev-parse --abbrev-ref HEAD) $@'
+    # opens the current branch in github.com
+    open: '!gh browse --branch $(git rev-parse --abbrev-ref HEAD) $@'
+    # custom fzf filter application for listing/checking out prs
+    prs: '!zsh $HOME/.config/zsh/functions/gh_fzf_pr_open $@'
