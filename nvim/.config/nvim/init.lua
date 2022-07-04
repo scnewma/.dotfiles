@@ -17,6 +17,8 @@ require('scnewma.plugins')
 
 -- Load neovim options
 require('scnewma.options')
+require('scnewma.mappings')
+require('scnewma.commands')
 
 -- Neovim builtin LSP configuration
 require('scnewma.lsp')
@@ -33,7 +35,7 @@ require('scnewma.completion')
 -- Treesitter
 require('scnewma.treesitter')
 
-require('nvim-autopairs').setup{}
+-- require('nvim-autopairs').setup{}
 
 vim.cmd [[
     imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
