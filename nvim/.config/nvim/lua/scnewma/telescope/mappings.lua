@@ -1,17 +1,12 @@
-local map = function(key, tele_fn, options, buffer)
-    local mode = "n"
-    local rhs = string.format(
-        "<cmd>lua require('scnewma.telescope')['%s'](%s)<CR>",
-        tele_fn,
-        options
-    )
+local nnoremap = require('scnewma.keymap').nnoremap
 
-    local opts = {
-        noremap = true,
-        silent = true,
-    }
+local map = function(lhs, tele_fn, options)
+    -- use a closure here so that telescope is lazily loaded
+    local rhs = function()
+        require('scnewma.telescope')[tele_fn](options)
+    end
 
-    vim.api.nvim_set_keymap(mode, key, rhs, opts)
+    nnoremap { lhs, rhs, { silent = true } }
 end
 
 map('<leader>-', 'resume')
