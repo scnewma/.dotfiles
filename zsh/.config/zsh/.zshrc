@@ -97,6 +97,7 @@ fi
 eval "$(starship init zsh)"
 
 # add some commonly used named directories
+hash -d dot="$HOME/.dotfiles"
 hash -d zdot="$HOME/.dotfiles/zsh/.config/zsh"
 hash -d nvdot="$HOME/.dotfiles/nvim/.config/nvim"
 
