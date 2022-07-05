@@ -45,7 +45,7 @@ local on_attach = function(_, bufnr)
     buf_set_keymap('n', '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opts)
     buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-    if vim.tbl_contains({"rust", "go"}, filetype) then
+    if vim.tbl_contains({"rust"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
     end
 end
