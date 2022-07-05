@@ -1,6 +1,5 @@
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
-
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 lspkind.init()
@@ -48,3 +47,10 @@ cmp.setup({
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' }}))
+
+vim.cmd [[
+    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+]]

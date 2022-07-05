@@ -1,11 +1,7 @@
-if require('scnewma.first_load')() then
-  return
-end
-
 -- Add command for reloading main module. This is setup
 -- manually at the beginning so that we can ensure that
 -- it's always available even if some files fail to load.
-vim.cmd [[command! Reload lua require('scnewma.utils').Reload()]]
+vim.api.nvim_create_user_command('Reload', function() require('scnewma.utils').Reload() end, {})
 
 vim.g.mapleader = ' '
 
@@ -35,13 +31,4 @@ require('scnewma.completion')
 -- Treesitter
 require('scnewma.treesitter')
 
--- require('nvim-autopairs').setup{}
-
-vim.cmd [[
-    imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-    smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-    imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-    smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-]]
-
-vim.opt.mouse = "a"
+require('nvim-autopairs').setup{}

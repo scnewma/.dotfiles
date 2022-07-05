@@ -39,6 +39,7 @@ opt.title=true
 opt.titleold="Terminal"
 opt.titlestring="%F"
 opt.listchars={ trail = "·", tab = "»·" }
+opt.mouse = "a"
 
 vim.cmd [[set statusline=\ %f%m%r%h%w%=\ \|\ %p%%\ \|\ L%l:%c\ ]]
 
