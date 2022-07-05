@@ -57,6 +57,14 @@ return require('packer').startup(function (use)
     --   Lua LSP
     use 'euclidianAce/BetterLua.vim' -- better syntax highlighting
     use 'onsails/lspkind-nvim'
+    use({
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function()
+            local saga = require("lspsaga")
+            saga.init_lsp_saga({})
+        end,
+    })
 
     -- Snippets
     use 'hrsh7th/vim-vsnip'

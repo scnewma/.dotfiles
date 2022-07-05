@@ -3,47 +3,34 @@ if not has_lsp then
     return
 end
 
--- styling
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-    border = 'single',
-})
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = true,
-        update_in_insert = false,
-        virtual_text = {
-            spacing = 4,
-            source = 'always',
-            severity_limit = 'Hint',
-        },
-        signs = true,
-        severity_sort = true,
-    }
-)
-
 local on_attach = function(_, bufnr)
     local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
 
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function map(tbl)
+        if tbl[3] == nil then
+            tbl[3] = {}
+        end
+        tbl[3].silent = true
+        tbl[3].noremap = true
+        tbl[3].buffer = bufnr
+        vim.keymap.set('n', tbl[1], tbl[2], tbl[3])
+    end
 
     -- Mappings
-    local opts = { noremap=true, silent=true }
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    map { 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>' }
+    map { 'K', require('lspsaga.hover').render_hover_doc }
+    map { '<C-k>', require("lspsaga.signaturehelp").signature_help }
 
-    --      code-rename
-    buf_set_keymap('n', '<Leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    -- code-rename
+    map { '<Leader>cr', require("lspsaga.rename").lsp_rename }
 
     --  diagnostics
-    buf_set_keymap('n', '<Leader>cl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = \"single\" }})<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = \"single\" }})<CR>', opts)
+    map { '<Leader>cl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>' }
+    map { '[d', require("lspsaga.diagnostic").goto_prev }
+    map { ']d', require("lspsaga.diagnostic").goto_next }
 
-    buf_set_keymap('n', '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opts)
-    buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    map { '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>' }
+    map { '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>' }
 
     if vim.tbl_contains({"rust"}, filetype) then
         vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
