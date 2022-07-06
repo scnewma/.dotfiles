@@ -59,9 +59,7 @@ return require('packer').startup({ function (use)
     })
 
     -- Snippets
-    use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/vim-vsnip-integ'
-    use 'rafamadriz/friendly-snippets'
+    use 'L3MON4D3/LuaSnip'
 
     -- Languages
     use 'hashivim/vim-terraform'

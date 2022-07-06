@@ -27,6 +27,7 @@ require('scnewma.telescope')
 require('scnewma.telescope.mappings')
 
 require('scnewma.completion')
+require('scnewma.snippets')
 
 -- Treesitter
 require('scnewma.treesitter')
