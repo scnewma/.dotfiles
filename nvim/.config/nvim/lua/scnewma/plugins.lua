@@ -51,7 +51,8 @@ return require('packer').startup({ function (use)
     use 'onsails/lspkind-nvim'
     use({
         "glepnir/lspsaga.nvim",
-        branch = "main",
+        -- branch = "main",
+        commit = "e70a3b7af013215feb1213a8eb11986b88677759",
         config = function()
             local saga = require("lspsaga")
             saga.init_lsp_saga({})
@@ -60,6 +61,7 @@ return require('packer').startup({ function (use)
 
     -- Snippets
     use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
 
     -- Languages
     use 'hashivim/vim-terraform'
