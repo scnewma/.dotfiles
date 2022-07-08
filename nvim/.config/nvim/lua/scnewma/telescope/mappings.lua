@@ -16,7 +16,7 @@ map('<leader>fe', 'edit_dotfiles')
 
 -- files
 map('<leader>ff', 'find_files')
-map('<leader>fg', 'git_files', { show_untracked = true })
+map('<leader>fg', 'git_files')
 map('<leader><space>', 'find_files_prefer_git')
 map('<leader>fb', 'file_browser')
 
@@ -25,9 +25,13 @@ map('<leader>bb', 'buffers')
 
 -- search
 map('<leader>sp', 'live_grep')
+map('<leader>sf', 'live_grep_type')
 map('<leader>sP', 'grep_string_prompt')
 map('<leader>sw', 'grep_string')
 map('<leader>ss', 'current_buffer_fuzzy_find')
+map('<leader>s/', 'grep_last_search')
+map('<leader>sk', 'keymaps')
+map('<leader>sm', 'man_pages')
 map('<leader>sc', 'command_history')
 map('<leader>:', 'commands')
 map('<leader>sh', 'help_tags')
@@ -40,3 +44,4 @@ map('<leader>cd', 'diagnostics')
 map('<leader>ci', 'lsp_implementations')
 map('gd', 'lsp_definitions')
 map('g<C-d>', 'lsp_type_definitions')
+map('<leader>gs', 'git_status')
