@@ -87,6 +87,7 @@ function M.edit_dotfiles()
     require('telescope.builtin').git_files {
         prompt_title = "~ dotfiles ~",
         cwd = "~/.dotfiles",
+        show_untracked = true,
     }
 end
 
@@ -98,7 +99,7 @@ function M.find_files_prefer_git()
         return require('telescope.builtin').find_files()
     end
 
-    return require('telescope.builtin').git_files()
+    return require('telescope.builtin').git_files({ show_untracked = true })
 end
 
 
