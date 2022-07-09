@@ -49,11 +49,12 @@ in
     grpcurl
     htop
     iterm2
-    kitty
     jd-diff-patch
     jq
+    kitty
     mysql80
     neovim
+    nerdfonts
     nomad
     postgresql
     pre-commit
