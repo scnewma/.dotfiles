@@ -50,7 +50,8 @@ return {
         func ({}) {}({}) {} {{
             {}
         }}
-    ]], { i(1), i(2), i(3), i(4), i(0) })),
+    ]], { i(1), i(2), i(3), i(4), i(0) }),
+    { condition = conds.line_begin }),
 
     s('swx', fmt([[
         switch {} {{
