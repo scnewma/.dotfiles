@@ -31,6 +31,7 @@ in
 
     _1password
     asciinema
+    asdf-vm
     aspell
     awscli2
     bash

@@ -10,5 +10,7 @@ if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi
 
+[ -d "/opt/homebrew/bin" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # used by `bh` and `bb` functions
 export CHROME_PROFILE_LOCATION="/Users/$(whoami)/Library/Application Support/BraveSoftware/Brave-Browser/Default"

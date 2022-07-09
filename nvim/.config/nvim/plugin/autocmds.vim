@@ -1,6 +1,6 @@
 augroup vim-highlight-on-yank
     autocmd!
-    autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = false}
+    autocmd TextYankPost * lua vim.highlight.on_yank()
 augroup END
 
 augroup vim-toggle-list-option

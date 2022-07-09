@@ -5,13 +5,13 @@
         "revision": "da2405ef80e7c2869fad6726ea607c3438a6ee3e"
       },
       "homebrew/bundle": {
-        "revision": "ff52a209bfade1a663848684d354a6b623aaa4ca"
+        "revision": "a4ce1156648a24ec0edd47d3a9f4cd16af689082"
       },
       "homebrew/cask": {
-        "revision": "dc6c399a37eb01bfb0454d549fa18ed6d302bca7"
+        "revision": "e61fcfdf5e08bdc166ce940444bd977d5098a767"
       },
       "homebrew/core": {
-        "revision": "f1742bccb0b0d8e8e98dfcbc936c6d815d204963"
+        "revision": "57d3bba0f0ee5631dfd4033963e6c53ff300ca7d"
       },
       "jason0x43/neovim-nightly": {
         "revision": "c5a605b018c05d08b90c4b794c088d25736997c3"
@@ -1435,7 +1435,7 @@
     },
     "cask": {
       "docker": {
-        "version": "3.3.1,63152",
+        "version": "4.10.1,82475",
         "options": {
           "full_name": "docker"
         }
@@ -1457,6 +1457,12 @@
         "options": {
           "full_name": "neovim-nightly"
         }
+      },
+      "karabiner-elements": {
+        "version": "14.4.0",
+        "options": {
+          "full_name": "karabiner-elements"
+        }
       }
     }
   },
@@ -1469,6 +1475,14 @@
         "CLT": "12.0.0.32.27",
         "Xcode": "12.0",
         "macOS": "10.15.7"
+      },
+      "monterey": {
+        "HOMEBREW_VERSION": "3.5.4",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "57d3bba0f0ee5631dfd4033963e6c53ff300ca7d",
+        "CLT": "13.0.0.0.1.1627064638",
+        "Xcode": "13.2.1",
+        "macOS": "12.3"
       }
     }
   }

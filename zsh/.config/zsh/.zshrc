@@ -96,6 +96,8 @@ fi
 
 eval "$(starship init zsh)"
 
+[ -f "$PROFILE_DIR/share/asdf-vm/asdf.sh" ] && source "$PROFILE_DIR/share/asdf-vm/asdf.sh"
+
 # add some commonly used named directories
 hash -d dot="$HOME/.dotfiles"
 hash -d zdot="$HOME/.dotfiles/zsh/.config/zsh"
@@ -114,8 +116,6 @@ source "$PROFILE_DIR/share/fzf/completion.zsh"
 source "$PROFILE_DIR/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^n' autosuggest-accept
 
-source "$PROFILE_DIR/share/kubectl-aliases/.kubectl_aliases"
-
 # allow ctrl-z to toggle between suspend and resume
 function suspend-resume() {
     fg
@@ -126,64 +126,7 @@ function suspend-resume() {
 zle -N suspend-resume
 bindkey "^z" suspend-resume
 
-function cd-project() {
-    dir="$(fd --max-depth 1 --type d . $HOME/dev \
-        | fzf --preview="${FZF_PREVIEW_CMD}" \
-        --preview-window="right:hidden:wrap")"
-
-    zle push-line # clear buffer. restored on next prompt
-    BUFFER="builtin cd -- ${(q)dir}"
-    if [ ! -z "$TMUX" ]; then
-        win_name=$(basename ${(q)dir}) # only keep dir name
-        win_name="${win_name#cloud-}"  # trim "cloud-" prefix if any
-        BUFFER="$BUFFER && tmux rename-window ${win_name}"
-    fi
-    BUFFER="$BUFFER && clear"
-    zle accept-line
-    local ret=$?
-    unset dir win_name # ensure this doesn't end up appearing in prompt expansion
-    zle reset-prompt
-    return $ret
-}
-zle -N cd-project
-bindkey "\ep" cd-project
-
-alias zrc="vim ~zdot/.zshrc"
-alias zrclocal="vim ~/.zshrc.local"
-
-alias c=' clear'
-alias clear=' clear'
-
-alias d='docker'
-
-alias dc='docker container'
-alias dcl='docker container ls'
-alias dclo='docker container logs'
-alias dcr='docker container run'
-
-alias di='docker image'
-alias dil='docker image ls'
-alias dib='docker image build'
-alias dit='docker image tag'
-alias dip='docker image push'
-
-alias dcom='docker-compose'
-alias dcomu='docker-compose up'
-alias dcomud='docker-compose up -d'
-alias dcomudb='docker-compose up -d --build'
-alias dcomd='docker-compose down'
-alias dcomlo='docker-compose logs -f'
-
-alias t='~/.tmux/scripts/dir-session.sh'
-alias td='~/.tmux/scripts/fzf-dev-session.sh'
-alias tdot='t $HOME/.dotfiles'
-
-alias tf='terraform'
-
-alias ls='exa --icons'
-alias exa='exa --icons'
-alias exag='exa --icons --long --git --git-ignore'
-alias tree='exa --icons --tree'
+source "$ZDOTDIR/aliases.zsh"
 
 path=($path /usr/local/go/bin)
 if (( $+commands[go] )); then
@@ -196,11 +139,13 @@ if (( $+commands[nvim] )); then
 fi
 
 if (( $+commands[kubectl] )); then
+    source "$PROFILE_DIR/share/kubectl-aliases/.kubectl_aliases"
     source <(kubectl completion zsh)
+    source "$ZDOTDIR/kubernetes.zsh"
 fi
 
 if (( $+commands[terraform] )); then
-    complete -o nospace -C /usr/local/bin/terraform terraform
+    complete -o nospace -C $(which terraform) terraform
 fi
 
 [ -d "$HOME/dev/bin" ] && path=("$HOME/dev/bin" $path)
@@ -210,13 +155,11 @@ fi
 export PATH
 
 source "$ZDOTDIR/git.zsh"
-source "$ZDOTDIR/kubernetes.zsh"
-
-[ -f /usr/local/opt/asdf/libexec/asdf.sh ] && source /usr/local/opt/asdf/libexec/asdf.sh
-
-[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 source "$PROFILE_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 source "$PROFILE_DIR/etc/profile.d/hm-session-vars.sh"
+
 eval "$(direnv hook zsh)"
+
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
