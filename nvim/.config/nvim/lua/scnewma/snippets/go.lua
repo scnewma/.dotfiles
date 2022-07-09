@@ -1,3 +1,6 @@
+local postfix = require("luasnip.extras.postfix").postfix
+local match = require("luasnip.extras.postfix").matches
+
 return {
     s('main', fmt([[
         package main
@@ -122,4 +125,89 @@ return {
             {}
         }}
     ]], { i(1), i(2) }), { condition = conds.line_begin }),
+
+    s('ctx!', { t('ctx context.Context') }),
+
+    postfix('.v!', {
+        d(1, function(_, parent)
+            return sn(nil, fmt([[
+                fmt.Printf("{}%v\n", {})
+            ]], { i(1), t(parent.snippet.env.POSTFIX_MATCH) }))
+        end)
+    }),
+
+    postfix('.d!', {
+        l('fmt.Printf("' .. l.POSTFIX_MATCH .. ' = %+v\\n", ' .. l.POSTFIX_MATCH .. ')')
+    }),
+
+    postfix('.each!', {
+        d(1, function(_, parent)
+            return sn(nil, fmt([[
+                for _, {} := range {} {{
+                    {}
+                }}
+            ]], { i(1, 'item'), t(parent.snippet.env.POSTFIX_MATCH), i(2) }))
+        end)
+    }),
+
+    postfix('.eachi!', {
+        d(1, function(_, parent)
+            return sn(nil, fmt([[
+                for {}, {} := range {} {{
+                    {}
+                }}
+            ]], { i(1, 'i'), i(2, 'item'), t(parent.snippet.env.POSTFIX_MATCH), i(3) }))
+        end)
+    }),
+
+    postfix('.?', {
+        d(1, function(_, parent)
+            return sn(nil, fmt([[
+                if {} != nil {{
+                    return {}
+                }}
+            ]], {
+                t(parent.snippet.env.POSTFIX_MATCH),
+                c(1, {
+                    t(parent.snippet.env.POSTFIX_MATCH),
+                    sn(nil, fmt('fmt.Errorf("{}: {}", {})', { i(1), i(2, '%w'), t(parent.snippet.env.POSTFIX_MATCH) }))
+                })
+            }))
+        end)
+    }),
+
+    -- postfix .err! do error checking for the current statement
+    postfix({ trig = '.err!', match_pattern = [[%w+.+$]] }, {
+        d(1, function(_, parent)
+            return sn(nil, fmt([[
+                {}{}err := {}
+                if err != nil {{
+                    return {}err
+                }}
+            ]], {
+                i(1),
+                f(function(args)
+                    if args[1][1] ~= "" then
+                        return ", "
+                    else
+                        return ""
+                    end
+                end, { 1 }),
+                t(parent.snippet.env.POSTFIX_MATCH),
+                i(2),
+            }))
+        end)
+    }),
+
+    postfix('.ap!', {
+        d(1, function(_, parent)
+            return sn(nil, fmt([[
+                {} = append({}, {})
+            ]], { t(parent.snippet.env.POSTFIX_MATCH), t(parent.snippet.env.POSTFIX_MATCH), i(1, 'item') }))
+        end)
+    }),
+
+    postfix('.#', {
+        l('len(' .. l.POSTFIX_MATCH .. ')')
+    })
 }
