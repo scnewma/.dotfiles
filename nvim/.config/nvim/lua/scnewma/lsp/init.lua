@@ -33,7 +33,7 @@ local on_attach = function(_, bufnr)
     map { '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>' }
 
     if vim.tbl_contains({"rust"}, filetype) then
-        vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+        vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil, 1000)]]
     end
 end
 
@@ -78,23 +78,29 @@ local lua_config = vim.tbl_deep_extend("force", make_config(), {
 })
 lspconfig.sumneko_lua.setup(lua_config)
 
+require("fidget").setup({})
+
 local M = {}
 
--- Source: https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-656372575
+-- organize imports and run formatting
+-- based on: https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
 function M.goimports(timeout_ms)
-    local context = { source = { organizeImports = true } }
-    vim.validate { context = { context, "t", true } }
+    timeout_ms = timeout_ms or 1000
+
     local params = vim.lsp.util.make_range_params()
-    params.context = context
-
+    params.context = { only = { 'source.organizeImports' } }
     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-    if not result then return end
-    result = result[1].result
-    if not result then return end
-    local edit = result[1].edit
-    vim.lsp.util.apply_workspace_edit(edit)
-end
+    for _, res in pairs(result) do
+        for _, r in pairs(res.result or {}) do
+            if r.edit and not vim.tbl_isempty(r.edit) then
+                vim.lsp.util.apply_workspace_edit(r.edit, 'UTF-8')
+            else
+                vim.lsp.buf.execute_command(r.command)
+            end
+        end
+    end
 
-require("fidget").setup({})
+    vim.lsp.buf.formatting_sync(nil, timeout_ms)
+end
 
 return M
