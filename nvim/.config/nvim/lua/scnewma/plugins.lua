@@ -78,8 +78,6 @@ return require('packer').startup({ function (use)
     -- install from pre build since I don't always have nodejs and yarn
     use 'LnL7/vim-nix'
 
-    use 'jpalardy/vim-slime'
-
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/nvim-treesitter-textobjects'

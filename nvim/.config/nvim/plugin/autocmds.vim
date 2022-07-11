@@ -10,3 +10,21 @@ augroup vim-toggle-list-option
     " to spaces
     autocmd BufRead,BufNewFile *.go setlocal nolist
 augroup END
+
+" automatically rebalance windows on vim resize
+augroup vim-win-balance-resize
+    autocmd!
+    autocmd VimResized * :wincmd =
+augroup END
+
+" remember cursor position
+augroup vim-remember-cursor
+    autocmd!
+    autocmd BufReadPost * lua require('scnewma/utils').RestoreCursorPos()
+augroup END
+
+augroup vimrc-incsearch-highlight
+    autocmd!
+    autocmd CmdlineEnter /,\? :set hlsearch
+    autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
