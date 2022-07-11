@@ -46,6 +46,7 @@ in
     gh
     git
     git-crypt
+    gnupg
     goreleaser
     graphviz
     grpcurl
