@@ -45,6 +45,7 @@ in
     fzf
     gh
     git
+    git-crypt
     goreleaser
     graphviz
     grpcurl
