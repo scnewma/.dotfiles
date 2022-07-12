@@ -96,17 +96,18 @@ fi
 
 eval "$(starship init zsh)"
 
+PROFILE_DIR="$HOME/.nix-profile"
 [ -f "$PROFILE_DIR/share/asdf-vm/asdf.sh" ] && source "$PROFILE_DIR/share/asdf-vm/asdf.sh"
 
 # add some commonly used named directories
 hash -d dot="$HOME/.dotfiles"
 hash -d zdot="$HOME/.dotfiles/zsh/.config/zsh"
 hash -d nvdot="$HOME/.dotfiles/nvim/.config/nvim"
+hash -d dev="$HOME/dev"
 
 autoload -Uz +X bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
-PROFILE_DIR="$HOME/.nix-profile"
 export FZF_DEFAULT_OPTS='--bind ctrl-y:preview-up,ctrl-e:preview-down,left:toggle+up,right:toggle+down'
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --no-ignore"
