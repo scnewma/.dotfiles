@@ -128,6 +128,14 @@ return {
 
     s('ctx!', { t('ctx context.Context') }),
 
+    s('tef!', fmt([[t.Errorf("{}", {})]], { i(1), i(2) })),
+
+    s('cmpdiff!', fmt([[
+        if diff := cmp.Diff({}, {}); diff != "" {{
+            t.Errorf("mismatch (-want +got):\\n%s", diff)
+        }}
+    ]], { i(1), i(2) })),
+
     postfix('.v!', {
         d(1, function(_, parent)
             return sn(nil, fmt([[
