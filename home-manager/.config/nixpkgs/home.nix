@@ -51,6 +51,7 @@ in
     graphviz
     grpcurl
     htop
+    hyperfine
     iterm2
     jd-diff-patch
     jq
