@@ -5,13 +5,13 @@ local cnoremap = require('scnewma.keymap').cnoremap
 
 -- window management
 --   split-below-focus
-nnoremap { '<Leader>ws', '<C-w>s<C-w>j<CR>' }
+nnoremap { '<Leader>ws', '<C-w>s<CR>' }
 --   split-below
-nnoremap { '<Leader>wS', '<C-w>s<CR>' }
+nnoremap { '<Leader>wS', '<C-w>s<C-w>k<CR>' }
 --   split-right-focus
-nnoremap { '<Leader>wv', '<C-w>v<C-w>l<CR>' }
+nnoremap { '<Leader>wv', '<C-w>v<CR>' }
 --   split-right
-nnoremap { '<Leader>wV', '<C-w>v<CR>' }
+nnoremap { '<Leader>wV', '<C-w>v<C-w>h<CR>' }
 --   delete-window
 nnoremap { '<Leader>wd', ':q<CR>' }
 --   focus-left
