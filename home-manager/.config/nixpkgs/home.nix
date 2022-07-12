@@ -75,6 +75,7 @@ in
     wireguard-go
     wireguard-tools
     yq
+    zld # alternative linker
     zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
