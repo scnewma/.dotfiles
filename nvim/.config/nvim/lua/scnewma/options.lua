@@ -42,6 +42,7 @@ opt.listchars={ trail = "·", tab = "»·" }
 opt.mouse="a"
 opt.splitbelow=true
 opt.splitright=true
+opt.formatoptions="jcql"
 
 vim.cmd [[set statusline=\ %f%m%r%h%w%=\ \|\ %p%%\ \|\ L%l:%c\ ]]
 
