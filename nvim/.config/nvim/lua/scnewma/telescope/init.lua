@@ -44,9 +44,6 @@ require('telescope').setup {
 
         mappings = {
             i = {
-                -- do not exit to normal mode in prompt
-                ["<esc>"] = actions.close,
-
                 -- change split horizontal to <C-s>
                 ["<C-x>"] = false,
                 ["<C-s>"] = actions.select_horizontal,
