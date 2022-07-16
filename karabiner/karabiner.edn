@@ -1,0 +1,28 @@
+{
+ :profiles {:default {:default true :sim 50 :delay 300 :alone 300 :held 300}}
+
+ :devices {
+           :kinesis-kb [{:vendor_id 65261 :product_id 24672}]
+           :macbook-kb [{:vendor_id 1452 :product_id 636}]
+           }
+
+ :simlayers {
+             :nav-mode {:key :a}
+             }
+
+ :main
+ [{:des "change caps_lock to control; escape when alone"
+   :rules [
+           [:caps_lock :left_control nil {:alone :escape}]
+           ]}
+
+  {:des "shift + caps_lock is caps_lock" :rules [ [:!Scaps_lock :caps_lock] ]}
+
+  {:des "nav-mods"
+   :rules [:macbook-kb
+           [:h :left_arrow :nav-mode]
+           [:j :down_arrow :nav-mode]
+           [:k :up_arrow :nav-mode]
+           [:l :right_arrow :nav-mode]
+           ]}
+ ]}

@@ -14,3 +14,5 @@ fi
 
 # used by `bh` and `bb` functions
 export CHROME_PROFILE_LOCATION="/Users/$(whoami)/Library/Application Support/BraveSoftware/Brave-Browser/Default"
+
+export GOKU_EDN_CONFIG_FILE="$HOME/.dotfiles/karabiner/karabiner.edn"
