@@ -6,23 +6,36 @@
            :macbook-kb [{:vendor_id 1452 :product_id 636}]
            }
 
+ :templates {
+              :workflow        "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\"'"
+             }
+
+
  :simlayers {
              :nav-mode {:key :a}
+             :alfred-mode {:key :slash}
              }
 
  :main
  [{:des "change caps_lock to control; escape when alone"
    :rules [
-           [:caps_lock :left_control nil {:alone :escape}]
+           [:caps_lock {:key :left_control :lazy true} nil {:alone :escape}]
            ]}
 
   {:des "shift + caps_lock is caps_lock" :rules [ [:!Scaps_lock :caps_lock] ]}
 
-  {:des "nav-mods"
+  {:des "nav-mode"
    :rules [:macbook-kb
            [:h :left_arrow :nav-mode]
            [:j :down_arrow :nav-mode]
            [:k :up_arrow :nav-mode]
            [:l :right_arrow :nav-mode]
+           ]}
+
+  {:des "alfred-mode"
+   :rules [:alfred-mode
+           [:u [:workflow "searchGithub" "com.scnewma.ghz"]]
+           [:j [:workflow "ffa-history" "net.deanishe.alfred.firefox-assistant"]]
+           [:n [:workflow "ffa-bookmarks" "net.deanishe.alfred.firefox-assistant"]]
            ]}
  ]}
