@@ -47,6 +47,7 @@ in
     git
     git-crypt
     gnupg
+    goku
     goreleaser
     graphviz
     grpcurl
