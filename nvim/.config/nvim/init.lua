@@ -19,6 +19,7 @@ require('scnewma.commands')
 -- Neovim builtin LSP configuration
 require('scnewma.lsp')
 require('go').setup({
+    comment_placeholder = '',
     build_tags = "integration",
 })
 

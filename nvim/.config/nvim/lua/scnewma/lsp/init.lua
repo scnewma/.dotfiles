@@ -81,9 +81,42 @@ local lua_config = vim.tbl_deep_extend("force", make_config(), {
 lspconfig.sumneko_lua.setup(lua_config)
 
 local go_config = vim.tbl_deep_extend("force", make_config(), {
+    on_attach = function(client, bufnr)
+        -- call default on_attach
+        on_attach(client, bufnr)
+
+        local function map(tbl)
+            if tbl[3] == nil then
+                tbl[3] = {}
+            end
+
+            if tbl[3]['silent'] == nil then
+                tbl[3].silent = true
+            end
+
+            tbl[3].noremap = true
+            tbl[3].buffer = bufnr
+            vim.keymap.set('n', tbl[1], tbl[2], tbl[3])
+        end
+
+        map { '<leader>mf', require("go.reftool").fillstruct }
+        map { '<leader>mi', ':GoImpl' }
+        -- TODO: I wish this didn't include the type on end of comment, but
+        -- that's hardcoded in the plugin...
+        map { '<leader>mc', require('go.comment').gen }
+        map { '<leader>mta', ':GoAddTag json', { silent = false } }
+        map { '<leader>mtr', ':GoRmTag json', { silent = false } }
+        map { '<leader>mtc', ':GoClearTag', { silent = false } }
+    end,
+
     settings = {
         gopls = {
             ['local'] = require('scnewma.lsp.go').go_module_name(),
+            analyses = {
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+            },
         }
     }
 })
