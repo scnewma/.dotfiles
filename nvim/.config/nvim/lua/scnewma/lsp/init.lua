@@ -29,6 +29,12 @@ local on_attach = function(_, bufnr)
 
     map { '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>' }
     map { '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>' }
+
+    vim.api.nvim_create_autocmd('CursorHold', {
+        callback = function()
+            vim.diagnostic.open_float(nil, { focusable = false })
+        end
+    })
 end
 
 local function make_capabilities()
@@ -50,7 +56,6 @@ end
 local lspconfig = require('lspconfig');
 lspconfig.bashls.setup(make_config())
 lspconfig.dockerls.setup(make_config())
-lspconfig.gopls.setup(make_config())
 lspconfig.jsonls.setup(make_config())
 lspconfig.pyright.setup(make_config())
 lspconfig.rnix.setup(make_config())
@@ -74,6 +79,15 @@ local lua_config = vim.tbl_deep_extend("force", make_config(), {
   },
 })
 lspconfig.sumneko_lua.setup(lua_config)
+
+local go_config = vim.tbl_deep_extend("force", make_config(), {
+    settings = {
+        gopls = {
+            ['local'] = require('scnewma.lsp.go').go_module_name(),
+        }
+    }
+})
+lspconfig.gopls.setup(go_config)
 
 require('rust-tools').setup({
     tools = {
@@ -114,28 +128,3 @@ require('rust-tools').setup({
 })
 
 require("fidget").setup({})
-
-local M = {}
-
--- organize imports and run formatting
--- based on: https://github.com/golang/tools/blob/master/gopls/doc/vim.md#neovim-imports
-function M.goimports(timeout_ms)
-    timeout_ms = timeout_ms or 1000
-
-    local params = vim.lsp.util.make_range_params()
-    params.context = { only = { 'source.organizeImports' } }
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-    for _, res in pairs(result) do
-        for _, r in pairs(res.result or {}) do
-            if r.edit and not vim.tbl_isempty(r.edit) then
-                vim.lsp.util.apply_workspace_edit(r.edit, 'UTF-8')
-            else
-                vim.lsp.buf.execute_command(r.command)
-            end
-        end
-    end
-
-    vim.lsp.buf.formatting_sync(nil, timeout_ms)
-end
-
-return M

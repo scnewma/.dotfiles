@@ -3,7 +3,7 @@
 
 augroup go-format-on-save
     autocmd!
-    autocmd BufWritePre *.go :silent! lua require("scnewma.lsp").goimports()
+    autocmd BufWritePre *.go :silent! lua require("scnewma.lsp.go").goimports()
 augroup END
 
 nmap <Leader>faa :GoAlt<CR>
