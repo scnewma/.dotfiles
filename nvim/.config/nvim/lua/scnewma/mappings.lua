@@ -1,7 +1,10 @@
+local nmap = require('scnewma.keymap').nmap
 local inoremap = require('scnewma.keymap').inoremap
 local nnoremap = require('scnewma.keymap').nnoremap
 local vnoremap = require('scnewma.keymap').vnoremap
 local cnoremap = require('scnewma.keymap').cnoremap
+
+nmap { 'gQ', '<Nop>' }
 
 -- window management
 --   split-below-focus
