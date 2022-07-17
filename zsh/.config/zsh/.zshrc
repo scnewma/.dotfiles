@@ -163,4 +163,22 @@ source "$PROFILE_DIR/etc/profile.d/hm-session-vars.sh"
 
 eval "$(direnv hook zsh)"
 
+# quick function to rename tab to the current directory. i could put this in
+# chpwd(), but then if i visited a different project in my main project tab it
+# would incorrectly change the tab name
+tabn() {
+    if [ "$TERM" = "xterm-kitty" ]; then
+        git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+        if [ -n "${git_root}" ]; then
+            kitty @ set-tab-title "$(basename "${git_root}")"
+        else
+            kitty @ set-tab-title "$(basename "$(pwd)")"
+        fi
+    else
+        echo "You are not in kitty!"
+        return 1
+    fi
+}
+
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
