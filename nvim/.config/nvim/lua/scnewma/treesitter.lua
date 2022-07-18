@@ -19,14 +19,10 @@ require('nvim-treesitter.configs').setup {
         enable = true,
     },
 
-    -- having many issues with treesitter indent since this commit:
-    -- 6863f79118d3cb331fd4e726cdb2384bbd8bf8f2
-    -- try again later
-    -- indent = {
-    --     enable = true,
-    -- },
     indent = {
         enable = true,
+        -- here for documentation b/c i always need to look it up
+        -- disable = { 'go' }
     },
 
     textobjects = {
@@ -35,6 +31,14 @@ require('nvim-treesitter.configs').setup {
             keymaps = {
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
+                ["ac"] = "@conditional.outer",
+                ["ic"] = "@conditional.inner",
+                ["al"] = "@loop.outer",
+                ["il"] = "@loop.inner",
+                ["as"] = "@statement.outer",
+                ["is"] = "@statement.inner",
+                ["am"] = "@call.outer",
+                ["im"] = "@call.inner",
             }
         },
 
@@ -66,7 +70,17 @@ require('nvim-treesitter.configs').setup {
                 ["[M"] = "@function.outer",
                 ["[]"] = "@class.outer",
             }
-        }
+        },
+
+        lsp_interop = {
+            enable = true,
+            peek_definition_code = {
+                -- code-show-function
+                ["<leader>csf"] = "@function.outer",
+                -- code-show-class
+                ["<leader>csc"] = "@class.outer",
+            },
+        },
     }
 
 }

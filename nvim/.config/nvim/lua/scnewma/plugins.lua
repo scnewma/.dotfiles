@@ -79,7 +79,12 @@ return require('packer').startup({ function (use)
     use 'LnL7/vim-nix'
 
     -- Treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            require('nvim-treesitter.install').update({ with_sync = true })
+        end,
+    }
     use 'nvim-treesitter/nvim-treesitter-textobjects'
 
     if packer_bootstrap then
