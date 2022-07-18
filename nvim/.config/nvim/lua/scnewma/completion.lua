@@ -10,14 +10,12 @@ cmp.setup({
     },
 
     mapping = {
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.close(),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-c>"] = cmp.mapping.close(),
         ["<C-n>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-        ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-        ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-        ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+        ["<C-e>"] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+        ["<C-y>"] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
     },
 
     snippet = {
