@@ -28,9 +28,5 @@ disabled = true
 [docker_context]
 disabled = true
 
-[shlvl]
-disabled = false
-symbol = " "
-
 [vagrant]
 disabled = true

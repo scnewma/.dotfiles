@@ -30,6 +30,7 @@ in
     customPackages.kubectlAliases
 
     _1password
+    alacritty
     asciinema
     asdf-vm
     aspell
@@ -70,7 +71,7 @@ in
     shellcheck
     starship
     stow
-    tmux
+    # tmux
     tshark
     unixtools.watch
     wget

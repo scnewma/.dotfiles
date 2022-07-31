@@ -1,3 +1,0 @@
-[submodule "tmux/.tmux/plugins/tmux-thumbs"]
-	path = tmux/.tmux/plugins/tmux-thumbs
-	url = https://github.com/fcsonline/tmux-thumbs.git
