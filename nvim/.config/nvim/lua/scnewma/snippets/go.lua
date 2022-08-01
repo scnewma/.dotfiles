@@ -19,6 +19,14 @@ return {
         dl(2, l._1, 1),
     })),
 
+    s('errt', fmt([[
+        if {} != nil {{
+            t.Errorf("{} %v", {})
+        }}
+    ]], {
+        i(1, 'err'), i(2, "unexpected error:"), rep(1),
+    })),
+
     s('errw', fmt([[
         if {} != nil {{
             return fmt.Errorf("{}: %w", {})

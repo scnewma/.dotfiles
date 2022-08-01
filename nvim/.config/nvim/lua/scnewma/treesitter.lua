@@ -21,8 +21,7 @@ require('nvim-treesitter.configs').setup {
 
     indent = {
         enable = true,
-        -- here for documentation b/c i always need to look it up
-        -- disable = { 'go' }
+        disable = { 'go' }
     },
 
     textobjects = {
@@ -39,6 +38,8 @@ require('nvim-treesitter.configs').setup {
                 ["is"] = "@statement.inner",
                 ["am"] = "@call.outer",
                 ["im"] = "@call.inner",
+                ["ap"] = "@parameter.outer",
+                ["ip"] = "@parameter.inner",
             }
         },
 
