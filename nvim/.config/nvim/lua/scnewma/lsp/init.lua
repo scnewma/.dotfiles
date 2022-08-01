@@ -30,11 +30,11 @@ local on_attach = function(_, bufnr)
     map { '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>' }
     map { '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>' }
 
-    vim.api.nvim_create_autocmd('CursorHold', {
-        callback = function()
-            vim.diagnostic.open_float(nil, { focusable = false })
-        end
-    })
+    -- vim.api.nvim_create_autocmd('CursorHold', {
+    --     callback = function()
+    --         vim.diagnostic.open_float(nil, { focusable = false })
+    --     end
+    -- })
 end
 
 local function make_capabilities()
