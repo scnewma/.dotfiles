@@ -1,3 +1,9 @@
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+
 export ZDOTDIR="$HOME/.config/zsh"
 export AWS_PAGER="" # disable AWS cli paging
 if (( $+commands[ls] )); then
