@@ -1,5 +1,6 @@
-# automatically configure the ripgrep environment variable if a .ripgreprc file
-# is found in the cwd or in the root of the current git repository
+#!/bin/bash
+
+set -euo pipefail
 
 if [ -f .ripgreprc ]; then
     RIPGREP_CONFIG_PATH=".ripgreprc"
@@ -10,4 +11,4 @@ else
     fi
 fi
 
-RIPGREP_CONFIG_PATH="$RIPGREP_CONFIG_PATH" command rg $@
+RIPGREP_CONFIG_PATH="$RIPGREP_CONFIG_PATH" rg "$@"

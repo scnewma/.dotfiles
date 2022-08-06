@@ -5,8 +5,8 @@ local actions = require('telescope.actions')
 -- so that grepping is customizable and works the same in zsh as it does in nvim
 local rgexec = "rg"
 do
-    local rgfuncpath = vim.env.HOME .. '/.config/zsh/functions/rg'
-    if vim.fn.filereadable(rgfuncpath) then
+    local rgfuncpath = vim.env.HOME .. '/.dotfiles/scripts/rg.sh'
+    if vim.fn.filereadable(rgfuncpath) == 1 then
         rgexec = rgfuncpath
     end
 end
