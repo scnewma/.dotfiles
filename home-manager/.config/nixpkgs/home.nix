@@ -48,6 +48,7 @@ in
     git
     git-crypt
     gnupg
+    go-jsonnet
     goku
     goreleaser
     graphviz
@@ -71,7 +72,6 @@ in
     shellcheck
     starship
     stow
-    # tmux
     tshark
     unixtools.watch
     wget
