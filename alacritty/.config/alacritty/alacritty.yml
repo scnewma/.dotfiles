@@ -9,15 +9,15 @@ live_config_reload: true
 
 # Font configuration
 font:
-  size: 14.0
+  size: 16.0
   normal:
-    family: MesloLGS NF
+    family: JetBrainsMono Nerd Font
   bold:
-    family: MesloLGS NF
+    family: JetBrainsMono Nerd Font
   italic:
-    family: MesloLGS NF
+    family: JetBrainsMono Nerd Font
   bold_italic:
-    family: MesloLGS NF
+    family: JetBrainsMono Nerd Font
 
 colors:
   primary:
