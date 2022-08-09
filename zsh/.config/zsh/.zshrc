@@ -129,10 +129,9 @@ bindkey "^z" suspend-resume
 
 source "$ZDOTDIR/aliases.zsh"
 
-path=($path /usr/local/go/bin)
 if (( $+commands[go] )); then
     export GOPATH=~/go/
-    path=($path "/usr/local/go/bin" ${GOPATH}bin)
+    path=($path ${GOPATH}bin)
 fi
 
 if (( $+commands[nvim] )); then
