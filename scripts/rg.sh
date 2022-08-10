@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -e
 
 if [ -f .ripgreprc ]; then
     RIPGREP_CONFIG_PATH=".ripgreprc"
