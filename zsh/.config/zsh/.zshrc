@@ -151,7 +151,7 @@ fi
 [ -d "$HOME/dev/bin" ] && path=("$HOME/dev/bin" $path)
 [ -d "/usr/local/kubebuilder/bin" ] && path=($path "/usr/local/kubebuilder/bin")
 [ -d "$HOME/.cargo/bin" ] && path=($path "$HOME/.cargo/bin")
-
+path=("$HOME/.nix-profile/bin" $path)
 
 source "$ZDOTDIR/git.zsh"
 
@@ -179,5 +179,4 @@ tabn() {
 }
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
-
 export PATH

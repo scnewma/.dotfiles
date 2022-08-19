@@ -3,6 +3,7 @@
 let
   customPackages = {
     kubectlAliases = pkgs.callPackage ./kubectl-aliases/default.nix { inherit pkgs; };
+    fzfGit = pkgs.callPackage ./fzf-git/default.nix { inherit pkgs; };
   };
 in
   {
@@ -28,6 +29,7 @@ in
 
   home.packages = with pkgs; [
     customPackages.kubectlAliases
+    customPackages.fzfGit
 
     _1password
     alacritty
