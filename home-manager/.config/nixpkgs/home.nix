@@ -4,6 +4,7 @@ let
   customPackages = {
     kubectlAliases = pkgs.callPackage ./kubectl-aliases/default.nix { inherit pkgs; };
     fzfGit = pkgs.callPackage ./fzf-git/default.nix { inherit pkgs; };
+    tmux-fzf-url = pkgs.callPackage ./tmux-fzf-url { inherit pkgs; };
   };
 in
   {
@@ -30,6 +31,7 @@ in
   home.packages = with pkgs; [
     customPackages.kubectlAliases
     customPackages.fzfGit
+    customPackages.tmux-fzf-url
 
     _1password
     alacritty
