@@ -12,6 +12,7 @@
     diffFilter = delta --color-only
 [alias]
     root = rev-parse --show-toplevel
+    snapshot = "!f() { git stash -u -m \"checkpoint $(date +%Y-%m-%dT%H:%M:%S)\" && git stash apply; }; f"
 [include]
     path = "~/.gitconfig.local"
 [submodule]
