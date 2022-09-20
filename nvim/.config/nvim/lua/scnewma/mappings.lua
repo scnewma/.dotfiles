@@ -92,10 +92,6 @@ inoremap { '<C-]>', '<C-g>u<C-r>0' }
 -- Start a new change before pasting from register so it's easily undoable
 inoremap { '<C-r>', '<C-g>u<C-r>' }
 
--- Add newline above/below current cursor; retain cursor position
-nnoremap { '<Leader>o', 'mlo<Esc>`l' }
-nnoremap { '<Leader>O', 'mlO<Esc>`l' }
-
 -- Split line moving to the right of the cursor upward
 nnoremap { '<Leader><C-j>', 'DO<Esc>pj:s/\\s\\+$//<CR>' }
 
