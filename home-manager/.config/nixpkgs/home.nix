@@ -28,6 +28,14 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [
+    (self: super: {
+      nerdfonts = super.nerdfonts.override {
+        fonts = [ "JetBrainsMono" ];
+      };
+    })
+  ];
+
   home.packages = with pkgs; [
     customPackages.kubectlAliases
     customPackages.fzfGit
