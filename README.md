@@ -11,6 +11,8 @@ cd ~/.dotfiles
 nix-shell -p stow --command 'stow bat gh git home-manager karabiner kitty nix nvim starship tmux zsh'
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
 nix-shell '<home-manager>' -A install
 home-manager switch
 ```
