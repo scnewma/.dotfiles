@@ -5,13 +5,13 @@
         "revision": "da2405ef80e7c2869fad6726ea607c3438a6ee3e"
       },
       "homebrew/bundle": {
-        "revision": "a4ce1156648a24ec0edd47d3a9f4cd16af689082"
+        "revision": "5216bbdd9d47b1cb01c0d2cb656de32540ada95d"
       },
       "homebrew/cask": {
-        "revision": "e61fcfdf5e08bdc166ce940444bd977d5098a767"
+        "revision": "eabcc71aeaf1cd8259a814345507581054d78567"
       },
       "homebrew/core": {
-        "revision": "57d3bba0f0ee5631dfd4033963e6c53ff300ca7d"
+        "revision": "93f1ce1d6d233eb13fa606a39ce08317ceb9d287"
       },
       "jason0x43/neovim-nightly": {
         "revision": "c5a605b018c05d08b90c4b794c088d25736997c3"
@@ -1435,7 +1435,7 @@
     },
     "cask": {
       "docker": {
-        "version": "4.10.1,82475",
+        "version": "4.14.1,91661",
         "options": {
           "full_name": "docker"
         }
@@ -1459,9 +1459,39 @@
         }
       },
       "karabiner-elements": {
-        "version": "14.4.0",
+        "version": "14.10.0",
         "options": {
           "full_name": "karabiner-elements"
+        }
+      },
+      "firefox": {
+        "version": "107.0",
+        "options": {
+          "full_name": "firefox"
+        }
+      },
+      "alfred": {
+        "version": "5.0.5,2096",
+        "options": {
+          "full_name": "alfred"
+        }
+      },
+      "1password": {
+        "version": "8.9.8",
+        "options": {
+          "full_name": "1password"
+        }
+      },
+      "dropbox": {
+        "version": "161.4.4923",
+        "options": {
+          "full_name": "dropbox"
+        }
+      },
+      "google-chrome": {
+        "version": "107.0.5304.110",
+        "options": {
+          "full_name": "google-chrome"
         }
       }
     }
@@ -1477,12 +1507,20 @@
         "macOS": "10.15.7"
       },
       "monterey": {
-        "HOMEBREW_VERSION": "3.5.4",
-        "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "57d3bba0f0ee5631dfd4033963e6c53ff300ca7d",
-        "CLT": "13.0.0.0.1.1627064638",
-        "Xcode": "13.2.1",
-        "macOS": "12.3"
+        "HOMEBREW_VERSION": "3.6.11",
+        "HOMEBREW_PREFIX": "/usr/local",
+        "Homebrew/homebrew-core": "3acb6576a4a17bf9837a70c8fb6aece53f58e71d",
+        "CLT": "14.1.0.0.1.1666437224",
+        "Xcode": "14.1",
+        "macOS": "12.6.1"
+      },
+      "ventura": {
+        "HOMEBREW_VERSION": "3.6.11",
+        "HOMEBREW_PREFIX": "/usr/local",
+        "Homebrew/homebrew-core": "93f1ce1d6d233eb13fa606a39ce08317ceb9d287",
+        "CLT": "",
+        "Xcode": "",
+        "macOS": "13.0.1"
       }
     }
   }

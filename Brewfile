@@ -4,3 +4,8 @@ tap "homebrew/core"
 
 cask "docker"
 cask "karabiner-elements"
+cask "firefox"
+cask "alfred"
+cask "1password"
+cask "dropbox"
+cask "google-chrome"
