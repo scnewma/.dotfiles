@@ -33,6 +33,10 @@ in
       nerdfonts = super.nerdfonts.override {
         fonts = [ "JetBrainsMono" ];
       };
+
+      tmux = super.tmux.overrideAttrs (finalAttrs: previousAttrs: {
+        patches = [ ./tmux-main-rev.patch ];
+      });
     })
   ];
 
@@ -84,6 +88,7 @@ in
     shellcheck
     starship
     stow
+    tmux
     tshark
     unixtools.watch
     wget
