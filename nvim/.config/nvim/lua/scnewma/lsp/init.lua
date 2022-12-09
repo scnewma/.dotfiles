@@ -150,8 +150,9 @@ require('rust-tools').setup({
             -- rust-aware join lines
             map { 'J', require('rust-tools.join_lines').join_lines }
 
-            -- toggle inlay hints as they are disabled by default
-            map { '<leader>th', require('rust-tools.inlay_hints').toggle_inlay_hints }
+            -- inlay hint management
+            map { '<leader>mhe', require('rust-tools.inlay_hints').set }
+            map { '<leader>mhd', require('rust-tools.inlay_hints').unset }
 
             vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil, 1000)]]
         end,
