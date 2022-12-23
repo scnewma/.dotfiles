@@ -87,13 +87,6 @@ typeset -U path
 fpath=( "$ZDOTDIR/functions" "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
 
-if [[ -n $KITTY_INSTALLATION_DIR ]]; then
-    export KITTY_SHELL_INTEGRATION="no-rc no-cursor"
-    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-    kitty-integration
-    unfunction kitty-integration
-fi
-
 eval "$(starship init zsh)"
 
 PROFILE_DIR="$HOME/.nix-profile"
@@ -129,10 +122,8 @@ bindkey "^z" suspend-resume
 
 source "$ZDOTDIR/aliases.zsh"
 
-if (( $+commands[go] )); then
-    export GOPATH=~/go/
-    path=($path ${GOPATH}bin)
-fi
+export GOPATH=~/go/
+path=($path ${GOPATH}bin)
 
 if (( $+commands[nvim] )); then
     alias vim=nvim
@@ -148,8 +139,11 @@ if (( $+commands[terraform] )); then
     complete -o nospace -C $(which terraform) terraform
 fi
 
+if (( $+commands[tea] )); then
+    add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  # tea
+fi
+
 [ -d "$HOME/dev/bin" ] && path=("$HOME/dev/bin" $path)
-[ -d "/usr/local/kubebuilder/bin" ] && path=($path "/usr/local/kubebuilder/bin")
 [ -d "$HOME/.cargo/bin" ] && path=($path "$HOME/.cargo/bin")
 path=("$HOME/.nix-profile/bin" $path)
 
@@ -160,23 +154,6 @@ source "$PROFILE_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$PROFILE_DIR/etc/profile.d/hm-session-vars.sh"
 
 eval "$(direnv hook zsh)"
-
-# quick function to rename tab to the current directory. i could put this in
-# chpwd(), but then if i visited a different project in my main project tab it
-# would incorrectly change the tab name
-tabn() {
-    if [ "$TERM" = "xterm-kitty" ]; then
-        git_root=$(git rev-parse --show-toplevel 2>/dev/null)
-        if [ -n "${git_root}" ]; then
-            kitty @ set-tab-title "$(basename "${git_root}")"
-        else
-            kitty @ set-tab-title "$(basename "$(pwd)")"
-        fi
-    else
-        echo "You are not in kitty!"
-        return 1
-    fi
-}
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 export PATH
