@@ -132,6 +132,10 @@ require('rust-tools').setup({
             on_attach(client, bufnr)
 
             local function map(tbl)
+                if tbl[2] == nil then
+                    return
+                end
+
                 if tbl[3] == nil then
                     tbl[3] = {}
                 end

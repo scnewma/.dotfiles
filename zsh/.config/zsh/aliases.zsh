@@ -35,4 +35,4 @@ alias exa='exa --icons'
 alias exag='exa --icons --long --git --git-ignore'
 alias tree='exa --icons --tree'
 
-alias rg='~/.dotfiles/scripts/rg.sh'
+# alias rg='~/.dotfiles/scripts/rg.sh'

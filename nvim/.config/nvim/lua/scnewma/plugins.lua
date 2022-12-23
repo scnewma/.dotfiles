@@ -77,6 +77,7 @@ return require('packer').startup({ function (use)
     use 'ray-x/go.nvim'
     -- install from pre build since I don't always have nodejs and yarn
     use 'LnL7/vim-nix'
+    use 'cappyzawa/starlark.vim'
 
     -- Treesitter
     use {
