@@ -60,6 +60,7 @@ lspconfig.pyright.setup(make_config())
 lspconfig.rnix.setup(make_config())
 lspconfig.vimls.setup(make_config())
 lspconfig.yamlls.setup(make_config())
+lspconfig.tsserver.setup(make_config())
 
 local lua_config = vim.tbl_deep_extend("force", make_config(), {
   settings = {

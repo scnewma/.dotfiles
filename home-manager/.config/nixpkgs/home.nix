@@ -94,7 +94,7 @@ in
     wget
     wireguard-go
     wireguard-tools
-    yq
+    yq-go
     zld # alternative linker
     zsh
     zsh-autosuggestions
@@ -108,6 +108,7 @@ in
     nodePackages.vim-language-server
     nodePackages.vscode-langservers-extracted
     nodePackages.yaml-language-server
+    nodePackages.typescript-language-server
     rnix-lsp
     rust-analyzer
     sumneko-lua-language-server
