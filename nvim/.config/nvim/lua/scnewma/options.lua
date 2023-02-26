@@ -46,6 +46,10 @@ opt.formatoptions="jcql"
 
 vim.cmd [[set statusline=\ %f%m%r%h%w%=\ \|\ %p%%\ \|\ L%l:%c\ ]]
 
+vim.g.markdown_fenced_languages = {
+    "ts=typescript"
+}
+
 opt.shell = "/bin/sh"
 if vim.env.SHELL then
     opt.shell = vim.env.SHELL

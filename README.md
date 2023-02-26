@@ -17,6 +17,12 @@ nix-shell '<home-manager>' -A install
 home-manager switch
 ```
 
+If you are doing any Rust development:
+
+```
+rustup component add rust-analyzer
+```
+
 If you want the casks in `Brewfile`:
 
 ```

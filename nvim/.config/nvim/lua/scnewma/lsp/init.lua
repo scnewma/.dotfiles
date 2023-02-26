@@ -60,7 +60,13 @@ lspconfig.pyright.setup(make_config())
 lspconfig.rnix.setup(make_config())
 lspconfig.vimls.setup(make_config())
 lspconfig.yamlls.setup(make_config())
-lspconfig.tsserver.setup(make_config())
+lspconfig.denols.setup(vim.tbl_deep_extend("force", make_config(), {
+    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+}))
+lspconfig.tsserver.setup(vim.tbl_deep_extend("force", make_config(), {
+    root_dir = lspconfig.util.root_pattern("package.json"),
+    single_file_support = false,
+}))
 
 local lua_config = vim.tbl_deep_extend("force", make_config(), {
   settings = {
@@ -162,6 +168,7 @@ require('rust-tools').setup({
             vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil, 1000)]]
         end,
         capabilities = make_capabilities(),
+        cmd = { "rustup", "run", "stable", "rust-analyzer" },
     }
 })
 

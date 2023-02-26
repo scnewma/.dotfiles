@@ -110,7 +110,6 @@ in
     nodePackages.yaml-language-server
     nodePackages.typescript-language-server
     rnix-lsp
-    rust-analyzer
     sumneko-lua-language-server
   ];
 }
