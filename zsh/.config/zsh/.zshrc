@@ -139,12 +139,9 @@ if (( $+commands[terraform] )); then
     complete -o nospace -C $(which terraform) terraform
 fi
 
-if (( $+commands[tea] )); then
-    add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  # tea
-fi
-
 [ -d "$HOME/dev/bin" ] && path=("$HOME/dev/bin" $path)
 [ -d "$HOME/.cargo/bin" ] && path=($path "$HOME/.cargo/bin")
+[ -d "$HOME/.deno/bin" ] && path=($path "$HOME/.deno/bin")
 path=("$HOME/.nix-profile/bin" $path)
 
 source "$ZDOTDIR/git.zsh"
