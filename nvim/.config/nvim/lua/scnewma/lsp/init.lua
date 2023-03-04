@@ -84,7 +84,7 @@ local lua_config = vim.tbl_deep_extend("force", make_config(), {
     },
   },
 })
-lspconfig.sumneko_lua.setup(lua_config)
+lspconfig.lua_ls.setup(lua_config)
 
 local go_config = vim.tbl_deep_extend("force", make_config(), {
     on_attach = function(client, bufnr)

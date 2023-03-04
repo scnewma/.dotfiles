@@ -74,7 +74,7 @@ in
     iterm2
     jd-diff-patch
     jq
-    kitty
+    # kitty
     mysql80
     neovim
     nerdfonts
@@ -110,6 +110,6 @@ in
     nodePackages.yaml-language-server
     nodePackages.typescript-language-server
     rnix-lsp
-    sumneko-lua-language-server
+    lua-language-server
   ];
 }
