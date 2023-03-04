@@ -5,6 +5,8 @@ let
     kubectlAliases = pkgs.callPackage ./kubectl-aliases/default.nix { inherit pkgs; };
     fzfGit = pkgs.callPackage ./fzf-git/default.nix { inherit pkgs; };
     tmux-fzf-url = pkgs.callPackage ./tmux-fzf-url { inherit pkgs; };
+    catppucin-alacritty = pkgs.callPackage ./catppuccin-alacritty { inherit pkgs; };
+    catppucin-tmux = pkgs.callPackage ./catppuccin-tmux { inherit pkgs; };
   };
 in
   {
@@ -44,6 +46,8 @@ in
     customPackages.kubectlAliases
     customPackages.fzfGit
     customPackages.tmux-fzf-url
+    customPackages.catppucin-alacritty
+    customPackages.catppucin-tmux
 
     _1password
     alacritty

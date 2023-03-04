@@ -101,9 +101,13 @@ hash -d dev="$HOME/dev"
 autoload -Uz +X bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 
-export FZF_DEFAULT_OPTS='--bind ctrl-y:preview-up,ctrl-e:preview-down,left:toggle+up,right:toggle+down'
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --no-ignore"
+export FZF_DEFAULT_OPTS='--bind ctrl-y:preview-up,ctrl-e:preview-down,left:toggle+up,right:toggle+down'
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 source "$PROFILE_DIR/share/fzf/key-bindings.zsh"
 source "$PROFILE_DIR/share/fzf/completion.zsh"
 

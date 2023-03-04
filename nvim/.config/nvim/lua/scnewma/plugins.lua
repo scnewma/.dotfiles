@@ -7,6 +7,7 @@ end
 return require('packer').startup({ function (use)
     use 'wbthomason/packer.nvim'
     use 'sainnhe/gruvbox-material'
+    use 'catppuccin/vim'
 
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
