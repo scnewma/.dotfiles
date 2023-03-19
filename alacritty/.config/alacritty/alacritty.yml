@@ -46,11 +46,13 @@ colors:
 
 window:
   opacity: 1.0
+  option_as_alt: OnlyLeft
 
 cursor:
   style:
     shape: Block
     blinking: Never
+
 
 key_bindings:
   # needed for tmux prefix
