@@ -78,6 +78,7 @@ return require('packer').startup({ function (use)
     -- install from pre build since I don't always have nodejs and yarn
     use 'LnL7/vim-nix'
     use 'cappyzawa/starlark.vim'
+    use 'ziglang/zig.vim'
 
     -- Treesitter
     use {
