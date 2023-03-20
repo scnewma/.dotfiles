@@ -24,7 +24,8 @@ alias gcb='git checkout -b'
 alias grs='git restore'
 
 alias gc='git commit -v'
-alias gc!='git commit -v --amend'
+alias gca='git commit -v --amend'
+alias gcan='gca --no-edit'
 alias gcm='git commit -m'
 
 alias gd='git diff'
@@ -37,6 +38,7 @@ alias gl='git pull'
 alias gp='git push'
 alias ggp='git push origin "$(git-branch-current 2> /dev/null)"'
 alias gpu='ggp --set-upstream'
+alias gpuf='gpu --force'
 
 alias gsta='git stash'
 alias gstd='git stash drop'
@@ -54,3 +56,5 @@ alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
 alias gst='git status'
 alias gclean='git clean -di'
+
+alias gpr='gh pr create --fill --draft'
