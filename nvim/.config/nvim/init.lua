@@ -11,7 +11,8 @@ require('scnewma.first-load')
 require('scnewma.globals')
 
 -- Load packer plugins
-require('scnewma.plugins')
+-- require('scnewma.plugins')
+require('lazy').setup('scnewma.plugins')
 
 -- Load neovim options
 require('scnewma.options')
@@ -29,8 +30,8 @@ require('go').setup({
 require('scnewma.telescope')
 require('scnewma.telescope.mappings')
 
-require('scnewma.completion')
-require('scnewma.snippets')
+-- require('scnewma.completion')
+-- require('scnewma.snippets')
 
 -- Treesitter
 require('scnewma.treesitter')
