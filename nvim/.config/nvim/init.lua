@@ -33,7 +33,4 @@ require('scnewma.telescope.mappings')
 -- require('scnewma.completion')
 -- require('scnewma.snippets')
 
--- Treesitter
-require('scnewma.treesitter')
-
 require('nvim-autopairs').setup{}

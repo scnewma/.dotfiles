@@ -182,13 +182,4 @@ return {
     'LnL7/vim-nix',
     'cappyzawa/starlark.vim',
     'ziglang/zig.vim',
-
-    -- Treesitter
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = function()
-            require('nvim-treesitter.install').update({ with_sync = true })
-        end,
-    },
-    'nvim-treesitter/nvim-treesitter-textobjects',
 }
