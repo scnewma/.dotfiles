@@ -17,7 +17,7 @@ local on_attach = function(_, bufnr)
     -- Mappings
     map { 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>' }
     map { 'K', require('lspsaga.hover').render_hover_doc }
-    map { '<C-k>', require("lspsaga.signaturehelp").signature_help }
+    -- map { '<C-k>', require("lspsaga.signaturehelp").signature_help }
 
     -- code-rename
     map { '<Leader>cr', require("lspsaga.rename").lsp_rename }

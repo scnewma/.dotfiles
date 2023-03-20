@@ -5,6 +5,8 @@ vim.api.nvim_create_user_command('Reload', function() require('scnewma.utils').R
 
 vim.g.mapleader = ' '
 
+require('scnewma.first-load')
+
 -- Setup globals that I expect to be always available.
 require('scnewma.globals')
 

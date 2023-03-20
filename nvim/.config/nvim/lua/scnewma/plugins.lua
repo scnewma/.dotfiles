@@ -1,97 +1,89 @@
--- bootstrapping
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
+require('lazy').setup({
+    'wbthomason/packer.nvim',
+    'sainnhe/gruvbox-material',
+    'catppuccin/vim',
 
-return require('packer').startup({ function (use)
-    use 'wbthomason/packer.nvim'
-    use 'sainnhe/gruvbox-material'
-    use 'catppuccin/vim'
+    'nvim-lua/popup.nvim',
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    'nvim-telescope/telescope-ui-select.nvim',
 
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use 'nvim-telescope/telescope-ui-select.nvim'
-
-    use 'tpope/vim-commentary'
-    use 'tpope/vim-repeat'
+    'tpope/vim-commentary',
+    'tpope/vim-repeat',
     -- substitution for abbreviations, case-respecting replacement
-    use 'tpope/vim-abolish'
-    use 'tpope/vim-vinegar'
-    use 'tpope/vim-eunuch'
+    'tpope/vim-abolish',
+    'tpope/vim-vinegar',
+    'tpope/vim-eunuch',
 
     -- best surround plugin since sliced bread
-    use 'machakann/vim-sandwich'
+    'machakann/vim-sandwich',
 
     -- allows forward searching for text objects among other things
-    use 'wellle/targets.vim'
+    'wellle/targets.vim',
 
     -- gives :GBrowse functionality
-    use "tpope/vim-fugitive"
-    use "tpope/vim-rhubarb"
+    "tpope/vim-fugitive",
+    "tpope/vim-rhubarb",
 
-    use 'junegunn/vim-easy-align'
+    'junegunn/vim-easy-align',
 
     -- LSP
-    use 'neovim/nvim-lspconfig'
-    use 'windwp/nvim-autopairs'
-    use 'j-hui/fidget.nvim'
+    'neovim/nvim-lspconfig',
+    'windwp/nvim-autopairs',
+    'j-hui/fidget.nvim',
 
     -- completion
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-vsnip'
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-vsnip',
 
     --   Lua LSP
-    use 'euclidianAce/BetterLua.vim' -- better syntax highlighting
-    use 'onsails/lspkind-nvim'
-    use({
-        "glepnir/lspsaga.nvim",
-        -- branch = "main",
-        commit = "e70a3b7af013215feb1213a8eb11986b88677759",
+    'euclidianAce/BetterLua.vim', -- better syntax highlighting
+    'onsails/lspkind-nvim',
+
+    {
+        'glepnir/lspsaga.nvim',
+        event = 'BufRead',
         config = function()
-            local saga = require("lspsaga")
-            saga.init_lsp_saga({})
+            require('lspsaga').setup({})
         end,
-    })
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            'nvim-treesitter/nvim-treesitter',
+        }
+    },
 
     -- Snippets
-    use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
 
     -- Languages
-    use 'hashivim/vim-terraform'
-    use 'jvirtanen/vim-hcl'
-    use 'google/vim-jsonnet'
-    use 'jjo/vim-cue'
-    use 'stephpy/vim-yaml'
-    use 'elixir-editors/vim-elixir'
-    use 'mhinz/vim-mix-format'
-    use 'simrat39/rust-tools.nvim'
-    use 'pangloss/vim-javascript'
-    use 'maxmellon/vim-jsx-pretty'
-    use 'ray-x/go.nvim'
+    'hashivim/vim-terraform',
+    'jvirtanen/vim-hcl',
+    'google/vim-jsonnet',
+    'jjo/vim-cue',
+    'stephpy/vim-yaml',
+    'elixir-editors/vim-elixir',
+    'mhinz/vim-mix-format',
+    'simrat39/rust-tools.nvim',
+    'pangloss/vim-javascript',
+    'maxmellon/vim-jsx-pretty',
+    'ray-x/go.nvim',
     -- install from pre build since I don't always have nodejs and yarn
-    use 'LnL7/vim-nix'
-    use 'cappyzawa/starlark.vim'
-    use 'ziglang/zig.vim'
+    'LnL7/vim-nix',
+    'cappyzawa/starlark.vim',
+    'ziglang/zig.vim',
 
     -- Treesitter
-    use {
+    {
         'nvim-treesitter/nvim-treesitter',
-        run = function()
+        build = function()
             require('nvim-treesitter.install').update({ with_sync = true })
         end,
-    }
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
-
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-end, config = { compile_path = vim.fn.stdpath('data') .. '/plugin/packer_compiled.lua' }
+    },
+    'nvim-treesitter/nvim-treesitter-textobjects',
 })

@@ -28,7 +28,8 @@ opt.wildmode="full"
 opt.updatetime=300
 opt.autowrite=true
 opt.encoding="utf-8"
-opt.fileencoding="utf-8"
+-- lazy.nvim fails first install with an error if this is set
+-- opt.fileencoding="utf-8"
 opt.fileencodings="utf-8"
 opt.backspace={"indent","eol","start"}
 opt.signcolumn="yes"

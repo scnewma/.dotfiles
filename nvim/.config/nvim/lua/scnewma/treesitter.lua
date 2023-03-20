@@ -13,6 +13,9 @@ require('nvim-treesitter.configs').setup {
         'rust',
         'yaml',
         'vim',
+        -- needed for lspsaga
+        'markdown',
+        'markdown_inline',
     },
 
     highlight = {
