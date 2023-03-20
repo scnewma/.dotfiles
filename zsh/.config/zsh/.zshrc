@@ -144,6 +144,11 @@ fi
 [ -d "$HOME/.deno/bin" ] && path=($path "$HOME/.deno/bin")
 path=("$HOME/.nix-profile/bin" $path)
 
+if [ -d "$HOME/.deno" ]; then
+  export DENO_INSTALL="$HOME/.deno"
+  path=("$DENO_INSTALL/bin" $path)
+fi
+
 source "$ZDOTDIR/git.zsh"
 
 source "$PROFILE_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
