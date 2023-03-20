@@ -8,12 +8,25 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     'nvim-telescope/telescope-ui-select.nvim',
+    {
+        'nvim-telescope/telescope-file-browser.nvim',
+        keys = {
+            {
+                '-',
+                ':Telescope file_browser path=%:p:h=$:p:h<CR>',
+            },
+        },
+        config = function ()
+            require('telescope').load_extension('file_browser')
+        end,
+    },
 
     'tpope/vim-commentary',
     'tpope/vim-repeat',
     -- substitution for abbreviations, case-respecting replacement
     'tpope/vim-abolish',
-    'tpope/vim-vinegar',
+    -- Trying out telescope-file-browser
+    -- 'tpope/vim-vinegar',
     'tpope/vim-eunuch',
 
     -- best surround plugin since sliced bread

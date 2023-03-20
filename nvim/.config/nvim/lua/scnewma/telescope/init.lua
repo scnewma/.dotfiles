@@ -71,6 +71,11 @@ require('telescope').setup {
 
         ["ui-select"] = {
             require("telescope.themes").get_dropdown {}
+        },
+
+        file_browser = {
+            -- show hidden files by default, toggle with <C-h>
+            hidden = true,
         }
     }
 }
