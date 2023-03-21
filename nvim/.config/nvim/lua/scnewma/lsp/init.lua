@@ -59,7 +59,13 @@ lspconfig.jsonls.setup(make_config())
 lspconfig.pyright.setup(make_config())
 lspconfig.rnix.setup(make_config())
 lspconfig.vimls.setup(make_config())
-lspconfig.yamlls.setup(make_config())
+lspconfig.yamlls.setup(vim.tbl_deep_extend("force", make_config(), {
+    settings = {
+        yaml = {
+            keyOrdering = false,
+        }
+    }
+}))
 lspconfig.denols.setup(vim.tbl_deep_extend("force", make_config(), {
     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 }))
