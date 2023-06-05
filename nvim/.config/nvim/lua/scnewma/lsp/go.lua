@@ -18,7 +18,7 @@ function M.goimports(timeout_ms)
         end
     end
 
-    vim.lsp.buf.formatting_sync(nil, timeout_ms)
+    vim.lsp.buf.format({ async = false })
 end
 
 function M.go_module_name()
