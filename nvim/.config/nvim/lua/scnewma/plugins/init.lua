@@ -41,9 +41,8 @@ return {
     'junegunn/vim-easy-align',
 
     -- LSP
-    'neovim/nvim-lspconfig',
+    -- 'neovim/nvim-lspconfig',
     'windwp/nvim-autopairs',
-    'j-hui/fidget.nvim',
 
     -- Snippets
     {
@@ -151,20 +150,6 @@ return {
     --   Lua LSP
     'euclidianAce/BetterLua.vim', -- better syntax highlighting
     'onsails/lspkind-nvim',
-
-    {
-        'glepnir/lspsaga.nvim',
-        event = 'BufRead',
-        config = function()
-            require('lspsaga').setup({})
-        end,
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-            'nvim-treesitter/nvim-treesitter',
-        }
-    },
-
-    -- Snippets
 
     -- Languages
     'hashivim/vim-terraform',

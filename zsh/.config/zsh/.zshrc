@@ -90,7 +90,7 @@ autoload -Uz $fpath[1]/*(.:t)
 eval "$(starship init zsh)"
 
 PROFILE_DIR="$HOME/.nix-profile"
-[ -f "$PROFILE_DIR/share/asdf-vm/asdf.sh" ] && source "$PROFILE_DIR/share/asdf-vm/asdf.sh"
+# [ -f "$PROFILE_DIR/share/asdf-vm/asdf.sh" ] && source "$PROFILE_DIR/share/asdf-vm/asdf.sh"
 
 # add some commonly used named directories
 hash -d dot="$HOME/.dotfiles"

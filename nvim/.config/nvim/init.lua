@@ -19,18 +19,8 @@ require('scnewma.options')
 require('scnewma.mappings')
 require('scnewma.commands')
 
--- Neovim builtin LSP configuration
-require('scnewma.lsp')
-require('go').setup({
-    comment_placeholder = '',
-    build_tags = "integration",
-})
-
 -- Telescope
 require('scnewma.telescope')
 require('scnewma.telescope.mappings')
-
--- require('scnewma.completion')
--- require('scnewma.snippets')
 
 require('nvim-autopairs').setup{}
