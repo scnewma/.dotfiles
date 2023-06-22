@@ -22,6 +22,7 @@ alias gbD='git branch -D'
 alias gcom='git checkout $(git-main-branch)'
 alias gcb='git checkout -b'
 alias grs='git restore'
+alias grss='git restore --staged'
 
 alias gc='git commit -v'
 alias gca='git commit -v --amend'
