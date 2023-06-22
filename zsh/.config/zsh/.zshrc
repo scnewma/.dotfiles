@@ -149,6 +149,10 @@ if [ -d "$HOME/.deno" ]; then
   path=("$DENO_INSTALL/bin" $path)
 fi
 
+if [ -f ~/.config/op/plugins.sh ]; then
+    source ~/.config/op/plugins.sh
+fi
+
 source "$ZDOTDIR/git.zsh"
 
 source "$PROFILE_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
