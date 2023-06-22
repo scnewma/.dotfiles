@@ -45,7 +45,6 @@ in
     customPackages.fzfGit
     customPackages.tmux-fzf-url
 
-    _1password
     alacritty
     asciinema
     asdf-vm
