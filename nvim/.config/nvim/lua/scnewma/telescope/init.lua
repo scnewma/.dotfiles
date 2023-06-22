@@ -50,6 +50,11 @@ require('telescope').setup {
             }
         },
 
+        preview = {
+            filesize_limit = 1,
+            timeout = 1000,
+        },
+
         vimgrep_arguments = {
             rgexec,
             "--color=never",
