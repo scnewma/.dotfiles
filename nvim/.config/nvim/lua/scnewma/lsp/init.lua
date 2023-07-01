@@ -17,7 +17,6 @@ local on_attach = function(_, bufnr)
     -- Mappings
     map { 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>' }
     map { 'K', require('lspsaga.hover').render_hover_doc }
-    map { '<C-k>', require("lspsaga.signaturehelp").signature_help }
 
     -- code-rename
     map { '<Leader>cr', require("lspsaga.rename").lsp_rename }
@@ -29,12 +28,6 @@ local on_attach = function(_, bufnr)
 
     map { '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>' }
     map { '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>' }
-
-    -- vim.api.nvim_create_autocmd('CursorHold', {
-    --     callback = function()
-    --         vim.diagnostic.open_float(nil, { focusable = false })
-    --     end
-    -- })
 end
 
 local function make_capabilities()

@@ -5,32 +5,20 @@ vim.api.nvim_create_user_command('Reload', function() require('scnewma.utils').R
 
 vim.g.mapleader = ' '
 
+require('scnewma.first-load')
+
 -- Setup globals that I expect to be always available.
 require('scnewma.globals')
 
--- Load packer plugins
-require('scnewma.plugins')
+require('lazy').setup('scnewma.plugins')
 
 -- Load neovim options
 require('scnewma.options')
 require('scnewma.mappings')
 require('scnewma.commands')
 
--- Neovim builtin LSP configuration
-require('scnewma.lsp')
-require('go').setup({
-    comment_placeholder = '',
-    build_tags = "integration",
-})
-
 -- Telescope
 require('scnewma.telescope')
 require('scnewma.telescope.mappings')
-
-require('scnewma.completion')
-require('scnewma.snippets')
-
--- Treesitter
-require('scnewma.treesitter')
 
 require('nvim-autopairs').setup{}
