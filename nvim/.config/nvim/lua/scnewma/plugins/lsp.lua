@@ -24,7 +24,7 @@ local on_attach = function(_, bufnr)
     map { '[d', vim.diagnostic.goto_prev }
     map { ']d', vim.diagnostic.goto_next }
 
-    map { '<Leader>cf', vim.lsp.buf.formatting_sync }
+    map { '<Leader>cf', function() vim.lsp.buf.format({ async = false }) end }
     map { '<Leader>ca', vim.lsp.buf.code_action }
 end
 
@@ -198,7 +198,7 @@ return {
                     map { '<leader>mhe', require('rust-tools.inlay_hints').set }
                     map { '<leader>mhd', require('rust-tools.inlay_hints').unset }
 
-                    vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+                    vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.format({ timeout_ms = 1000 })]]
                 end,
                 capabilities = make_capabilities(),
                 cmd = { "rustup", "run", "stable", "rust-analyzer" },
