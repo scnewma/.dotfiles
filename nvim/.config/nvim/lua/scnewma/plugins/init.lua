@@ -153,4 +153,5 @@ return {
     'LnL7/vim-nix',
     'cappyzawa/starlark.vim',
     'ziglang/zig.vim',
+    'alaviss/nim.nvim',
 }
