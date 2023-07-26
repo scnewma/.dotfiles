@@ -158,6 +158,7 @@ if [ -f ~/.config/op/plugins.sh ]; then
 fi
 
 source "$ZDOTDIR/git.zsh"
+source "$ZDOTDIR/sgen.zsh"
 
 source "$PROFILE_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
