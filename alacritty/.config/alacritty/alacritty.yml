@@ -63,3 +63,5 @@ key_bindings:
   - { key: Left, mods: Command, chars: "\x00\x1b\x5b\x44\x7a" }
   # move-window-right (prefix right)
   - { key: Right, mods: Command, chars: "\x00\x1b\x5b\x43\x7a" }
+  # fuzzy-open-project (prefix g)
+  - { key: P, mods: Command, chars: "\x00\x67" }
