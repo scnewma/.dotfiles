@@ -41,6 +41,8 @@ key_bindings:
   # idea from: https://www.joshmedeski.com/posts/macos-keyboard-shortcuts-for-tmux
   # new-window (prefix c)
   - { key: T, mods: Command, chars: "\x00\x63" }
+  # split-window -v (prefix enter)
+  - { key: Return, mods: Command, chars: "\x00\x0d" }
   # next-window (prefix n)
   - { key: RBracket, mods: Command, chars: "\x00\x6e" }
   # prev-window (prefix p)
@@ -51,6 +53,8 @@ key_bindings:
   - { key: LBracket, mods: Command|Shift, chars: "\x00\x7d" }
   # kill-current-window (prefix &)
   - { key: W, mods: Command, chars: "\x00\x26" }
+  # kill-current-pane (prefix x)
+  - { key: X, mods: Command, chars: "\x00\x78" }
   # swap-pane-previous (prefix .)
   - { key: Period, mods: Command, chars: "\x00\x2e" }
   # toggle-pane-zoom (prefix z)
