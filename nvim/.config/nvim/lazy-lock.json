@@ -10,7 +10,7 @@
   "fidget.nvim": { "branch": "main", "commit": "f1c375ba68839eaa4a65efdf2aa078c0da0548fe" },
   "go.nvim": { "branch": "master", "commit": "97b76f3188c64d4dacfc17c7c1543f775a3fb8e8" },
   "gruvbox-material": { "branch": "master", "commit": "3fff63b0d6a425ad1076a260cd4f6da61d1632b1" },
-  "lazy.nvim": { "branch": "main", "commit": "f8611632d0f9c6818e8eb54f9bcd1dad122b5a7f" },
+  "lazy.nvim": { "branch": "main", "commit": "3ad55ae678876516156cca2f361c51f7952a924b" },
   "lspkind-nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
   "nim.nvim": { "branch": "master", "commit": "87afde2ae995723e0338e1851c3b3c1cbd81d955" },
   "nvim-autopairs": { "branch": "master", "commit": "e8f7dd7a72de3e7b6626c050a802000e69d53ff0" },
