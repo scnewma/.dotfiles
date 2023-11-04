@@ -59,7 +59,7 @@ in
     curl
     delta # syntax highlighting for git
     direnv
-    exa
+    eza # exa is unmaintained
     fd
     fzf
     gh
