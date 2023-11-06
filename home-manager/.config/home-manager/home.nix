@@ -80,7 +80,6 @@ in
     mysql80
     neovim
     nerdfonts
-    nomad
     postgresql
     pre-commit
     protobuf
