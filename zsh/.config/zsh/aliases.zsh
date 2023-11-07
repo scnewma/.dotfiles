@@ -30,9 +30,9 @@ alias tdot='t $HOME/.dotfiles'
 
 alias tf='terraform'
 
-alias ls='exa --icons'
-alias exa='exa --icons'
-alias exag='exa --icons --long --git --git-ignore'
-alias tree='exa --icons --tree'
+alias ls='eza --icons'
+alias exa='eza --icons'
+alias exag='eza --icons --long --git --git-ignore'
+alias tree='eza --icons --tree'
 
 # alias rg='~/.dotfiles/scripts/rg.sh'
