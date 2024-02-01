@@ -6,3 +6,4 @@ aliases:
     open: '!gh browse --branch $(git rev-parse --abbrev-ref HEAD) $@'
     # custom fzf filter application for listing/checking out prs
     prs: '!zsh $HOME/.config/zsh/functions/gh_fzf_pr_open $@'
+version: "1"
