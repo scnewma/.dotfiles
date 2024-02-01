@@ -4,9 +4,9 @@ return {
 
     'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    'nvim-telescope/telescope-ui-select.nvim',
+    'junegunn/fzf',
+    'junegunn/fzf.vim',
+    'gfanto/fzf-lsp.nvim',
 
     'tpope/vim-commentary',
     'tpope/vim-repeat',

@@ -17,8 +17,4 @@ require('scnewma.options')
 require('scnewma.mappings')
 require('scnewma.commands')
 
--- Telescope
-require('scnewma.telescope')
-require('scnewma.telescope.mappings')
-
 require('nvim-autopairs').setup{}

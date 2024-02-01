@@ -96,6 +96,26 @@ inoremap { '<C-r>', '<C-g>u<C-r>' }
 -- Split line moving to the right of the cursor upward
 nnoremap { '<Leader><C-j>', 'DO<Esc>pj:s/\\s\\+$//<CR>' }
 
+-- FZF
+nnoremap { '<Leader><space>', '<cmd>:Files<CR>' }
+nnoremap { '<Leader>fg', '<cmd>:GitFiles?<CR>' }
+nnoremap { '<Leader>fe', '<cmd>:Files ~/.dotfiles<CR>' }
+nnoremap { '<Leader>bb', '<cmd>:Buffers<CR>' }
+nnoremap { '<Leader>sp', '<cmd>:RG<CR>' }
+nnoremap { '<Leader>sP', '<cmd>:Rg<CR>' }
+nnoremap {
+    '<Leader>sw',
+    function ()
+        local current_word = vim.call('expand','<cword>')
+        vim.cmd(':RG ' .. current_word)
+    end,
+}
+nnoremap { '<Leader>ss', '<cmd>:BLines<CR>' }
+nnoremap { 'gd', '<cmd>:Definitions<CR>' }
+nnoremap { '<Leader>cR', '<cmd>:References<CR>' }
+nnoremap { '<Leader>ci', '<cmd>:Implementations<CR>' }
+nnoremap { '<Leader>cd', '<cmd>:DiagnosticsAll<CR>' }
+
 -- expands %% into the relative directory of the current buffer in cmd mode
 cnoremap {
     '%%',
