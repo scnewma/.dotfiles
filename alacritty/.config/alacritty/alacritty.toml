@@ -1,0 +1,98 @@
+import = ["/Users/shaun/.nix-profile/share/catppuccin-alacritty/catppuccin-mocha.toml"]
+live_config_reload = true
+
+[cursor.style]
+blinking = "Never"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 17.0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[[keyboard.bindings]]
+chars = "\u0000"
+key = "Space"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0000c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000\r"
+key = "Return"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000n"
+key = "RBracket"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000p"
+key = "LBracket"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000{"
+key = "RBracket"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0000}"
+key = "LBracket"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0000&"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000x"
+key = "X"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000."
+key = "Period"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000z"
+key = "Z"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000\u001B[Dz"
+key = "Left"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000\u001B[Cz"
+key = "Right"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000g"
+key = "P"
+mods = "Command"
+
+[window]
+opacity = 1.0
+option_as_alt = "OnlyLeft"
