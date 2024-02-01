@@ -50,12 +50,12 @@ mods = "Command"
 
 [[keyboard.bindings]]
 chars = "\u0000{"
-key = "RBracket"
+key = "{"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
 chars = "\u0000}"
-key = "LBracket"
+key = "}"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
