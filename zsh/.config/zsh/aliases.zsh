@@ -35,4 +35,6 @@ alias exa='eza --icons'
 alias exag='eza --icons --long --git --git-ignore'
 alias tree='eza --icons --tree'
 
+alias home-manager='nix run home-manager/master --'
+
 # alias rg='~/.dotfiles/scripts/rg.sh'
