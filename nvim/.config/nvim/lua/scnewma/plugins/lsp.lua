@@ -57,7 +57,6 @@ return {
                 dockerls = {},
                 jsonls = {},
                 pyright = {},
-                rnix = {},
                 vimls = {},
                 yamlls = {},
                 denols = {},

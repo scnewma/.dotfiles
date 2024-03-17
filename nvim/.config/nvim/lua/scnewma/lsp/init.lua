@@ -50,7 +50,6 @@ lspconfig.bashls.setup(make_config())
 lspconfig.dockerls.setup(make_config())
 lspconfig.jsonls.setup(make_config())
 lspconfig.pyright.setup(make_config())
-lspconfig.rnix.setup(make_config())
 lspconfig.vimls.setup(make_config())
 lspconfig.yamlls.setup(vim.tbl_deep_extend("force", make_config(), {
     settings = {
