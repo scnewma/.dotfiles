@@ -49,6 +49,12 @@ in
     customPackages.catppucin-alacritty
     customPackages.catppucin-tmux
 
+    gleam
+    erlang
+    rebar3
+    go_1_22
+    just
+
     alacritty
     asciinema
     aspell
@@ -73,7 +79,6 @@ in
     grpcurl
     htop
     hyperfine
-    iterm2
     jd-diff-patch
     jq
     # kitty
@@ -110,7 +115,6 @@ in
     nodePackages.vscode-langservers-extracted
     nodePackages.yaml-language-server
     nodePackages.typescript-language-server
-    rnix-lsp
     lua-language-server
   ];
 }

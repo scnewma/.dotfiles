@@ -113,6 +113,10 @@ source "$PROFILE_DIR/share/fzf/completion.zsh"
 source "$PROFILE_DIR/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^n' autosuggest-accept
 
+# change default home-manager config path since home-manager doesn't like it's
+# directly being symlinked
+export HOME_MANAGER_CONFIG="$HOME/.dotfiles/home-manager"
+
 # allow ctrl-z to toggle between suspend and resume
 function suspend-resume() {
     fg
