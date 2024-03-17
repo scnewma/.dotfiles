@@ -5,16 +5,12 @@
 Setup with Nix. The below commands are ordered so that all of the `.config` directories are symlinked before installing tools so there are no conflicts.
 
 ```
-sh <(curl -L https://nixos.org/nix/install)
-nix-shell -p git --command 'git clone https://github.com/scnewma/.dotfiles.git ~/.dotfiles'
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+nix run nixpkgs#git -- clone https://github.com/scnewma/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-nix-shell -p stow --command 'stow bat gh git home-manager karabiner kitty nix nvim starship tmux zsh'
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable
-export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
-nix-shell '<home-manager>' -A install
-home-manager switch
+nix run home-manager/master -- init --switch "$HOME/.dotfiles/home-manager"
+nix run nixpkgs#stow -- stow bat gh git karabiner kitty nix nvim starship tmux zsh
+exec zsh
 ```
 
 If you are doing any Rust development:
