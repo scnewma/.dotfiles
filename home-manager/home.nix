@@ -23,7 +23,7 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.05";
+  home.stateVersion = "24.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -48,12 +48,6 @@ in
     customPackages.tmux-fzf-url
     customPackages.catppucin-alacritty
     customPackages.catppucin-tmux
-
-    gleam
-    erlang
-    rebar3
-    go_1_22
-    just
 
     alacritty
     asciinema
@@ -81,7 +75,7 @@ in
     hyperfine
     jd-diff-patch
     jq
-    # kitty
+    just
     mysql80
     neovim
     nerdfonts
