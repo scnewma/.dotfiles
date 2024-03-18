@@ -19,6 +19,12 @@ If you are doing any Rust development:
 rustup component add rust-analyzer
 ```
 
+If you are doing any Go development:
+
+```
+go install golang.org/x/tools/gopls@latest
+```
+
 If you want the casks in `Brewfile`:
 
 ```

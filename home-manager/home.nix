@@ -101,7 +101,6 @@ in
     zsh-syntax-highlighting
 
     # neovim language servers
-    gopls
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.pyright
