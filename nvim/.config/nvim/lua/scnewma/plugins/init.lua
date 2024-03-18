@@ -154,4 +154,5 @@ return {
     'cappyzawa/starlark.vim',
     'ziglang/zig.vim',
     'alaviss/nim.nvim',
+    'github/copilot.vim',
 }
