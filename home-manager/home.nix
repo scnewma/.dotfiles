@@ -62,9 +62,11 @@ in
     eza # exa is unmaintained
     fd
     fzf
+    gcc
     gh
     git
     git-crypt
+    glow
     gnupg
     go-jsonnet
     goku

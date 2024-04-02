@@ -6,11 +6,11 @@ return {
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
-        config = function(_, opts)
-          require("nvim-treesitter.configs").setup(opts)
-        end,
-        opts = {
+        config = function()
+          require("nvim-treesitter.configs").setup {
+            auto_install = true,
             ensure_installed = {
+                'c',
                 'bash',
                 'go',
                 'gomod',
@@ -24,7 +24,9 @@ return {
                 'rust',
                 'yaml',
                 'vim',
+                'vimdoc',
                 'zig',
+                'query',
                 -- needed for lspsaga
                 'markdown',
                 'markdown_inline',
@@ -99,5 +101,6 @@ return {
                 },
             }
         }
+        end,
     },
 }
