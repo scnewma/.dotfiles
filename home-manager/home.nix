@@ -55,14 +55,15 @@ in
     awscli2
     bash
     bat
-    coreutils
+    # coreutils
     curl
     delta # syntax highlighting for git
     direnv
     eza # exa is unmaintained
     fd
     fzf
-    gcc
+    # causing issues with rust finding libiconv
+    # gcc
     gh
     git
     git-crypt
@@ -73,6 +74,7 @@ in
     goreleaser
     graphviz
     grpcurl
+    gum # used in tmux scripts
     htop
     hyperfine
     jd-diff-patch
@@ -81,6 +83,7 @@ in
     mysql80
     neovim
     nerdfonts
+    # nodejs
     postgresql
     pre-commit
     protobuf

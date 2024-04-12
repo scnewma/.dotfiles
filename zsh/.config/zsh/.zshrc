@@ -107,8 +107,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-source "$PROFILE_DIR/share/fzf/key-bindings.zsh"
-source "$PROFILE_DIR/share/fzf/completion.zsh"
+eval "$(fzf --zsh)"
 
 source "$PROFILE_DIR/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^n' autosuggest-accept
@@ -166,9 +165,8 @@ source "$ZDOTDIR/sgen.zsh"
 
 source "$PROFILE_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-source "$PROFILE_DIR/etc/profile.d/hm-session-vars.sh"
-
 eval "$(direnv hook zsh)"
+[ -f "$HOME/.local/bin/mise" ] && eval "$($HOME/.local/bin/mise activate zsh)"
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 export PATH
