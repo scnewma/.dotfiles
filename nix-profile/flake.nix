@@ -12,6 +12,18 @@
       let
         pkgs = import nixpkgs {
           inherit system;
+
+          overlays = [
+            (self: super: {
+              nerdfonts = super.nerdfonts.override {
+                fonts = [ "JetBrainsMono" ];
+              };
+
+              tmux = super.tmux.overrideAttrs (finalAttrs: previousAttrs: {
+                patches = [ ../home-manager/tmux-main-rev.patch ];
+              });
+            })
+          ];
         };
 
         customPackages = {
@@ -23,15 +35,6 @@
         };
       in
       {
-        overlays.nixpkgs = (self: super: {
-          nerdfonts = super.nerdfonts.override {
-            fonts = [ "JetBrainsMono" ];
-          };
-
-          tmux = super.tmux.overrideAttrs (finalAttrs: previousAttrs: {
-            patches = [ ../home-manager/tmux-main-rev.patch ];
-          });
-        });
         # Any extra arguments to mkProfile are forwarded directly to pkgs.buildEnv.
         #
         # Usage:
