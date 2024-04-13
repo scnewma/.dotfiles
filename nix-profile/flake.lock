@@ -53,7 +53,31 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "flakey-profile": "flakey-profile",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "sunbeam": "sunbeam"
+      }
+    },
+    "sunbeam": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": [
+          "flake-utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1710526067,
+        "narHash": "sha256-YsEauYJ8tISxF2s2kgT5L+XgWbnD/o3tbRcKObGY95s=",
+        "owner": "pomdtr",
+        "repo": "sunbeam",
+        "rev": "144d3bd41114b19fe503708a3ba6e84927d0df0c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pomdtr",
+        "repo": "sunbeam",
+        "type": "github"
       }
     },
     "systems": {

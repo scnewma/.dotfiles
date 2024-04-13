@@ -5,9 +5,13 @@
     flakey-profile.url = "github:lf-/flakey-profile";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+
+    sunbeam.url = "github:pomdtr/sunbeam";
+    sunbeam.inputs.nixpkgs.follows = "nixpkgs";
+    sunbeam.inputs.utils.follows = "flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils, flakey-profile }:
+  outputs = { self, nixpkgs, flake-utils, flakey-profile, sunbeam }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -33,6 +37,8 @@
           catppucin-alacritty = pkgs.callPackage ../home-manager/catppuccin-alacritty { inherit pkgs; };
           catppucin-tmux = pkgs.callPackage ../home-manager/catppuccin-tmux { inherit pkgs; };
         };
+
+        sunbeamPkg = sunbeam.packages.${system}.default;
       in
       {
         # Any extra arguments to mkProfile are forwarded directly to pkgs.buildEnv.
@@ -58,6 +64,8 @@
             customPackages.tmux-fzf-url
             customPackages.catppucin-alacritty
             customPackages.catppucin-tmux
+
+            sunbeamPkg
 
             alacritty
             asciinema
