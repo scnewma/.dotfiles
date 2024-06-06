@@ -1,6 +1,6 @@
 return {
     'sainnhe/gruvbox-material',
-    'catppuccin/vim',
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
@@ -148,7 +148,11 @@ return {
     'simrat39/rust-tools.nvim',
     'pangloss/vim-javascript',
     'maxmellon/vim-jsx-pretty',
-    'ray-x/go.nvim',
+    {
+        'ray-x/go.nvim',
+        ft = {'go', 'gomod'},
+        build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+    },
     -- install from pre build since I don't always have nodejs and yarn
     'LnL7/vim-nix',
     'cappyzawa/starlark.vim',

@@ -16,15 +16,12 @@ local on_attach = function(_, bufnr)
 
     -- Mappings
     map { 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>' }
-    map { 'K', require('lspsaga.hover').render_hover_doc }
 
     -- code-rename
     map { '<Leader>cr', require("lspsaga.rename").lsp_rename }
 
     --  diagnostics
     map { '<Leader>cl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>' }
-    map { '[d', require("lspsaga.diagnostic").goto_prev }
-    map { ']d', require("lspsaga.diagnostic").goto_next }
 
     map { '<Leader>cf', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>' }
     map { '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>' }

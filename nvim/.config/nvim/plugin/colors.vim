@@ -1,2 +1,2 @@
 set background=dark
-colorscheme catppuccin_mocha
+colorscheme catppuccin-mocha

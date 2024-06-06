@@ -26,6 +26,17 @@
               tmux = super.tmux.overrideAttrs (finalAttrs: previousAttrs: {
                 patches = [ ../home-manager/tmux-main-rev.patch ];
               });
+
+              # TODO(scnewma): remove once >= 0.53.0 is in nixpkgs
+              fzf = super.fzf.overrideAttrs (finalAttrs: {
+                version = "0.53.0";
+                src = super.fetchFromGitHub {
+                  owner = "junegunn";
+                  repo = "fzf";
+                  rev = "0.53.0";
+                  hash = "sha256-2g1ouyXTo4EoCub+6ngYPy+OUFoZhXbVT3FI7r5Y7Ws=";
+                };
+              });
             })
           ];
         };
@@ -89,7 +100,7 @@
             gnupg
             go-jsonnet
             goku
-            goreleaser
+            # goreleaser
             graphviz
             grpcurl
             gum # used in tmux scripts
@@ -101,7 +112,7 @@
             mysql80
             neovim
             nerdfonts
-            # nodejs
+            nodejs
             postgresql
             pre-commit
             protobuf
