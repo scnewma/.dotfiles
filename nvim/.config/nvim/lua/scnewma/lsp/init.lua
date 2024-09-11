@@ -58,7 +58,7 @@ lspconfig.yamlls.setup(vim.tbl_deep_extend("force", make_config(), {
 lspconfig.denols.setup(vim.tbl_deep_extend("force", make_config(), {
     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 }))
-lspconfig.tsserver.setup(vim.tbl_deep_extend("force", make_config(), {
+lspconfig.ts_ls.setup(vim.tbl_deep_extend("force", make_config(), {
     root_dir = lspconfig.util.root_pattern("package.json"),
     single_file_support = false,
 }))

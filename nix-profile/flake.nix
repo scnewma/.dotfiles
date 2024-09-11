@@ -127,12 +127,12 @@
             nodePackages.bash-language-server
             nodePackages.dockerfile-language-server-nodejs
             pyright
+            typescript-language-server
             nodePackages.vscode-langservers-extracted
             # Unknown error, need to diagnose
             # error Error: EACCES: permission denied, open '/tmp/home/.yarnrc'
             # nodePackages.vim-language-server
             # nodePackages.yaml-language-server
-            # nodePackages.typescript-language-server
             lua-language-server
           ];
         };

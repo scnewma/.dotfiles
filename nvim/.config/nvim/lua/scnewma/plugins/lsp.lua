@@ -60,7 +60,7 @@ return {
                 vimls = {},
                 yamlls = {},
                 denols = {},
-                tsserver = {},
+                ts_ls = {},
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -87,12 +87,12 @@ return {
                     })
                     require('lspconfig').denols.setup(opts)
                 end,
-                tsserver = function(opts)
+                ts_ls = function(opts)
                     opts = vim.tbl_deep_extend('force', opts, {
                         root_dir = require('lspconfig').util.root_pattern('package.json'),
                         single_file_support = false,
                     })
-                    require('lspconfig').tsserver.setup(opts)
+                    require('lspconfig').ts_ls.setup(opts)
                 end,
                 gopls = function(opts)
                     opts = vim.tbl_deep_extend('force', opts, {
