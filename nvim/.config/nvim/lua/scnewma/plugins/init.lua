@@ -1,6 +1,22 @@
 return {
     'sainnhe/gruvbox-material',
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        config = function()
+            require("catppuccin").setup {
+                flavour = "mocha",
+                no_italic = true,
+                integrations = {
+                    cmp = true,
+                    -- breaks the colorscheme a bit, but unsetting this doesn't fully fix it
+                    treesitter = false,
+                }
+            }
+            vim.cmd.colorscheme "catppuccin"
+        end
+    },
 
     'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
