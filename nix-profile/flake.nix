@@ -26,17 +26,6 @@
               tmux = super.tmux.overrideAttrs (finalAttrs: previousAttrs: {
                 patches = [ ../home-manager/tmux-main-rev.patch ];
               });
-
-              # TODO(scnewma): remove once >= 0.53.0 is in nixpkgs
-              fzf = super.fzf.overrideAttrs (finalAttrs: {
-                version = "0.53.0";
-                src = super.fetchFromGitHub {
-                  owner = "junegunn";
-                  repo = "fzf";
-                  rev = "0.53.0";
-                  hash = "sha256-2g1ouyXTo4EoCub+6ngYPy+OUFoZhXbVT3FI7r5Y7Ws=";
-                };
-              });
             })
           ];
         };
@@ -117,7 +106,7 @@
             pre-commit
             protobuf
             pv
-            python310
+            # python310
             ripgrep
             shellcheck
             starship
@@ -137,11 +126,13 @@
             # neovim language servers
             nodePackages.bash-language-server
             nodePackages.dockerfile-language-server-nodejs
-            nodePackages.pyright
-            nodePackages.vim-language-server
+            pyright
             nodePackages.vscode-langservers-extracted
-            nodePackages.yaml-language-server
-            nodePackages.typescript-language-server
+            # Unknown error, need to diagnose
+            # error Error: EACCES: permission denied, open '/tmp/home/.yarnrc'
+            # nodePackages.vim-language-server
+            # nodePackages.yaml-language-server
+            # nodePackages.typescript-language-server
             lua-language-server
           ];
         };
