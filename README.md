@@ -7,8 +7,9 @@ Setup with Nix. The below commands are ordered so that all of the `.config` dire
 ```
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 nix run nixpkgs#git -- clone https://github.com/scnewma/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles/nix-profile/
+nix run .#profile.switch
 cd ~/.dotfiles
-nix run home-manager/master -- init --switch "$HOME/.dotfiles/home-manager"
 nix run nixpkgs#stow -- stow bat gh git karabiner kitty nix nvim starship tmux zsh
 exec zsh
 ```
