@@ -22,10 +22,6 @@
               nerdfonts = super.nerdfonts.override {
                 fonts = [ "JetBrainsMono" ];
               };
-
-              tmux = super.tmux.overrideAttrs (finalAttrs: previousAttrs: {
-                patches = [ ../home-manager/tmux-main-rev.patch ];
-              });
             })
           ];
         };
