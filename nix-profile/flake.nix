@@ -107,7 +107,7 @@
             pyright
             # typescript-language-server
             nodePackages.vscode-langservers-extracted
-            # yaml-language-server
+            yaml-language-server
             # vim-language-server
             lua-language-server
           ];
