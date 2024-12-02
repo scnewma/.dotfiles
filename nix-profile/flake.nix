@@ -10,17 +10,7 @@
   outputs = { self, nixpkgs, flake-utils, flakey-profile }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-
-          overlays = [
-            (self: super: {
-              nerdfonts = super.nerdfonts.override {
-                fonts = [ "JetBrainsMono" ];
-              };
-            })
-          ];
-        };
+        pkgs = import nixpkgs { inherit system; };
 
         customPackages = {
           kubectlAliases = pkgs.callPackage ../home-manager/kubectl-aliases/default.nix { inherit pkgs; };
@@ -88,7 +78,7 @@
             just
             mysql80
             neovim
-            nerdfonts
+            jetbrains-mono # nerdfonts
             nodejs
             postgresql
             pre-commit
