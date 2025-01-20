@@ -79,6 +79,7 @@ return {
                     },
                 },
                 gopls = {},
+                gleam = {},
             },
             setup = {
                 denols = function(opts)

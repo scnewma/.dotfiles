@@ -28,7 +28,6 @@ return {
     'tpope/vim-repeat',
     -- substitution for abbreviations, case-respecting replacement
     'tpope/vim-abolish',
-    'tpope/vim-vinegar',
     'tpope/vim-eunuch',
 
     -- best surround plugin since sliced bread
@@ -45,6 +44,14 @@ return {
 
     -- LSP
     'windwp/nvim-autopairs',
+
+    {
+        'stevearc/oil.nvim',
+        opts = {
+            view_options = { show_hidden = true },
+        },
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    },
 
     -- Snippets
     {
@@ -174,5 +181,4 @@ return {
     'cappyzawa/starlark.vim',
     'ziglang/zig.vim',
     'alaviss/nim.nvim',
-    'github/copilot.vim',
 }

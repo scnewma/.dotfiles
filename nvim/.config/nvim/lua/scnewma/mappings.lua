@@ -5,6 +5,7 @@ local vnoremap = require('scnewma.keymap').vnoremap
 local cnoremap = require('scnewma.keymap').cnoremap
 
 nmap { 'gQ', '<Nop>' }
+nmap { '-', '<CMD>Oil<CR>' }
 
 -- window management
 --   split-below-focus
@@ -31,7 +32,6 @@ nnoremap { '<Leader>wo', '<C-w>o' }
 nnoremap { '<Leader>wt', '<C-w>t' }
 --   focus-bot-right
 nnoremap { '<Leader>wb', '<C-w>b' }
-
 
 -- buffer management
 --   delete-buffer

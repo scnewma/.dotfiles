@@ -93,6 +93,11 @@ chars = "\u0000g"
 key = "P"
 mods = "Command"
 
+[[keyboard.bindings]]
+chars = "\u0000G"
+key = "P"
+mods = "Command|Shift"
+
 [window]
 opacity = 1.0
 option_as_alt = "OnlyLeft"
