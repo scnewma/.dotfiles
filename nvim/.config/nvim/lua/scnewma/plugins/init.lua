@@ -33,6 +33,7 @@ return {
                 vim.cmd [[ copen ]]
             end
 
+            vim.env.FZF_DEFAULT_OPTS = vim.env.FZF_DEFAULT_OPTS .. " --bind ctrl-a:select-all --bind ctrl-d:deselect-all"
             vim.g.fzf_action = {
                 -- defaults
                 ['ctrl-t'] = 'tab split',
