@@ -21,7 +21,28 @@ return {
     'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
     'junegunn/fzf',
-    'junegunn/fzf.vim',
+    {
+        'junegunn/fzf.vim',
+        config = function ()
+            local function set_quickfix(files)
+                local qf = {}
+                for _, filename in pairs(files) do
+                    table.insert(qf, { filename = filename })
+                end
+                vim.fn.setqflist(qf)
+                vim.cmd [[ copen ]]
+            end
+
+            vim.g.fzf_action = {
+                -- defaults
+                ['ctrl-t'] = 'tab split',
+                ['ctrl-x'] = 'split',
+                ['ctrl-v'] = 'vsplit',
+
+                ['alt-q'] = set_quickfix,
+            }
+        end,
+    },
     'gfanto/fzf-lsp.nvim',
 
     'tpope/vim-commentary',
