@@ -74,11 +74,12 @@
             htop
             hyperfine
             jd-diff-patch
+            jetbrains-mono # nerdfonts
             jq
+            jujutsu
             just
             mysql80
             neovim
-            jetbrains-mono # nerdfonts
             nodejs
             postgresql
             pre-commit
