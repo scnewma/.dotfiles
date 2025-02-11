@@ -2,8 +2,10 @@ git_protocol: https
 editor: nvim
 prompt: enabled
 aliases:
-    # opens the current branch in github.com
-    open: '!gh browse --branch $(git rev-parse --abbrev-ref HEAD) $@'
-    # custom fzf filter application for listing/checking out prs
-    prs: '!zsh $HOME/.config/zsh/functions/gh_fzf_pr_open $@'
+  # opens the current branch in github.com
+  open: "!gh browse --branch $(git rev-parse --abbrev-ref HEAD) $@"
+  # custom fzf filter application for listing/checking out prs
+  prs: "!zsh $HOME/.config/zsh/functions/gh_fzf_pr_open $@"
+  # approve and merge a given PR
+  approve-merge: "!gh pr review --approve $1 && (gh pr merge --auto --merge $1 || gh pr merge --auto --squash $1)"
 version: "1"
