@@ -1,0 +1,63 @@
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lalt lmet          spc            ralt rmet rctl
+)
+
+(defalias
+    ;; dvorak home-row mods
+    hra (tap-hold 200 200 a lalt)
+    hro (tap-hold 200 200 o lmet)
+    hre (tap-hold 200 200 e lctl)
+    hrs (tap-hold 200 200 s lalt)
+    hrn (tap-hold 200 200 n lmet)
+    hrt (tap-hold 200 200 t lctl)
+
+    grl (tap-hold 200 200 grv (layer-toggle layers))
+    dvk (layer-switch dvorak)
+    qwr (layer-switch qwerty)
+    gph (layer-switch graphite)
+    egm (layer-switch engram)
+)
+
+(deflayer dvorak
+  @grl 1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+  tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
+  esc  @hra @hro @hre u    i    d    h    @hrt @hrn @hrs    -    ret
+  lsft ;    q    j    k    x    b    m    w    v    z    rsft
+  lctl lalt lmet           spc            ralt rmet rctl
+)
+
+(deflayer qwerty
+  @grl 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lalt lmet          spc            ralt rmet rctl
+)
+
+(deflayer graphite
+  @grl 1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+  tab  b    l    d    w    z    '    f    o    u    j    ;    =    \
+  esc  n    r    t    s    g    y    h    a    e    i    ,    ret
+  lsft q    x    m    c    v    k    p    .    -    /    rsft
+  lctl lalt lmet           spc            ralt rmet rctl
+)
+
+(deflayer engram
+  @grl 1    2    3    4    5    6    7    8    9    0    [    ]    bspc
+  tab  b    y    o    u    '    ;    l    d    w    v    z    =    \
+  esc  c    i    e    a    ,    .    h    t    s    n    q    ret
+  lsft g    x    j    k    -    /    r    m    f    p    rsft
+  lctl lalt lmet           spc            ralt rmet rctl
+)
+
+(deflayer layers
+  _  @dvk @qwr @gph @egm _    _    _    _    _    _    _    _    _
+  _  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _  _    _    _    _    _    _    _    _    _    _    _    _
+  _  _    _    _    _    _    _    _    _    _    _    _
+  _ _ _           _            _ _ _
+)
