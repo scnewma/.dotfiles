@@ -116,6 +116,8 @@ bindkey '^n' autosuggest-accept
 # directly being symlinked
 export HOME_MANAGER_CONFIG="$HOME/.dotfiles/home-manager/home.nix"
 
+export JJ_CONFIG="$HOME/.dotfiles/jj/config"
+
 # allow ctrl-z to toggle between suspend and resume
 function suspend-resume() {
     fg
