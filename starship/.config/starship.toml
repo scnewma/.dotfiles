@@ -58,9 +58,9 @@ starship module git_status
 ignore_timeout = true
 description = "jj status"
 symbol = ""
-detect_folders = [".jj"]
+when = "jj root"
 command = '''
-jj root > /dev/null && jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
+jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
   separate(" ",
     "",
     change_id.shortest(4),
