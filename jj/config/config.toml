@@ -1,3 +1,8 @@
+[ui]
+paginate = "never"
+default-command = ["log", "--limit=10"]
+show-cryptographic-signatures = false
+
 [aliases]
 pr-fetch = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail

@@ -137,7 +137,7 @@ if (( $+commands[nvim] )); then
     alias vim=nvim
 fi
 
-if command -v kubectl; then
+if command -v kubectl >/dev/null; then
     source "$PROFILE_DIR/share/kubectl-aliases/.kubectl_aliases"
     source <(kubectl completion zsh)
     source "$ZDOTDIR/kubernetes.zsh"
