@@ -8,5 +8,5 @@ pr-fetch = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 jj git fetch
 jj bookmark track ${1}@origin
-jj edit ${1}
+jj new ${1}
 """, ""]

@@ -203,4 +203,23 @@ return {
     'cappyzawa/starlark.vim',
     'ziglang/zig.vim',
     'alaviss/nim.nvim',
+    {
+    'codethread/qmk.nvim',
+        name = "qmk",
+        config = function ()
+            require('qmk').setup {
+                name = "glove80",
+                variant = "zmk",
+                comment_preview = { position = "none" },
+                layout = {
+                    'x x x x x _ _ _ _ _ _ _ _ _ x x x x x',
+                    'x x x x x x _ _ _ _ _ _ _ x x x x x x',
+                    'x x x x x x _ _ _ _ _ _ _ x x x x x x',
+                    'x x x x x x _ _ _ _ _ _ _ x x x x x x',
+                    'x x x x x x x x x _ x x x x x x x x x',
+                    'x x x x x _ x x x _ x x x _ x x x x x',
+                }
+            }
+        end
+    },
 }
