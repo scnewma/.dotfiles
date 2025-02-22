@@ -12,6 +12,39 @@ git-main-branch() {
   echo master
 }
 
+git-commit-generate-message() {
+    INSTRUCTION_FILE=$(mktemp)
+    COMMIT_MSG_FILE=$(mktemp)
+
+    # Write markdown instructions to temp file
+    cat > "$INSTRUCTION_FILE" << 'EOF'
+# Task
+
+Generate a commit message for the following git diff. Do not use conventional commits format (e.g., feat:, fix:, docs:, etc.). Keep it concise and focus on WHAT changed and WHY.
+
+DO NOT output any other information about the generation, only the commit message itself. Surround the commit message in Markdown code blocks (```) to make it easily parsable.
+
+# Git Diff
+
+```diff
+EOF
+
+    # Append the git diff for staged changes
+    git diff --cached >> "$INSTRUCTION_FILE"
+
+    # Close the diff code block
+    echo '```' >> "$INSTRUCTION_FILE"
+
+    # First strip all ANSI codes, then find content between code blocks
+    goose run -i "$INSTRUCTION_FILE" | sed 's/\x1b\[[0-9;]*[mGK]//g' | awk '/^```$/{p=!p;next} p{print}' > "$COMMIT_MSG_FILE"
+
+    git commit --template="$COMMIT_MSG_FILE"
+
+    # Clean up
+    rm "$INSTRUCTION_FILE"
+    rm "$COMMIT_MSG_FILE"
+}
+
 # --- Aliases
 alias g='git'
 
