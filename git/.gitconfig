@@ -1,5 +1,5 @@
 [pull]
-    rebase = false
+	rebase = true
 [core]
     pager = delta
     editor = nvim
@@ -22,3 +22,24 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	renames = true
+	mnemonicPrefix = true
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[commit]
+	verbose = true
+[rerere]
+	enabled = true
+[column]
+	ui = auto
