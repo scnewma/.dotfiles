@@ -58,6 +58,7 @@
             eza # exa is unmaintained
             fd
             fzf
+            fish
             # causing issues with rust finding libiconv
             # gcc
             gh
