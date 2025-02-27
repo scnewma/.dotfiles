@@ -3,10 +3,13 @@ set -x EDITOR $VISUAL
 set -x HOMEBREW_AUTO_UPDATE_SECS 86400
 
 if status --is-interactive
-    abbr -ag c clear
+    alias c clear
+
+    abbr -ag rc nvim $HOME/.config/fish/config.fish
+    abbr -ag rclocal nvim $HOME/.config/fish/config.fish.local
 
     abbr -ag v vim
-    abbr -ag vim nvim
+    alias vim nvim
 
     # directory navigation
     abbr -ag cd.. cd ..
@@ -29,8 +32,8 @@ if status --is-interactive
     
     # ls/exa/eza
     if type -q eza
-        abbr -ag ls eza --icons
-        abbr -ag exa eza --icons
+        alias ls "eza --icons"
+        alias exa "eza --icons"
         abbr -ag exag eza --icons --long --git --git-ignore
         abbr -ag tree eza --icons --tree
     end
@@ -186,11 +189,6 @@ test -d $HOME/bin && fish_add_path $HOME/bin
 # Add nix-profile to path if not already there
 test -d $HOME/.nix-profile/bin && fish_add_path $HOME/.nix-profile/bin
 
-# Load local config if it exists
-if test -f $HOME/.config/fish/config.fish.local
-    source $HOME/.config/fish/config.fish.local
-end
-
 # Allow ctrl-z to toggle between suspend and resume
 function suspend-resume --description "Toggle between foreground and background"
     if status is-interactive
@@ -227,7 +225,15 @@ if status is-interactive
 end
 
 fzf --fish | source
-~/.local/bin/mise activate fish | source
+
+# Load local config if it exists
+if test -f $HOME/.config/fish/config.fish.local
+    source $HOME/.config/fish/config.fish.local
+end
+
+if type -q mise
+    ~/.local/bin/mise activate fish | source
+end
 
 # Initialize direnv if available
 if type -q direnv

@@ -46,7 +46,6 @@ stashed = "" # don't care to see this
 [custom.git]
 when = '! jj root'
 command = '''
-echo -n "\x1b[0m"
 starship module git_branch
 starship module git_commit
 starship module git_state
