@@ -17,4 +17,3 @@ require('scnewma.options')
 require('scnewma.mappings')
 require('scnewma.commands')
 
-require('nvim-autopairs').setup{}

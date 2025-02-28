@@ -65,7 +65,8 @@ return {
     'junegunn/vim-easy-align',
 
     -- LSP
-    'windwp/nvim-autopairs',
+    -- 'windwp/nvim-autopairs',
+    { 'echasnovski/mini.nvim', version = '*', config = function() require('mini.pairs').setup() end },
 
     {
         'stevearc/oil.nvim',
