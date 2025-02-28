@@ -1,5 +1,6 @@
 {
   "BetterLua.vim": { "branch": "master", "commit": "d2d6c115575d09258a794a6f20ac60233eee59d5" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "630a74739e946390ffb183682a86ec370a5ae294" },
   "LuaSnip": { "branch": "master", "commit": "c9b9a22904c97d0eb69ccb9bab76037838326817" },
   "catppuccin": { "branch": "main", "commit": "7ab1a6ec70a664ecb95d84669efc20aaf4f4ed1b" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
