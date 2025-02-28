@@ -16,4 +16,3 @@ require('lazy').setup('scnewma.plugins')
 require('scnewma.options')
 require('scnewma.mappings')
 require('scnewma.commands')
-

@@ -138,7 +138,36 @@ return {
                     completeopt = "menu,menuone,noinsert",
                 },
 
+                sorting = {
+                    priority_weight = 2,
+                    comparators = {
+                        require("copilot_cmp.comparators").prioritize,
+
+                        -- Below is the default comparitor list and order for nvim-cmp
+                        cmp.config.compare.offset,
+                        -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+                        cmp.config.compare.exact,
+                        cmp.config.compare.score,
+                        cmp.config.compare.recently_used,
+                        cmp.config.compare.locality,
+                        cmp.config.compare.kind,
+                        cmp.config.compare.sort_text,
+                        cmp.config.compare.length,
+                        cmp.config.compare.order,
+                    },
+                },
+
                 mapping = {
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.confirm({select=true})
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+                    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+
                     ["<C-d>"] = cmp.mapping.scroll_docs(4),
                     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-c>"] = cmp.mapping.close(),
@@ -154,6 +183,7 @@ return {
                 },
 
                 sources = {
+                    { name = "copilot" },
                     { name = "nvim_lua" },
                     { name = "nvim_lsp" },
                     { name = "path" },
@@ -204,9 +234,24 @@ return {
     'cappyzawa/starlark.vim',
     'ziglang/zig.vim',
     'alaviss/nim.nvim',
-    'github/copilot.vim',
+    -- 'github/copilot.vim',
     {
-    'codethread/qmk.nvim',
+        'zbirenbaum/copilot.lua',
+        config = function ()
+            require('copilot').setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+            })
+        end
+    },
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function ()
+            require("copilot_cmp").setup()
+        end
+    },
+    {
+        'codethread/qmk.nvim',
         name = "qmk",
         config = function ()
             require('qmk').setup {
