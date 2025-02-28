@@ -4,6 +4,7 @@
 vim.api.nvim_create_user_command('Reload', function() require('scnewma.utils').Reload() end, {})
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' m'
 
 require('scnewma.first-load')
 

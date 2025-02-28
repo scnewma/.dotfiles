@@ -100,6 +100,7 @@ nnoremap { '<Leader><C-j>', 'DO<Esc>pj:s/\\s\\+$//<CR>' }
 nnoremap { '<Leader><space>', '<cmd>:Files<CR>' }
 nnoremap { '<Leader>fg', '<cmd>:GitFiles?<CR>' }
 nnoremap { '<Leader>fe', '<cmd>:Files ~/.dotfiles<CR>' }
+nnoremap { '<Leader>fE', '<cmd>:e ~/.dotfiles/nvim/.config/nvim/lua/scnewma/plugins/init.lua<CR>' }
 nnoremap { '<Leader>bb', '<cmd>:Buffers<CR>' }
 nnoremap { '<Leader>sp', '<cmd>:RG<CR>' }
 nnoremap { '<Leader>sP', '<cmd>:Rg<CR>' }

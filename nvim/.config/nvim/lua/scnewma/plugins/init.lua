@@ -234,39 +234,60 @@ return {
     'cappyzawa/starlark.vim',
     'ziglang/zig.vim',
     'alaviss/nim.nvim',
-    -- 'github/copilot.vim',
     {
         'zbirenbaum/copilot.lua',
-        config = function ()
-            require('copilot').setup({
-                suggestion = { enabled = false },
-                panel = { enabled = false },
-            })
-        end
+        opts = {
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+        },
     },
     {
         "zbirenbaum/copilot-cmp",
-        config = function ()
-            require("copilot_cmp").setup()
-        end
+        opts = {},
     },
     {
         'codethread/qmk.nvim',
         name = "qmk",
-        config = function ()
-            require('qmk').setup {
-                name = "glove80",
-                variant = "zmk",
-                comment_preview = { position = "none" },
-                layout = {
-                    'x x x x x _ _ _ _ _ _ _ _ _ x x x x x',
-                    'x x x x x x _ _ _ _ _ _ _ x x x x x x',
-                    'x x x x x x _ _ _ _ _ _ _ x x x x x x',
-                    'x x x x x x _ _ _ _ _ _ _ x x x x x x',
-                    'x x x x x x x x x _ x x x x x x x x x',
-                    'x x x x x _ x x x _ x x x _ x x x x x',
-                }
+        opts = {
+            name = "glove80",
+            variant = "zmk",
+            comment_preview = { position = "none" },
+            layout = {
+                'x x x x x _ _ _ _ _ _ _ _ _ x x x x x',
+                'x x x x x x _ _ _ _ _ _ _ x x x x x x',
+                'x x x x x x _ _ _ _ _ _ _ x x x x x x',
+                'x x x x x x _ _ _ _ _ _ _ x x x x x x',
+                'x x x x x x x x x _ x x x x x x x x x',
+                'x x x x x _ x x x _ x x x _ x x x x x',
             }
-        end
+        },
+    },
+    {
+        'MagicDuck/grug-far.nvim',
+        opts = {},
+        cmd = "GrugFar",
+        keys = {
+            {
+                "<leader>sr",
+                function()
+                    local grug = require("grug-far")
+                    local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+                    grug.open({
+                        transient = true,
+                        prefills = {
+                            filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+                        },
+                    })
+                end,
+                mode = { "n", "v" },
+                desc = "Search and Replace",
+            },
+            {
+                '<leader>sW',
+                function ()
+                    require('grug-far').open({ prefills = { search = vim.fn.expand("<cword>") } })
+                end
+            }
+        },
     },
 }
