@@ -5,3 +5,4 @@ gh/.config/gh/hosts.yml
 **/.luarc.json
 jj/config/*.local.toml
 fish/.config/fish/fish_variables
+fish/.config/fish/*.fish.local

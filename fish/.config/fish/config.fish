@@ -2,11 +2,14 @@ set -x VISUAL nvim
 set -x EDITOR $VISUAL
 set -x HOMEBREW_AUTO_UPDATE_SECS 86400
 
+source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish"
+
 if status --is-interactive
     alias c clear
 
     abbr -ag rc nvim $HOME/.config/fish/config.fish
     abbr -ag rclocal nvim $HOME/.config/fish/config.fish.local
+    abbr -ag tmuxrc nvim $HOME/.tmux.conf
 
     abbr -ag v vim
     alias vim nvim
@@ -138,6 +141,9 @@ if status --is-interactive
     abbr -ag dcomlo docker-compose logs -f
     abbr -ag dcomlg docker-compose logs
     abbr -ag dcomlgf docker-compose logs -f
+
+    abbr -ag jl jj git fetch
+    abbr -ag jp jj git push
 end
 
 # Environment variables from zsh
@@ -240,4 +246,4 @@ if type -q direnv
     direnv hook fish | source
 end
 
-starship init fish | source
+# starship init fish | source
