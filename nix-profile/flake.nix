@@ -58,8 +58,7 @@
             eza # exa is unmaintained
             fd
             fzf
-            # getting from homebrew until 4.x is in nix
-            # fish
+            fish
             # causing issues with rust finding libiconv
             # gcc
             gh
