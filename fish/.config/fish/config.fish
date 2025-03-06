@@ -162,6 +162,7 @@ set -x HOME_MANAGER_CONFIG "$HOME/.dotfiles/home-manager/home.nix"
 
 # JJ version control
 set -x JJ_CONFIG "$HOME/.dotfiles/jj/config"
+COMPLETE=fish jj | source
 
 # Deno
 if test -d "$HOME/.deno"
