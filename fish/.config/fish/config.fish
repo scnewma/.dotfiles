@@ -144,6 +144,7 @@ if status --is-interactive
 
     abbr -ag jl jj git fetch
     abbr -ag jp jj git push
+    abbr -ag jbm "jj bookmark set (jj-main-bookmark)"
 end
 
 # Environment variables from zsh
