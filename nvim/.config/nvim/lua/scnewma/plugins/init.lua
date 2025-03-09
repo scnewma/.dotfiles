@@ -89,7 +89,13 @@ return {
 
     -- LSP
     -- 'windwp/nvim-autopairs',
-    { 'echasnovski/mini.nvim', version = '*', config = function() require('mini.pairs').setup() end },
+    {
+        'echasnovski/mini.nvim',
+        version = '*',
+        config = function()
+            require('mini.pairs').setup()
+        end,
+    },
 
     {
         'stevearc/oil.nvim',

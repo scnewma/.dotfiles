@@ -25,7 +25,6 @@ local on_attach = function(_, bufnr)
     map { ']d', vim.diagnostic.goto_next }
 
     map { '<Leader>cf', function() vim.lsp.buf.format({ async = false }) end }
-    map { '<Leader>ca', vim.lsp.buf.code_action }
 end
 
 local function make_capabilities()
