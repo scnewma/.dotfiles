@@ -74,7 +74,7 @@
             gum # used in tmux scripts
             htop
             hyperfine
-            jd-diff-patch
+            # jd-diff-patch
             jetbrains-mono # nerdfonts
             jq
             jujutsu
