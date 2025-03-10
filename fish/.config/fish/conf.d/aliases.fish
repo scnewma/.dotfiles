@@ -126,3 +126,5 @@ abbr -ag jst jj status
 abbr -ag jb jj bookmark
 abbr -ag jbm "jj bookmark set (jj-main-bookmark)"
 abbr -ag jbmp "jj bookmark set (jj-main-bookmark); and jj git push -b (jj-main-bookmark)"
+abbr -ag jn jj new
+abbr -ag jnm "jj new (jj-main-bookmark)"
