@@ -31,6 +31,7 @@ return {
             },
         },
         keys = {
+            -- TODO: search for other dev directories
             { '<leader>.', '<cmd>:FzfLua resume<CR>' },
             { '<leader>:', '<cmd>:FzfLua command_history<CR>' },
             { '<leader>/', '<cmd>:FzfLua live_grep<CR>' },
@@ -355,18 +356,28 @@ return {
                 mode = { "n", "v" },
             },
             {
-                "<leader>aq",
+                "<leader>av",
                 function()
                     local input = vim.fn.input("Quick Chat: ")
                     if input ~= "" then
-                        require("CopilotChat").ask(input)
+                        require("CopilotChat").ask(input, {
+                            selection = function(source)
+                                local select = require("CopilotChat.select")
+                                return select.visual(source) or select.line(source)
+                            end,
+                            window = {
+                                layout = "float",
+                                relative = "cursor",
+                                width = 1,
+                                height = 0.4,
+                                row = 1,
+                            },
+                        })
                     end
                 end,
                 desc = "Quick Chat (CopilotChat)",
-                mode = { "n", "v" },
+                mode = { "x" },
             },
-            -- Show prompts actions with telescope
-            -- { "<leader>ap", M.pick("prompt"), desc = "Prompt Actions (CopilotChat)", mode = { "n", "v" } },
         },
         config = function(_, opts)
             local chat = require("CopilotChat")
