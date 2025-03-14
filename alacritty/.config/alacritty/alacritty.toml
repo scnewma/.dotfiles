@@ -1,3 +1,4 @@
+[general]
 import = ["/Users/shaun/.nix-profile/share/catppuccin-alacritty/catppuccin-mocha.toml"]
 live_config_reload = true
 
@@ -91,6 +92,11 @@ mods = "Command"
 [[keyboard.bindings]]
 chars = "\u0000g"
 key = "P"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0000o"
+key = "O"
 mods = "Command"
 
 [[keyboard.bindings]]
