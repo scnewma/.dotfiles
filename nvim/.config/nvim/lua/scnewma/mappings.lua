@@ -6,6 +6,7 @@ local cnoremap = require('scnewma.keymap').cnoremap
 
 nmap { 'gQ', '<Nop>' }
 nmap { '-', '<CMD>Oil<CR>' }
+nmap { '<Leader>fp', function() require("scnewma/project").pick() end }
 
 -- window management
 --   split-below-focus
