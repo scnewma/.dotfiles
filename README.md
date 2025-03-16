@@ -45,3 +45,11 @@ After generating a keypair:
 ```
 git remote set-url origin git@github.com:scnewma/.dotfiles.git
 ```
+
+## Troubleshooting
+
+If when restarting macOS you get an error about the "Nix Store" volume being encrypted and it needs a password to unlock, run:
+
+```
+security find-generic-password -s "Nix Store" -w
+```
