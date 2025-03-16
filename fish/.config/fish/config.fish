@@ -2,8 +2,6 @@ if not status --is-interactive
     return
 end
 
-source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish"
-
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
 set -x HOMEBREW_AUTO_UPDATE_SECS 86400
