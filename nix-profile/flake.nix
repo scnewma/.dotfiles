@@ -18,6 +18,7 @@
           tmux-fzf-url = pkgs.callPackage ../home-manager/tmux-fzf-url { inherit pkgs; };
           catppucin-alacritty = pkgs.callPackage ../home-manager/catppuccin-alacritty { inherit pkgs; };
           catppucin-tmux = pkgs.callPackage ../home-manager/catppuccin-tmux { inherit pkgs; };
+          paperwm-spoon = pkgs.callPackage ../home-manager/paperwm_spoon { inherit pkgs; };
         };
       in
       {
@@ -44,6 +45,7 @@
             customPackages.tmux-fzf-url
             customPackages.catppucin-alacritty
             customPackages.catppucin-tmux
+            customPackages.paperwm-spoon
 
             alacritty
             asciinema
