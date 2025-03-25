@@ -17,6 +17,7 @@ test -d "$HOME/.deno" && fish_add_path "$DENO_INSTALL/bin"
 # PATH package managers
 test -d "/opt/homebrew/bin" && eval (/opt/homebrew/bin/brew shellenv)
 test -d $HOME/.nix-profile/bin && fish_add_path $HOME/.nix-profile/bin
+test -d "$HOME/.local/bin" && fish_add_path $HOME/.local/bin
 
 # PATH personal scripts
 test -d $HOME/dev/bin && fish_add_path $HOME/dev/bin
