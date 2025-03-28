@@ -15,8 +15,6 @@ abbr -ag dot $HOME/.dotfiles
 abbr -ag dev $HOME/dev
 abbr -ag tdot tmux new-session -c $HOME/.dotfiles
 
-type -q terraform && abbr -ag tf terraform
-
 if type -q eza
     alias ls "eza --icons"
     alias exa "eza --icons"

@@ -109,7 +109,7 @@
             nodePackages.bash-language-server
             nodePackages.dockerfile-language-server-nodejs
             pyright
-            # typescript-language-server
+            typescript-language-server
             nodePackages.vscode-langservers-extracted
             yaml-language-server
             # vim-language-server
