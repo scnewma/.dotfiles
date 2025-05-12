@@ -216,6 +216,12 @@ run = [
 ]
 
 [[on-window-detected]]
+if.window-title-regex-substring = "Orion"
+run = [
+    "move-node-to-workspace A",
+]
+
+[[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
 run = [
   'move-node-to-workspace A',
