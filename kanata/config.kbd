@@ -17,6 +17,7 @@
     hrs (tap-hold 200 200 s lalt)
     hrn (tap-hold 200 200 n lmet)
     hrt (tap-hold 200 200 t lctl)
+    aspc (tap-hold 200 200 spc lalt)
 
     grl (tap-hold 200 200 grv (layer-toggle layers))
     dvk (layer-switch dvorak)
@@ -31,7 +32,7 @@
   tab  '    ,    .    p    y    f    g    c    r    l    /    =    \
   esc  @hra @hro @hre u    i    d    h    @hrt @hrn @hrs    -    ret
   lsft ;    q    j    k    x    b    m    w    v    z    rsft
-  @fnl lctl lalt lmet           spc            ralt rmet rctl
+  @fnl lctl lalt lmet         @aspc            ralt rmet rctl
 )
 
 (deflayer qwerty
