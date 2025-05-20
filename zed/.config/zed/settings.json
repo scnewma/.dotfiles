@@ -12,7 +12,14 @@
       "provider": "copilot_chat",
       "model": "gpt-4o"
     },
+    "editor_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
     "version": "2"
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
   },
   "telemetry": {
     "metrics": false
@@ -23,12 +30,19 @@
     "use_system_clipboard": "never"
   },
   "cursor_blink": false,
-  "ui_font_size": 16,
   "buffer_font_size": 16,
   "buffer_font_family": "JetBrainsMonoNL Nerd Font",
+  "buffer_line_height": {
+    "custom": 1.4
+  },
+  "ui_font_size": 16,
+  "pane_split_direction_horizontal": "down",
+  "pane_split_direction_vertical": "right",
   "scrollbar": {
     "show": "never"
   },
+  "vertical_scroll_margin": 1,
+  "use_smartcase_search": true,
   "tab_bar": {
     "show": false
   },

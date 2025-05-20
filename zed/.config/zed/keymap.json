@@ -51,8 +51,8 @@
       "space w =": "vim::ResetPaneSizes",
       "space w g t": "pane::ActivateNextItem",
       "space w ctrl-g t": "pane::ActivateNextItem",
-      "space w g shift-t": "pane::ActivatePrevItem",
-      "space w ctrl-g shift-t": "pane::ActivatePrevItem",
+      "space w g shift-t": "pane::ActivatePreviousItem",
+      "space w ctrl-g shift-t": "pane::ActivatePreviousItem",
       "space w w": "workspace::ActivateNextPane",
       "space w ctrl-w": "workspace::ActivateNextPane",
       "space w p": "workspace::ActivatePreviousPane",
@@ -72,6 +72,12 @@
       "space w o": "workspace::CloseInactiveTabsAndPanes",
       "space w ctrl-n": "workspace::NewFileSplitHorizontal",
       "space w n": "workspace::NewFileSplitHorizontal"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "-": "pane::RevealInProjectPanel"
     }
   }
 ]
