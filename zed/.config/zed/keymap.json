@@ -1,0 +1,77 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {}
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    "context": "ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || TerminalPanel",
+    "bindings": {
+      // new
+      "space w d": "pane::CloseAllItems",
+
+      // default keymap but with "space w" instead of ctrl-w
+      "space w left": "workspace::ActivatePaneLeft",
+      "space w right": "workspace::ActivatePaneRight",
+      "space w up": "workspace::ActivatePaneUp",
+      "space w down": "workspace::ActivatePaneDown",
+      "space w ctrl-h": "workspace::ActivatePaneLeft",
+      "space w ctrl-l": "workspace::ActivatePaneRight",
+      "space w ctrl-k": "workspace::ActivatePaneUp",
+      "space w ctrl-j": "workspace::ActivatePaneDown",
+      "space w h": "workspace::ActivatePaneLeft",
+      "space w l": "workspace::ActivatePaneRight",
+      "space w k": "workspace::ActivatePaneUp",
+      "space w j": "workspace::ActivatePaneDown",
+      "space w shift-left": "workspace::SwapPaneLeft",
+      "space w shift-right": "workspace::SwapPaneRight",
+      "space w shift-up": "workspace::SwapPaneUp",
+      "space w shift-down": "workspace::SwapPaneDown",
+      "space w shift-h": "workspace::SwapPaneLeft",
+      "space w shift-l": "workspace::SwapPaneRight",
+      "space w shift-k": "workspace::SwapPaneUp",
+      "space w shift-j": "workspace::SwapPaneDown",
+      "space w >": "vim::ResizePaneRight",
+      "space w <": "vim::ResizePaneLeft",
+      "space w -": "vim::ResizePaneDown",
+      "space w +": "vim::ResizePaneUp",
+      "space w _": "vim::MaximizePane",
+      "space w =": "vim::ResetPaneSizes",
+      "space w g t": "pane::ActivateNextItem",
+      "space w ctrl-g t": "pane::ActivateNextItem",
+      "space w g shift-t": "pane::ActivatePrevItem",
+      "space w ctrl-g shift-t": "pane::ActivatePrevItem",
+      "space w w": "workspace::ActivateNextPane",
+      "space w ctrl-w": "workspace::ActivateNextPane",
+      "space w p": "workspace::ActivatePreviousPane",
+      "space w ctrl-p": "workspace::ActivatePreviousPane",
+      "space w shift-w": "workspace::ActivatePreviousPane",
+      "space w ctrl-shift-w": "workspace::ActivatePreviousPane",
+      "space w ctrl-v": "pane::SplitVertical",
+      "space w v": "pane::SplitVertical",
+      "space w shift-s": "pane::SplitHorizontal",
+      "space w ctrl-s": "pane::SplitHorizontal",
+      "space w s": "pane::SplitHorizontal",
+      "space w ctrl-c": "pane::CloseAllItems",
+      "space w c": "pane::CloseAllItems",
+      "space w ctrl-q": "pane::CloseAllItems",
+      "space w q": "pane::CloseAllItems",
+      "space w ctrl-o": "workspace::CloseInactiveTabsAndPanes",
+      "space w o": "workspace::CloseInactiveTabsAndPanes",
+      "space w ctrl-n": "workspace::NewFileSplitHorizontal",
+      "space w n": "workspace::NewFileSplitHorizontal"
+    }
+  }
+]

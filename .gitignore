@@ -1,8 +1,16 @@
 .DS_Store
 nvim/.config/nvim/autoload/
 nvim/.config/nvim/plugged/
+
 gh/.config/gh/hosts.yml
+
 **/.luarc.json
+
 jj/config/*.local.toml
+
 fish/.config/fish/fish_variables
 fish/.config/fish/*.fish.local
+
+zed/.config/zed/conversations/*
+zed/.config/zed/prompts/*
+zed/.config/zed/*_backup.json
