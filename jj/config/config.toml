@@ -4,12 +4,15 @@ default-command = ["log", "--limit=10"]
 show-cryptographic-signatures = false
 
 [aliases]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@"]
+
 pr-fetch = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 jj git fetch
 jj bookmark track ${1}@origin
 jj new ${1}
 """, ""]
+
 pr = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 BRANCH="$(jj bookmark list --revisions @ --template 'name')"
