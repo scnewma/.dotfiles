@@ -39,7 +39,8 @@
   "pane_split_direction_horizontal": "down",
   "pane_split_direction_vertical": "right",
   "scrollbar": {
-    "show": "never"
+    "show": "never",
+    "git_diff": false
   },
   "vertical_scroll_margin": 1,
   "use_smartcase_search": true,
@@ -59,6 +60,12 @@
       "enabled": false
     },
     "git_gutter": "hide"
+  },
+  "project_panel": {
+    "git_status": false
+  },
+  "outline_panel": {
+    "git_status": false
   },
   "gutter": {
     "code_actions": false,
