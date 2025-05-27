@@ -75,5 +75,8 @@
   },
   "terminal": {
     "dock": "left"
+  },
+  "file_types": {
+    "Terraform": ["nomad"]
   }
 }
