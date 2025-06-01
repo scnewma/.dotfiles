@@ -172,3 +172,5 @@ eval "$(direnv hook zsh)"
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 export PATH
+
+. "$HOME/.local/bin/env"
