@@ -1,7 +1,15 @@
 [
   {
     "context": "Workspace",
-    "bindings": {}
+    "bindings": {
+      "ctrl-|": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-|": "workspace::ToggleLeftDock"
+    }
   },
   {
     "context": "Editor",
