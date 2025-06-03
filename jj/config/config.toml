@@ -33,3 +33,6 @@ TEMPLATE=""
 [ -f .github/pull_request_template.md ] && TEMPLATE="--template pull_request_template.md"
 gh pr create --head $BRANCH --draft $TEMPLATE --editor
 """, ""]
+
+[user]
+name = "Shaun Newman"
