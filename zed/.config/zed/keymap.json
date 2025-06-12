@@ -2,7 +2,8 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-|": "terminal_panel::ToggleFocus"
+      "ctrl-|": "terminal_panel::ToggleFocus",
+      "ctrl-z": "workspace::ToggleZoom"
     }
   },
   {
