@@ -236,7 +236,7 @@ run = [
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = [
-  'move-node-to-workspace U',
+  'move-node-to-workspace O',
 ]
 
 [[on-window-detected]]
