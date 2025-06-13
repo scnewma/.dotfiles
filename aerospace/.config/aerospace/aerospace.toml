@@ -210,6 +210,12 @@ run = [
 ]
 
 [[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = [
+  'move-node-to-workspace E',
+]
+
+[[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
 run = [
   'move-node-to-workspace A',
