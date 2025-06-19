@@ -87,9 +87,9 @@ typeset -U path
 fpath=( "$ZDOTDIR/functions" "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
 
-eval "$(starship init zsh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-PROFILE_DIR="$HOME/.nix-profile"
+eval "$(starship init zsh)"
 
 # add some commonly used named directories
 hash -d dot="$HOME/.dotfiles"
@@ -109,7 +109,7 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 eval "$(fzf --zsh)"
 
-source "$PROFILE_DIR/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 bindkey '^n' autosuggest-accept
 
 # change default home-manager config path since home-manager doesn't like it's
@@ -138,7 +138,7 @@ if (( $+commands[nvim] )); then
 fi
 
 if command -v kubectl >/dev/null; then
-    source "$PROFILE_DIR/share/kubectl-aliases/.kubectl_aliases"
+    source "$HOME/.local/share/kubectl-aliases/.kubectl_aliases"
     source <(kubectl completion zsh)
     source "$ZDOTDIR/kubernetes.zsh"
 fi
@@ -151,7 +151,6 @@ fi
 [ -d "$HOME/bin" ] && path=("$HOME/bin" $path)
 [ -d "$HOME/.cargo/bin" ] && path=($path "$HOME/.cargo/bin")
 [ -d "$HOME/.deno/bin" ] && path=($path "$HOME/.deno/bin")
-path=("$HOME/.nix-profile/bin" $path)
 
 if [ -d "$HOME/.deno" ]; then
   export DENO_INSTALL="$HOME/.deno"
@@ -165,7 +164,7 @@ fi
 source "$ZDOTDIR/git.zsh"
 source "$ZDOTDIR/sgen.zsh"
 
-source "$PROFILE_DIR/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 eval "$(direnv hook zsh)"
 [ -f "$HOME/.local/bin/mise" ] && eval "$($HOME/.local/bin/mise activate zsh)"

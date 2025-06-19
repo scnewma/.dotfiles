@@ -1,0 +1,32 @@
+# Each item should have:
+# - path: relative path from $HOME
+# - url: remote URL to download from
+
+- path: .local/share/fzf-git/fzf-git.sh
+  url: https://raw.githubusercontent.com/junegunn/fzf-git.sh/main/fzf-git.sh
+
+- path: .local/share/kubectl-aliases/.kubectl_aliases
+  url: https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases
+
+- path: .local/share/kubectl-aliases/.kubectl_aliases.fish
+  url: https://raw.githubusercontent.com/ahmetb/kubectl-aliases/master/.kubectl_aliases.fish
+
+- path: .local/share/tmux-fzf-url
+  url: https://github.com/wfxr/tmux-fzf-url/archive/refs/heads/master.zip
+  extract: true
+  strip_components: 1
+
+- path: .local/share/catppuccin-alacritty
+  url: https://github.com/catppuccin/alacritty/archive/refs/heads/main.zip
+  extract: true
+  strip_components: 1
+
+- path: .local/share/catppuccin-tmux
+  url: https://github.com/catppuccin/tmux/archive/refs/heads/main.zip
+  extract: true
+  strip_components: 1
+
+- path: .local/share/catppuccin-tmux-old
+  url: https://github.com/catppuccin/tmux/archive/8dd142b4e0244a357360cf87fb36c41373ab451f.zip
+  extract: true
+  strip_components: 1

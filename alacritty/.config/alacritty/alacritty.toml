@@ -1,5 +1,5 @@
 [general]
-import = ["/Users/shaun/.nix-profile/share/catppuccin-alacritty/catppuccin-mocha.toml"]
+import = ["~/.local/share/catppuccin-alacritty/catppuccin-mocha.toml"]
 live_config_reload = true
 
 [cursor.style]

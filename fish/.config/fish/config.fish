@@ -2,6 +2,8 @@ if not status --is-interactive
     return
 end
 
+fish_vi_key_bindings
+
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
 set -x HOMEBREW_AUTO_UPDATE_SECS 86400
@@ -15,8 +17,6 @@ type -q cargo && fish_add_path $HOME/.cargo/bin
 test -d "$HOME/.deno" && fish_add_path "$DENO_INSTALL/bin"
 
 # PATH package managers
-test -d "/opt/homebrew/bin" && eval (/opt/homebrew/bin/brew shellenv)
-test -d $HOME/.nix-profile/bin && fish_add_path $HOME/.nix-profile/bin
 test -d "$HOME/.local/bin" && fish_add_path $HOME/.local/bin
 
 # PATH personal scripts

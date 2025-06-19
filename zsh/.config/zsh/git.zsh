@@ -1,4 +1,4 @@
-source ~/.nix-profile/share/fzf-git/fzf-git.sh
+source ~/.local/share/fzf-git/fzf-git.sh
 
 git-main-branch() {
   command git rev-parse --git-dir &>/dev/null || return
