@@ -29,7 +29,7 @@ if test -f $HOME/.config/fish/config.fish.local
 end
 
 if type -q mise
-    ~/.local/bin/mise activate fish | source
+    mis=(which mise) mise activate fish | source
 end
 
 if type -q direnv
