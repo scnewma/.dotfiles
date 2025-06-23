@@ -25,8 +25,3 @@
   url: https://github.com/catppuccin/tmux/archive/refs/heads/main.zip
   extract: true
   strip_components: 1
-
-- path: .local/share/catppuccin-tmux-old
-  url: https://github.com/catppuccin/tmux/archive/8dd142b4e0244a357360cf87fb36c41373ab451f.zip
-  extract: true
-  strip_components: 1
