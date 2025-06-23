@@ -276,6 +276,12 @@ run = [
 ]
 
 [[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = [
+  'move-node-to-workspace N',
+]
+
+[[on-window-detected]]
 if.app-id = 'com.apple.finder'
 run = [
   'layout floating',
