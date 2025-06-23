@@ -77,6 +77,11 @@
     "dock": "left"
   },
   "file_types": {
-    "Terraform": ["nomad"]
+    "Terraform": ["nomad", "job"]
+  },
+  "languages": {
+    "Terraform": {
+      "format_on_save": "off"
+    }
   }
 }
