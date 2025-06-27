@@ -3,3 +3,6 @@ go = "latest"
 node = "latest"
 python = "latest"
 deno = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = []
