@@ -334,6 +334,10 @@ return {
                 window = {
                     width = 0.4,
                 },
+                model = "claude-sonnet-4",
+                sticky = {
+                    '#buffers',
+                },
             }
         end,
         keys = {
