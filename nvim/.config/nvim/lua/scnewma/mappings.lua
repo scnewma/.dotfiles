@@ -127,6 +127,8 @@ nnoremap {
     { silent = true, expr = true }
 }
 
+nnoremap { 'gp', '`[v`]' }
+
 -- Store relative line number jumps in the jumplist if they are given a count
 local function jumplistify(letter)
     return function()
