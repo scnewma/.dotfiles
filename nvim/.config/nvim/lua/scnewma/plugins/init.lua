@@ -106,46 +106,6 @@ return {
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
     },
 
-    -- Snippets
-    {
-        'L3MON4D3/LuaSnip',
-        config = function()
-            local path = vim.fn.stdpath('config') .. '/lua/scnewma/snippets'
-            require('luasnip.loaders.from_lua').lazy_load({ paths = path })
-        end,
-        opts = {
-            history = true,
-            updateevents = "TextChanged,TextChangedI",
-            enable_autosnippets = true,
-        },
-        keys = {
-            {
-                '<C-k>', function()
-                    if require('luasnip').expand_or_jumpable() then
-                        require('luasnip').expand_or_jump()
-                    end
-                end,
-                silent = true, mode = { 'i', 's' }
-            },
-            {
-                '<C-j>', function()
-                    if require('luasnip').jumpable(-1) then
-                        require('luasnip').jump(-1)
-                    end
-                end,
-                silent = true, mode = { 'i', 's' }
-            },
-            {
-                '<C-l>', function()
-                    if require('luasnip').choice_active() then
-                        require('luasnip').change_choice(1)
-                    end
-                end,
-                silent = true, mode = { 'i', 's' }
-            }
-        }
-    },
-
     -- completion
     {
         'hrsh7th/nvim-cmp',
@@ -157,38 +117,36 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-vsnip',
             'onsails/lspkind-nvim',
-            'saadparwaiz1/cmp_luasnip',
         },
         opts = function()
             local cmp = require('cmp')
-            local lspkind = require('lspkind')
 
             return {
                 completion = {
                     completeopt = "menu,menuone,noinsert",
                 },
 
-                sorting = {
-                    priority_weight = 2,
-                    comparators = {
-                        require("copilot_cmp.comparators").prioritize,
+--                 sorting = {
+--                     priority_weight = 1,
+--                     comparators = {
+--                         -- require("copilot_cmp.comparators").prioritize,
 
-                        -- Below is the default comparitor list and order for nvim-cmp
-                        cmp.config.compare.offset,
-                        -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-                        cmp.config.compare.exact,
-                        cmp.config.compare.score,
-                        cmp.config.compare.recently_used,
-                        cmp.config.compare.locality,
-                        cmp.config.compare.kind,
-                        cmp.config.compare.sort_text,
-                        cmp.config.compare.length,
-                        cmp.config.compare.order,
-                    },
-                },
+--                         -- Below is the default comparitor list and order for nvim-cmp
+--                         cmp.config.compare.offset,
+--                         -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+--                         cmp.config.compare.exact,
+--                         cmp.config.compare.score,
+--                         cmp.config.compare.recently_used,
+--                         cmp.config.compare.locality,
+--                         cmp.config.compare.kind,
+--                         cmp.config.compare.sort_text,
+--                         cmp.config.compare.length,
+--                         cmp.config.compare.order,
+--                     },
+--                 },
 
                 mapping = {
-                    ["<Tab>"] = cmp.mapping(function(fallback)
+                    ["<CR>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.confirm({select=true})
                         else
@@ -206,35 +164,17 @@ return {
                     ["<C-y>"] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
                 },
 
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end,
-                },
-
                 sources = {
-                    { name = "copilot" },
+                    -- { name = "copilot" },
                     { name = "nvim_lua" },
                     { name = "nvim_lsp" },
                     { name = "path" },
                     { name = "buffer", keyword_length = 5, max_item_count = 10 },
                 },
 
-                formatting = {
-                    format = lspkind.cmp_format({
-                        with_text = true,
-                        menu = {
-                            buffer = "[buf]",
-                            nvim_lsp = "[LSP]",
-                            nvim_lua = "[api]",
-                            path = "[path]",
-                        },
-                    }),
-                },
-
-                experimental = {
-                    -- ghost_text = true,
-                }
+                -- experimental = {
+                --     ghost_text = true,
+                -- }
             }
         end
     },
@@ -266,14 +206,24 @@ return {
     'alaviss/nim.nvim',
     {
         'zbirenbaum/copilot.lua',
+        cmd = "Copilot",
+        event = "InsertEnter",
         opts = {
-            suggestion = { enabled = false },
-            panel = { enabled = false },
+            suggestion = { auto_trigger = true },
+            panel = { auto_refresh = true },
         },
-    },
-    {
-        "zbirenbaum/copilot-cmp",
-        opts = {},
+        keys = {
+            {
+                "<Tab>",
+                function()
+                    if require("copilot.suggestion").is_visible() then
+                        require("copilot.suggestion").accept()
+                    end
+                end,
+                mode = { "i", "s" },
+                desc = "Accept Copilot Suggestion",
+            }
+        },
     },
     {
         'codethread/qmk.nvim',
