@@ -9,7 +9,6 @@ return {
                 flavour = "mocha",
                 no_italic = true,
                 integrations = {
-                    cmp = true,
                     -- breaks the colorscheme a bit, but unsetting this doesn't fully fix it
                     treesitter = false,
                 }
@@ -108,75 +107,33 @@ return {
 
     -- completion
     {
-        'hrsh7th/nvim-cmp',
-        event = 'InsertEnter',
+        'saghen/blink.cmp',
+        version = '1.*',
         dependencies = {
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-nvim-lua',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-vsnip',
-            'onsails/lspkind-nvim',
+            {
+                "fang2hou/blink-copilot",
+            },
         },
-        opts = function()
-            local cmp = require('cmp')
-
-            return {
-                completion = {
-                    completeopt = "menu,menuone,noinsert",
+        opts = {
+            keymap = { preset = 'super-tab' },
+            appearance = {
+                -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+                -- Adjusts spacing to ensure icons are aligned
+                nerd_font_variant = 'mono'
+            },
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer", "copilot" },
+                providers = {
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-copilot",
+                        score_offset = 100,
+                        async = true,
+                    },
                 },
-
---                 sorting = {
---                     priority_weight = 1,
---                     comparators = {
---                         -- require("copilot_cmp.comparators").prioritize,
-
---                         -- Below is the default comparitor list and order for nvim-cmp
---                         cmp.config.compare.offset,
---                         -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
---                         cmp.config.compare.exact,
---                         cmp.config.compare.score,
---                         cmp.config.compare.recently_used,
---                         cmp.config.compare.locality,
---                         cmp.config.compare.kind,
---                         cmp.config.compare.sort_text,
---                         cmp.config.compare.length,
---                         cmp.config.compare.order,
---                     },
---                 },
-
-                mapping = {
-                    ["<CR>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.confirm({select=true})
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-                    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-
-                    ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-c>"] = cmp.mapping.close(),
-                    ["<C-n>"] = cmp.mapping.confirm({ select = true }),
-                    ["<C-e>"] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-                    ["<C-y>"] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-                },
-
-                sources = {
-                    -- { name = "copilot" },
-                    { name = "nvim_lua" },
-                    { name = "nvim_lsp" },
-                    { name = "path" },
-                    { name = "buffer", keyword_length = 5, max_item_count = 10 },
-                },
-
-                -- experimental = {
-                --     ghost_text = true,
-                -- }
             }
-        end
+        },
     },
 
     --   Lua LSP
@@ -206,23 +163,10 @@ return {
     'alaviss/nim.nvim',
     {
         'zbirenbaum/copilot.lua',
-        cmd = "Copilot",
-        event = "InsertEnter",
         opts = {
-            suggestion = { auto_trigger = true },
-            panel = { auto_refresh = true },
-        },
-        keys = {
-            {
-                "<Tab>",
-                function()
-                    if require("copilot.suggestion").is_visible() then
-                        require("copilot.suggestion").accept()
-                    end
-                end,
-                mode = { "i", "s" },
-                desc = "Accept Copilot Suggestion",
-            }
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+
         },
     },
     {

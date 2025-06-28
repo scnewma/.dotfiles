@@ -28,9 +28,13 @@ local on_attach = function(_, bufnr)
 end
 
 local function make_capabilities()
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    capabilities.textDocument.completion.snippetSupport = true
-    capabilities.textDocument.codeLens = { dynamicRegistration = false }
+    local capabilities = require('blink.cmp').get_lsp_capabilities({
+        textDocument = {
+            codeLens = {
+                dynamicRegistration = false,
+            },
+        },
+    })
     return capabilities
 end
 
@@ -47,8 +51,8 @@ return {
         'neovim/nvim-lspconfig',
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
             'j-hui/fidget.nvim',
+            'saghen/blink.cmp',
         },
         opts = {
             servers = {
