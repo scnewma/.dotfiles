@@ -1,3 +1,131 @@
+local ai_helper = 'codecompanion'
+
+local ai_helper_plugin = {}
+
+if ai_helper == 'codecompanion' then
+    ai_helper_plugin = {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            {
+                "MeanderingProgrammer/render-markdown.nvim",
+                ft = { "markdown", "codecompanion" }
+            },
+            "j-hui/fidget.nvim"
+        },
+        cmd = {"CodeCompanion", "CodeCompanionChat"},
+        init = function()
+            require("scnewma.codecompanion.fidget-spinner"):init()
+        end,
+        opts = {
+            adapters = {
+                copilot = function()
+                    return require("codecompanion.adapters").extend("copilot", {
+                        schema = {
+                            model = {
+                                default = "claude-sonnet-4",
+                            },
+                        },
+                    })
+                end,
+            },
+            strategies = {
+                chat = {
+                    adapter = "copilot",
+                },
+                inline = { adapter = "copilot" },
+                cmd = { adapter = "copilot" },
+            },
+        },
+        keys = {
+            { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
+            { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", desc = "AI Chat", mode = { "n", "v" } },
+            { "<leader>aa", "<cmd>CodeCompanionActions<cr>", desc = "AI Actions", mode = { "n", "v" } },
+            { "<leader>ai", ":CodeCompanion ", desc = "AI Inline", mode = { "n", "v" } },
+            { "<leader>ap", "<cmd>CodeCompanionChat Add<cr>", desc = "Paste into AI chat", mode = { "n", "v" } },
+        },
+    }
+elseif ai_helper == 'copilotchat' then
+    ai_helper_plugin = {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        branch = "main",
+        cmd = "CopilotChat",
+        opts = function()
+            local user = vim.env.USER or "User"
+            user = user:sub(1, 1):upper() .. user:sub(2)
+            return {
+                auto_insert_mode = true,
+                question_header = "  " .. user .. " ",
+                answer_header = "  Copilot ",
+                window = {
+                    width = 0.4,
+                },
+                model = "claude-sonnet-4",
+                sticky = {
+                    '#buffers',
+                },
+            }
+        end,
+        keys = {
+            { "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
+            { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
+            {
+                "<leader>aa",
+                function()
+                    return require("CopilotChat").toggle()
+                end,
+                desc = "Toggle (CopilotChat)",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>ax",
+                function()
+                    return require("CopilotChat").reset()
+                end,
+                desc = "Clear (CopilotChat)",
+                mode = { "n", "v" },
+            },
+            {
+                "<leader>av",
+                function()
+                    local input = vim.fn.input("Quick Chat: ")
+                    if input ~= "" then
+                        require("CopilotChat").ask(input, {
+                            selection = function(source)
+                                local select = require("CopilotChat.select")
+                                return select.visual(source) or select.line(source)
+                            end,
+                            window = {
+                                layout = "float",
+                                relative = "cursor",
+                                width = 1,
+                                height = 0.4,
+                                row = 1,
+                            },
+                        })
+                    end
+                end,
+                desc = "Quick Chat (CopilotChat)",
+                mode = { "x" },
+            },
+        },
+        config = function(_, opts)
+            local chat = require("CopilotChat")
+
+            vim.api.nvim_create_autocmd("BufEnter", {
+                pattern = "copilot-chat",
+                callback = function()
+                    vim.opt_local.relativenumber = false
+                    vim.opt_local.number = false
+                end,
+            })
+
+            chat.setup(opts)
+        end,
+    }
+end
+
+
 return {
     'sainnhe/gruvbox-material',
     {
@@ -214,81 +342,17 @@ return {
             }
         },
     },
+
     {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        branch = "main",
-        cmd = "CopilotChat",
-        opts = function()
-            local user = vim.env.USER or "User"
-            user = user:sub(1, 1):upper() .. user:sub(2)
-            return {
-                auto_insert_mode = true,
-                question_header = "  " .. user .. " ",
-                answer_header = "  Copilot ",
-                window = {
-                    width = 0.4,
-                },
-                model = "claude-sonnet-4",
-                sticky = {
-                    '#buffers',
-                },
-            }
-        end,
-        keys = {
-            { "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
-            { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
-            {
-                "<leader>aa",
-                function()
-                    return require("CopilotChat").toggle()
-                end,
-                desc = "Toggle (CopilotChat)",
-                mode = { "n", "v" },
-            },
-            {
-                "<leader>ax",
-                function()
-                    return require("CopilotChat").reset()
-                end,
-                desc = "Clear (CopilotChat)",
-                mode = { "n", "v" },
-            },
-            {
-                "<leader>av",
-                function()
-                    local input = vim.fn.input("Quick Chat: ")
-                    if input ~= "" then
-                        require("CopilotChat").ask(input, {
-                            selection = function(source)
-                                local select = require("CopilotChat.select")
-                                return select.visual(source) or select.line(source)
-                            end,
-                            window = {
-                                layout = "float",
-                                relative = "cursor",
-                                width = 1,
-                                height = 0.4,
-                                row = 1,
-                            },
-                        })
-                    end
-                end,
-                desc = "Quick Chat (CopilotChat)",
-                mode = { "x" },
-            },
-        },
-        config = function(_, opts)
-            local chat = require("CopilotChat")
-
-            vim.api.nvim_create_autocmd("BufEnter", {
-                pattern = "copilot-chat",
-                callback = function()
-                    vim.opt_local.relativenumber = false
-                    vim.opt_local.number = false
-                end,
+        "echasnovski/mini.diff",
+        config = function()
+            local diff = require("mini.diff")
+            diff.setup({
+                -- Disabled by default
+                source = diff.gen_source.none(),
             })
-
-            chat.setup(opts)
         end,
     },
+
+    ai_helper_plugin
 }
