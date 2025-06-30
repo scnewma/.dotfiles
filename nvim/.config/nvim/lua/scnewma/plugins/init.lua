@@ -9,7 +9,7 @@ if ai_helper == 'codecompanion' then
             "nvim-lua/plenary.nvim",
             {
                 "MeanderingProgrammer/render-markdown.nvim",
-                ft = { "markdown", "codecompanion" }
+                ft = { "codecompanion" }
             },
             "j-hui/fidget.nvim"
         },
