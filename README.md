@@ -39,6 +39,9 @@ git remote set-url origin git@github.com:scnewma/.dotfiles.git
 
 ## Enable TouchID for `sudo` on mac
 
+In `/etc/pam.d/sudo_local`:
+
 ```
-sed -e 's/^#auth/auth/' /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
+auth     optional       /opt/homebrew/lib/pam/pam_reattach.so
+auth     sufficient     pam_tid.so
 ```

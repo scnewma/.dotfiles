@@ -26,6 +26,7 @@ brew "just"
 brew "mise"
 brew "neovim"
 brew "pre-commit"
+brew "pam-reattach" # for sudo touchid w/ tmux
 brew "ripgrep"
 brew "shellcheck"
 brew "starship"
