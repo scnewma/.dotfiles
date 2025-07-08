@@ -29,6 +29,6 @@ if type -q kubectl
     abbr -ag kns kubens
 end
 
-type -q gh && abbr -ag gpr gh pr create --fill --draft
+type -q gh && abbr -ag gpr gh pr create --fill --draft --template pull_request_template.md
 
 type -q claude && abbr -ag cld "claude --allowedTools 'Bash(git:*),Bash(find:*),Bash(rg:*),Edit,Write'"
