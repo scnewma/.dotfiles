@@ -209,11 +209,21 @@ return {
     -- allows forward searching for text objects among other things
     'wellle/targets.vim',
 
-    -- gives :GBrowse functionality
-    "tpope/vim-fugitive",
-    "tpope/vim-rhubarb",
-
     'junegunn/vim-easy-align',
+
+    {
+        "folke/snacks.nvim",
+        lazy = true,
+        opts = {
+            gitbrowse = {}
+        },
+        keys = {
+            { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
+            { "<leader>gY", function() 
+                Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
+            end, desc = "Git Browse (copy)", mode = { "n", "v" } },
+        }
+    },
 
     -- LSP
     -- 'windwp/nvim-autopairs',
