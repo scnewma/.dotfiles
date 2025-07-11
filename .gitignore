@@ -10,6 +10,7 @@ jj/config/*.local.toml
 
 fish/.config/fish/fish_variables
 fish/.config/fish/*.fish.local
+fish/.config/fish/functions/fish_local_prompt.fish
 
 zed/.config/zed/conversations/*
 zed/.config/zed/prompts/*
