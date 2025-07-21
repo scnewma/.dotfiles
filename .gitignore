@@ -15,3 +15,5 @@ fish/.config/fish/functions/fish_local_prompt.fish
 zed/.config/zed/conversations/*
 zed/.config/zed/prompts/*
 zed/.config/zed/*_backup.json
+
+direnv/.config/direnv/direnvrc.local

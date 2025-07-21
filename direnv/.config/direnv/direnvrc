@@ -13,3 +13,5 @@ layout_uv() {
     export UV_ACTIVE=1  # or VENV_ACTIVE=1
     export VIRTUAL_ENV
 }
+
+source_env_if_exists $HOME/.config/direnv/direnvrc.local
