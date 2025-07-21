@@ -220,7 +220,7 @@ return {
         keys = {
             { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
             { "<leader>gY", function() 
-                Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
+                Snacks.gitbrowse({ what = "permalink", open = function(url) vim.fn.setreg("+", url) end, notify = false })
             end, desc = "Git Browse (copy)", mode = { "n", "v" } },
         }
     },
