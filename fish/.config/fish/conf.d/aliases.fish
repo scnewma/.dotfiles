@@ -29,6 +29,15 @@ if type -q kubectl
     abbr -ag kns kubens
 end
 
-type -q gh && abbr -ag gpr gh pr create --fill --draft --template (git root)/.github/pull_request_template.md
+function gh-pull-request-abbr
+    # note: `test -f` is case insensitive on mac to match os behavior
+    if test -f (git root)"/.github/pull_request_template.md"
+        echo "Using pull request template: $f"
+        break
+    end
+
+    echo "cd (git root); and gh pr create --draft --editor $template"
+end
+type -q gh && abbr -ag gpr --function gh-pull-request-abbr
 
 type -q claude && abbr -ag cld "claude --allowedTools 'Bash(git:*),Bash(find:*),Bash(rg:*),Edit,Write'"
