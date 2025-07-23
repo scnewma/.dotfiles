@@ -30,13 +30,17 @@ if type -q kubectl
 end
 
 function gh-pull-request-abbr
+    # gh always looks for templates in ./.github so we need to make sure we are
+    # in the root of the git repo
+    if test "$(git root)" != "$PWD"
+        set -f cd "cd $(git root); and "
+    end
     # note: `test -f` is case insensitive on mac to match os behavior
     if test -f (git root)"/.github/pull_request_template.md"
-        echo "Using pull request template: $f"
-        break
+        set -f template "pull_request_template.md"
     end
 
-    echo "cd (git root); and gh pr create --draft --editor $template"
+    echo $cd "gh pr create --draft --editor $template"
 end
 type -q gh && abbr -ag gpr --function gh-pull-request-abbr
 
