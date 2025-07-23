@@ -37,7 +37,7 @@ function gh-pull-request-abbr
     end
     # note: `test -f` is case insensitive on mac to match os behavior
     if test -f (git root)"/.github/pull_request_template.md"
-        set -f template "pull_request_template.md"
+        set -f template --template pull_request_template.md
     end
 
     echo $cd "gh pr create --draft --editor $template"
