@@ -225,14 +225,15 @@ return {
         }
     },
 
-    -- LSP
-    -- 'windwp/nvim-autopairs',
     {
-        'echasnovski/mini.nvim',
-        version = '*',
-        config = function()
-            require('mini.pairs').setup()
-        end,
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {
+            map_cr = true,
+            fast_wrap = {
+                map = '<C-p>'
+            },
+        },
     },
 
     {
