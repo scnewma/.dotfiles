@@ -59,7 +59,21 @@ return {
                 bashls = {},
                 dockerls = {},
                 jsonls = {},
-                pyright = {},
+                pyright = {
+                    settings = {
+                        pyright = {
+                            -- Using Ruff's import organizer
+                            disableOrganizeImports = true,
+                        },
+                        python = {
+                            analysis = {
+                                -- Ignore all files for analysis to exclusively use Ruff for linting
+                                ignore = { '*' },
+                            },
+                        },
+                    }
+                },
+                ruff = {},
                 vimls = {},
                 yamlls = {},
                 denols = {},
@@ -141,7 +155,21 @@ return {
                         comment_placeholder = '',
                         build_tags = "integration",
                     })
-                end
+                end,
+                ruff = function(opts)
+                    opts = vim.tbl_deep_extend('force', opts, {
+                        on_attach = function(client, bufnr)
+                            -- call default on_attach
+                            on_attach(client, bufnr)
+
+                            if client.name == 'ruff' then
+                                -- disable hover in favor of pyright
+                                client.server_capabilities.hoverProvider = false
+                            end
+                        end,
+                    })
+                    require('lspconfig').ruff.setup(opts)
+                end,
             },
         },
         config = function(_, opts)
