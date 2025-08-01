@@ -11,6 +11,8 @@ set -x HOMEBREW_AUTO_UPDATE_SECS 86400
 set -x AWS_PAGER "" # disable AWS cli paging
 set -x MANPAGER "nvim +Man! -" # use nvim as the man pager
 
+set -x FZF_DEFAULT_OPTS "--bind 'ctrl-y:preview-down,ctrl-e:preview-up,ctrl-d:preview-page-down,ctrl-u:preview-page-up'"
+
 # PATH languages
 type -q go fish_add_path $GOPATH/bin
 type -q cargo && fish_add_path $HOME/.cargo/bin
