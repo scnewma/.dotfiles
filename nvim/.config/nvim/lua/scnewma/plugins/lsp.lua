@@ -81,9 +81,6 @@ return {
                     if client.name == 'gopls' then
                         vim.keymap.set('n', '<leader>mf', require("go.reftool").fillstruct, kmopts)
                         vim.keymap.set('n', '<leader>mi', ':GoImpl', kmopts)
-                        -- TODO: I wish this didn't include the type on end of comment, but
-                        -- that's hardcoded in the plugin...
-                        vim.keymap.set('n', '<leader>mc', require('go.comment').gen, kmopts)
                         vim.keymap.set('n', '<leader>mta', ':GoAddTag json', { silent = false, noremap = true, buffer = args.buf })
                         vim.keymap.set('n', '<leader>mtr', ':GoRmTag json', { silent = false, noremap = true, buffer = args.buf })
                         vim.keymap.set('n', '<leader>mtc', ':GoClearTag', { silent = false, noremap = true, buffer = args.buf })
