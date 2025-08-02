@@ -25,8 +25,12 @@ return {
                         },
                     }
                 },
-                ruff = {},
-                ty = {},
+                ruff = {
+                    cmd = { 'uvx', 'ruff', 'server' },
+                },
+                ty = {
+                    cmd = { 'uvx', 'ty', 'server' },
+                },
                 vimls = {},
                 yamlls = {},
                 denols = {},
