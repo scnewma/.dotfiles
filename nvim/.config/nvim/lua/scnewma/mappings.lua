@@ -142,6 +142,21 @@ end
 nnoremap { 'k', jumplistify('k'), { expr = true } }
 nnoremap { 'j', jumplistify('j'), { expr = true } }
 
+-- Close all floating windows when pressing Escape in normal mode
+nnoremap { '<Esc>',
+    function()
+        local windows = vim.api.nvim_list_wins()
+        for _, win in ipairs(windows) do
+            local config = vim.api.nvim_win_get_config(win)
+            -- A window is floating if it has 'relative' set to something other than empty string
+            if config.relative and config.relative ~= '' then
+                vim.api.nvim_win_close(win, false)
+            end
+        end
+    end,
+    { desc = 'Close all floating windows' }
+}
+
 -- prevent fat-fingering commands
 vim.cmd [[
     cnoreabbrev W! w!
