@@ -179,6 +179,7 @@ return {
             { '<leader>:', '<cmd>:FzfLua command_history<CR>' },
             { '<leader>/', '<cmd>:FzfLua live_grep<CR>' },
             { '<leader>*', '<cmd>:FzfLua grep_cword<CR>' },
+            { '<leader>*', mode="v", '<cmd>:FzfLua grep_visual<CR>' },
             { '<leader><space>', '<cmd>:FzfLua files<CR>' },
             { '<leader>fg', '<cmd>:FzfLua git_files<CR>' },
             { '<leader>fe', '<cmd>:FzfLua files cwd=~/.dotfiles<CR>' },
