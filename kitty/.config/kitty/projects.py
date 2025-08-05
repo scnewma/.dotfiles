@@ -5,6 +5,14 @@ from pathlib import Path
 
 from kitty.boss import Boss
 
+try:
+    from projects_local import format_tab_title
+except ImportError:
+
+    def format_tab_title(title: str) -> str:
+        return title
+
+
 FZF_BIN = "/opt/homebrew/bin/fzf"
 
 
@@ -46,6 +54,7 @@ def handle_result(
         return
 
     tab_title = os.path.basename(answer)
+    tab_title = format_tab_title(tab_title)
 
     # focus tab if it exists
     for title, id in get_tabs(boss):

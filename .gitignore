@@ -17,3 +17,4 @@ zed/.config/zed/prompts/*
 zed/.config/zed/*_backup.json
 
 direnv/.config/direnv/direnvrc.local
+kitty/.config/kitty/projects_local.py
