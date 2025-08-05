@@ -125,20 +125,19 @@ elseif ai_helper == 'copilotchat' then
     }
 end
 
+local kitty_scrollback_plugin = {
+    'mikesmithgh/kitty-scrollback.nvim',
+    enabled = true,
+    lazy = true,
+    cmd = { 'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'KittyScrollbackGenerateCommandLineEditing' },
+    event = { 'User KittyScrollbackLaunch' },
+    config = function()
+        require('kitty-scrollback').setup()
+    end,
+}
 if vim.env.KITTY_SCROLLBACK_NVIM == 'true' then
-    -- kitty-scrollback.nvim specific configuration
-    return {
-        {
-            'mikesmithgh/kitty-scrollback.nvim',
-            enabled = true,
-            lazy = true,
-            cmd = { 'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'KittyScrollbackGenerateCommandLineEditing' },
-            event = { 'User KittyScrollbackLaunch' },
-            config = function()
-                require('kitty-scrollback').setup()
-            end,
-        },
-    }
+    -- kitty-scrollback.nvim specific plugins
+    return { kitty_scrollback_plugin }
 end
 
 
@@ -382,6 +381,6 @@ return {
         end,
     },
 
-
+    kitty_scrollback_plugin,
     ai_helper_plugin,
 }
