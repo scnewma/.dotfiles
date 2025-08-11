@@ -157,6 +157,8 @@ nnoremap { '<Esc>',
     { desc = 'Close all floating windows' }
 }
 
+nnoremap { '<leader>gc', ':r! git log -1 --pretty=\\%B<CR>' }
+
 -- prevent fat-fingering commands
 vim.cmd [[
     cnoreabbrev W! w!
