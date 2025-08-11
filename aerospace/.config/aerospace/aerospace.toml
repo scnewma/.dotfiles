@@ -208,6 +208,12 @@ run = [
 ]
 
 [[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = [
+  'move-node-to-workspace E',
+]
+
+[[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
 run = [
   'move-node-to-workspace E',
