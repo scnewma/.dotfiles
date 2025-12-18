@@ -229,7 +229,7 @@ return {
 
     {
         "folke/snacks.nvim",
-        lazy = true,
+        lazy = false,
         opts = {
             gitbrowse = {}
         },
@@ -238,7 +238,15 @@ return {
             { "<leader>gY", function() 
                 Snacks.gitbrowse({ what = "permalink", open = function(url) vim.fn.setreg("+", url) end, notify = false })
             end, desc = "Git Browse (copy)", mode = { "n", "v" } },
-        }
+        },
+        init = function()
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "VeryLazy",
+                callback = function()
+                    Snacks.toggle.inlay_hints():map("<leader>th")
+                end,
+            })
+        end
     },
 
     {
