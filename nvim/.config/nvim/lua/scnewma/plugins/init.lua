@@ -23,7 +23,7 @@ if ai_helper == 'codecompanion' then
                     return require("codecompanion.adapters").extend("copilot", {
                         schema = {
                             model = {
-                                default = "claude-sonnet-4",
+                                default = "claude-opus-4.5",
                             },
                         },
                     })
