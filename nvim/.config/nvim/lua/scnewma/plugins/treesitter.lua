@@ -7,6 +7,17 @@ return {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
         config = function()
+          vim.filetype.add({
+            extension = {
+              gotmpl = 'gotmpl',
+            },
+            pattern = {
+              [".*/templates/.*%.tpl"] = "helm",
+              [".*/templates/.*%.ya?ml"] = "helm",
+              ["helmfile.*%.ya?ml"] = "helm",
+            },
+          })
+
           require("nvim-treesitter.configs").setup {
             auto_install = true,
             ensure_installed = {
