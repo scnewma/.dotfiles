@@ -1,0 +1,76 @@
+{
+    "permissions": {
+        "defaultMode": "acceptEdits",
+
+        "deny": [
+            "Bash(rm *)",
+            "Bash(find *-delete*)",
+            "Bash(dd *)",
+            "Bash(sudo *)",
+            "Bash(chmod *)",
+            "Bash(chown *)",
+            "Bash(bash *)",
+            "Bash(fish *)",
+            "Bash(zsh *)",
+            "Bash(sh *)",
+            "Bash(env*)",
+            "Bash(printenv*)",
+            "Bash(history*)",
+
+            "Bash(curl *)",
+            "Bash(wget *)",
+            "Bash(nc *)",
+            "Bash(netcat *)",
+            "Bash(socat *)",
+            "Bash(nmap *)",
+            "Bash(exec *)",
+
+            "Bash(gh auth *)",
+            "Bash(*.aws/*)",
+            "Bash(*.ssh/*)",
+
+            "Read(*.env*)",
+            "Bash(cat .env*)",
+            "Bash(grep * .env*)",
+            "Bash(echo * >> .env*)",
+            "Bash(cp * .env*)",
+            "Bash(cp .env *)"
+        ],
+        "ask": [
+            "Bash(git push *)"
+        ],
+        "allow": [
+            "Bash(* --version)",
+            "Bash(* --help *)",
+
+            "Bash(ls *)",
+            "Bash(jq *)",
+            "Bash(make *)",
+
+            "Bash(git status *)",
+            "Bash(git log *)",
+            "Bash(git diff *)",
+
+            "Bash(go build *)",
+            "Bash(go test *)",
+            "Bash(go mod *)",
+            "Bash(go fmt *)",
+            "Bash(go vet *)",
+
+            "Bash(deno test *)",
+            "Bash(deno fmt *)",
+            "Bash(deno lint *)",
+            "Bash(deno compile *)",
+
+            "Bash(gh pr list *)",
+            "Bash(gh pr status *)",
+            "Bash(gh pr checks *)",
+            "Bash(gh pr diff *)",
+            "Bash(gh pr view *)",
+            "Bash(gh repo list *)",
+            "Bash(gh repo gitignore *)",
+            "Bash(gh repo license *)",
+            "Bash(gh repo view *)"
+        ]
+    }
+}
