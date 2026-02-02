@@ -49,6 +49,7 @@ brew "vscode-langservers-extracted"
 brew "yaml-language-server"
 
 cask "1password"
+cask "1password-cli"
 cask "alacritty"
 cask "alfred"
 cask "docker"
