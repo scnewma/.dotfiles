@@ -1,12 +1,19 @@
 {
-  "defaultProvider": "github-copilot",
+  "lastChangelogVersion": "0.74.0",
+  "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "medium",
-  "hideThinkingBlock": false,
-  "enableInstallTelemetry": false,
-  "lastChangelogVersion": "0.72.1",
   "theme": "catppuccin-mocha",
+  "enabledModels": [
+    "openai-codex/gpt-5.4",
+    "openai-codex/gpt-5.4-mini",
+    "openai-codex/gpt-5.5"
+  ],
   "packages": [
-    "npm:@ollama/pi-web-search"
-  ]
+    "npm:@ollama/pi-web-search@0.0.5",
+    "npm:@tintinweb/pi-subagents",
+    "git:github.com/dbachelder/pi-btw@6de3c06a2ff4f685bc581d84a04646e733bcd32e"
+  ],
+  "hideThinkingBlock": false,
+  "enableInstallTelemetry": false
 }
