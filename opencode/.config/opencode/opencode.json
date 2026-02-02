@@ -21,5 +21,19 @@
             },
             "enabled": true
         }
+    },
+    "provider": {
+        "lmstudio": {
+            "name": "LM Studio",
+            "npm": "@ai-sdk/openai-compatible",
+            "models": {
+                "gemma-4-e4b-it": {
+                    "name": "Gemma 4 E4B"
+                }
+            },
+            "options": {
+                "baseURL": "http://127.0.0.1:1234/v1"
+            }
+        }
     }
 }

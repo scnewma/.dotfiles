@@ -1,0 +1,14 @@
+{
+  "lastChangelogVersion": "0.66.1",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5.4",
+  "defaultThinkingLevel": "medium",
+  "enabledModels": [
+    "github-copilot/gpt-5.4"
+  ],
+  "packages": [
+    "git:github.com/nicobailon/pi-web-access@b378e5d80d424806058e819b262f72e5f6b58b7d",
+    "git:github.com/tintinweb/pi-subagents@94f7f78f61a7df2c241566845240e91881a7b855"
+  ],
+  "hideThinkingBlock": false
+}

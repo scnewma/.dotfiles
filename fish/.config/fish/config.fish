@@ -44,3 +44,8 @@ if set -q KITTY_WINDOW_ID
         kitten ssh $argv
     end
 end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/shaun/.lmstudio/bin
+# End of LM Studio CLI section
+
