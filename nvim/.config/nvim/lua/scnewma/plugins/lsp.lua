@@ -33,8 +33,8 @@ return {
                 },
                 vimls = {},
                 yamlls = {},
-                denols = {},
-                -- ts_ls = {},
+                -- denols = {},
+                ts_ls = {},
                 lua_ls = {
                     settings = {
                         Lua = {
