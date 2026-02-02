@@ -37,3 +37,10 @@ end
 if type -q direnv
     direnv hook fish | source
 end
+
+# Only define this in Kitty
+if set -q KITTY_WINDOW_ID
+    function ssh
+        kitten ssh $argv
+    end
+end
