@@ -6,7 +6,7 @@ abbr -ag jp jj git push
 abbr -ag jp@ jj git push -c @
 abbr -ag jc jj commit
 abbr -ag jf jj diff
-# abbr -ag jd jj describe
+abbr -ag jd jj describe
 abbr -ag jdm jj describe -m
 abbr -ag je jj edit
 abbr -ag jlg jj log
