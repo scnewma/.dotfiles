@@ -1,4 +1,14 @@
 {
+    "model": "opusplan",
+    "statusLine": {
+        "type": "command",
+        "command": "~/.claude/statusline.sh",
+        "padding": 2
+    },
+    "enabledPlugins": {
+        "pyright-lsp@claude-plugins-official": true,
+        "gopls-lsp@claude-plugins-official": true
+    },
     "permissions": {
         "defaultMode": "acceptEdits",
 
