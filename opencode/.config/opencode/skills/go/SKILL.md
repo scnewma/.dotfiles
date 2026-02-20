@@ -10,6 +10,15 @@ description: Go language conventions, patterns, and tooling. This skill should b
 - Formatter: `gofmt`
 - Linter: `go vet`
 
+## Style
+
+- Use `any` instead of `interface{}`.
+- Prefer Go 1.18+ stdlib helpers over manual loops:
+  - `maps.Copy`, `maps.Clone`, `maps.Keys`, `maps.Values` instead of manual map iteration.
+  - `slices.Contains`, `slices.Sort`, `slices.Clone`, `slices.Concat` instead of hand-rolled equivalents.
+  - `min()` / `max()` builtins (Go 1.21+) instead of custom helpers.
+  - `cmp.Or` (Go 1.22+) for first-non-zero-value selection.
+
 ## Logging
 
 Use Go's `slog` package for structured logging. Do not use `log` for application logging.
