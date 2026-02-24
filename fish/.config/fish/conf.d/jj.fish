@@ -21,3 +21,18 @@ abbr -ag jbm "jj bookmark set -r @ (jj-main-bookmark)"
 abbr -ag jbmp "jj bookmark set -r @ (jj-main-bookmark); and jj git push -b (jj-main-bookmark)"
 abbr -ag jn jj new
 abbr -ag jnm "jj new (jj-main-bookmark)"
+
+function fzf_jj_bookmarks
+    set -l bookmark (jj bookmark list --template 'name ++ "\n"' 2>/dev/null | fzf \
+        --height=40% \
+        --border \
+        --header="Select jj Bookmark" \
+        --preview 'jj show {}')
+
+    if test -n "$bookmark"
+        commandline -it -- "$bookmark"
+    end
+    commandline -f repaint
+end
+# alt-j-b
+bind -M insert ∆∫ fzf_jj_bookmarks
