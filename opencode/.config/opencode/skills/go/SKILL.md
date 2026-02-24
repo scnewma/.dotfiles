@@ -18,6 +18,7 @@ description: Go language conventions, patterns, and tooling. This skill should b
   - `slices.Contains`, `slices.Sort`, `slices.Clone`, `slices.Concat` instead of hand-rolled equivalents.
   - `min()` / `max()` builtins (Go 1.21+) instead of custom helpers.
   - `cmp.Or` (Go 1.22+) for first-non-zero-value selection.
+- Use `map[T]struct{}` not `map[T]bool` when writing sets
 
 ## Logging
 
