@@ -7,7 +7,7 @@ description: Go language conventions, patterns, and tooling. This skill should b
 
 ## Tooling
 
-- Formatter: `gofmt`
+- Formatter: `go fmt`
 - Linter: `go vet`
 
 ## Style
