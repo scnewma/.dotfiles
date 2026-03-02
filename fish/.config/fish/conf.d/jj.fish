@@ -21,6 +21,7 @@ abbr -ag jbm "jj bookmark set -r @ (jj-main-bookmark)"
 abbr -ag jbmp "jj bookmark set -r @ (jj-main-bookmark); and jj git push -b (jj-main-bookmark)"
 abbr -ag jn jj new
 abbr -ag jnm "jj new (jj-main-bookmark)"
+abbr -ag jrm "jj rebase -d (jj-main-bookmark)"
 
 function fzf_jj_bookmarks
     set -l bookmark (jj bookmark list --template 'name ++ "\n"' 2>/dev/null | fzf \
