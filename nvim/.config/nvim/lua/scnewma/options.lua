@@ -1,5 +1,23 @@
 local opt = vim.opt
 
+function _G.Statusline()
+    local items = { ' %f%m%r%h%w' }
+
+    local diagnostics = vim.diagnostic.status()
+    if diagnostics ~= '' then
+        table.insert(items, ' | ' .. diagnostics)
+    end
+
+    local progress = vim.ui.progress_status()
+    if progress ~= '' then
+        table.insert(items, ' | ' .. progress)
+    end
+
+    table.insert(items, '%= | %p%% | L%l:%c ')
+
+    return table.concat(items)
+end
+
 opt.guicursor=""
 opt.number=true
 opt.relativenumber=true
@@ -39,13 +57,13 @@ opt.modelines=10
 opt.title=true
 opt.titleold="Terminal"
 opt.titlestring="%F"
-opt.listchars={ trail = "·", tab = "»·" }
+opt.listchars={ trail = "·", tab = "›·", leadtab = "»·" }
 opt.mouse="a"
 opt.splitbelow=true
 opt.splitright=true
 opt.formatoptions="jcql"
 
-vim.cmd [[set statusline=\ %f%m%r%h%w%=\ \|\ %p%%\ \|\ L%l:%c\ ]]
+opt.statusline="%!v:lua.Statusline()"
 
 vim.g.markdown_fenced_languages = {
     "ts=typescript"

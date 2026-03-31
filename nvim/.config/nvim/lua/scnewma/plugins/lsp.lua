@@ -75,6 +75,8 @@ return {
                         buffer = args.buf,
                     }
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, kmopts)
+                    vim.keymap.set('n', 'grt', vim.lsp.buf.type_definition, kmopts)
+                    vim.keymap.set('n', 'grx', vim.lsp.codelens.run, kmopts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, kmopts)
                     -- code-rename
                     vim.keymap.set('n', '<Leader>cr', vim.lsp.buf.rename, kmopts)
