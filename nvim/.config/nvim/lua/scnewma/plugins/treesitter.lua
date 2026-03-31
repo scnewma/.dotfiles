@@ -38,7 +38,6 @@ return {
                 'vimdoc',
                 'zig',
                 'query',
-                -- needed for lspsaga, codecompanion
                 'markdown',
                 'markdown_inline',
             },
