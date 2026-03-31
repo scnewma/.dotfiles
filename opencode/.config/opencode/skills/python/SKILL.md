@@ -7,7 +7,7 @@ description: Python language conventions, patterns, and tooling. This skill shou
 
 ## Tooling
 
-- Formatter/linter: `ruff`
+- Formatter/linter: `uvx ruff`
 - Package manager: `uv`
 
 ## Inline Script Dependencies
