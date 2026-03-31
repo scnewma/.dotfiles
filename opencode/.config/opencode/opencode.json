@@ -1,6 +1,6 @@
 {
-  "plugin": [
-  ],
+    "plugin": [
+    ],
     "model": "github-copilot/gpt-5.4",
     "permission": "allow",
     "$schema": "https://opencode.ai/config.json",
@@ -12,6 +12,14 @@
                 "@playwright/mcp@latest"
             ],
             "enabled": false
+        },
+        "context7": {
+            "type": "remote",
+            "url": "https://mcp.context7.com/mcp",
+            "headers": {
+                "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+            },
+            "enabled": true
         }
     }
 }
