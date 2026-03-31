@@ -1,7 +1,17 @@
 {
-    "plugin": [
-        // "oh-my-opencode",
-    ],
-    "model": "github-copilot/claude-opus-4.6",
-    "$schema": "https://opencode.ai/config.json"
+  "plugin": [
+  ],
+    "model": "github-copilot/gpt-5.4",
+    "permission": "allow",
+    "$schema": "https://opencode.ai/config.json",
+    "mcp": {
+        "playwright": {
+            "type": "local",
+            "command": [
+                "npx",
+                "@playwright/mcp@latest"
+            ],
+            "enabled": false
+        }
+    }
 }
