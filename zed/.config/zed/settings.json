@@ -9,8 +9,9 @@
 {
   "agent": {
     "default_model": {
+      "effort": "high",
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-5.4"
     },
     "editor_model": {
       "provider": "copilot_chat",
