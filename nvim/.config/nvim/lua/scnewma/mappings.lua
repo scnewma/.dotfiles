@@ -158,7 +158,7 @@ nnoremap { '<Esc>',
 }
 
 nnoremap { '<leader>gc', ':r! git log -1 --pretty=\\%B<CR>' }
-
+nnoremap { '<leader>jc', ":r! jj log -r @ --no-graph -T'description ++ \"\\n\"'<CR>" }
 
 -- prevent fat-fingering commands
 vim.cmd [[
