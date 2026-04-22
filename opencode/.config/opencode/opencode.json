@@ -1,7 +1,7 @@
 {
     "plugin": [
     ],
-    "model": "github-copilot/gpt-5.4",
+    "model": "github-copilot/gpt-5.5",
     "permission": "allow",
     "$schema": "https://opencode.ai/config.json",
     "mcp": {
