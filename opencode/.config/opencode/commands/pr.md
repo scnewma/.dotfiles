@@ -1,50 +1,59 @@
 ---
-description: "Create commits and pull requests in jj (Jujutsu) repositories."
+description: "Create commits and pull requests in git repositories."
 ---
 
-# jj PR Workflow
+# Git PR Workflow
 
 ## Commit
 
-Set the commit message on the working copy with `jj describe`:
+Check current changes and recent commit style before writing the message:
 
 ```bash
-jj describe -m "$(cat <<'EOF'
-short summary line
-
-Optional longer explanation.
-EOF
-)"
+git status --short
+git diff --cached
+git diff
+git log --oneline -5
 ```
 
-Use `jj log --limit 5` to check recent commit style before writing the message.
+Stage only the intended files, then commit:
+
+```bash
+git add <files>
+git commit -m "short descriptive message"
+```
+
+Do not commit secrets, credentials, `.env` files, or unrelated worktree changes.
 
 ## Push
 
-Push the current change to a remote bookmark:
+Push the current branch to the remote. If the branch has no upstream, set one:
 
 ```bash
-jj git push -c @
+git push -u origin HEAD
 ```
 
-This creates a bookmark named `push-<change-id>` and pushes it. Note the bookmark name from the output — it's needed for PR creation.
-
-### Bookmark conflicts
-
-If a push fails with "stale info" or bookmark conflict:
+For subsequent updates to the same branch:
 
 ```bash
-jj git fetch
-jj bookmark set <bookmark-name> -r @
-jj git push
+git push
+```
+
+### Push conflicts
+
+If a push is rejected because the remote has new commits, fetch and rebase before pushing again:
+
+```bash
+git fetch origin
+git rebase origin/<branch-name>
+git push
 ```
 
 ## Create a PR
 
-`gh` doesn't work with jj's detached HEAD, so always pass `--head` explicitly:
+Create the PR with `gh`:
 
 ```bash
-gh pr create --head <bookmark-name> --title "..." --body "$(cat <<'EOF'
+gh pr create --title "..." --body "$(cat <<'EOF'
 ...
 EOF
 )"
@@ -66,10 +75,11 @@ If a template exists, use its structure in the `--body`. Fill in sections approp
 
 ## Updating an existing PR
 
-After making changes to the working copy, push the update:
+After making changes, commit and push the update:
 
 ```bash
-jj git push
+git status --short
+git add <files>
+git commit -m "short descriptive message"
+git push
 ```
-
-If the bookmark has diverged (e.g. after the remote branch was deleted by a merged PR), resolve with the bookmark conflict steps above.
