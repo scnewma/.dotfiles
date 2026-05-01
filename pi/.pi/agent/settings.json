@@ -3,5 +3,7 @@
   "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "medium",
   "hideThinkingBlock": false,
-  "enableInstallTelemetry": false
+  "enableInstallTelemetry": false,
+  "lastChangelogVersion": "0.71.1",
+  "theme": "catppuccin-mocha"
 }

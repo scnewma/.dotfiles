@@ -41,7 +41,6 @@
 
 ### File Operations
 - Act with agency — create files when the task requires it
-- Never modify files outside the current working directory
 - Never create unnecessary "nice to have" files
 
 ### Prohibited Actions
