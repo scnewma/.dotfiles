@@ -1,5 +1,10 @@
 # Personal Global Rules
 
+## Communication
+
+- Be brief.
+- Keep it casual
+
 ## Languages & Tooling
 
 - **Python** for small tasks and scripts
@@ -43,9 +48,3 @@
 - Never run `sudo` commands
 - Never read, write, or commit `.env` files
 - Never commit secrets, credentials, or API keys
-
-## Communication
-
-- Keep it casual
-- Be direct, skip the fluff
-- When in doubt, ask
