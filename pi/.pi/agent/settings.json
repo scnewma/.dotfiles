@@ -4,7 +4,7 @@
   "defaultThinkingLevel": "medium",
   "hideThinkingBlock": false,
   "enableInstallTelemetry": false,
-  "lastChangelogVersion": "0.71.1",
+  "lastChangelogVersion": "0.72.1",
   "theme": "catppuccin-mocha",
   "packages": [
     "npm:@ollama/pi-web-search"
