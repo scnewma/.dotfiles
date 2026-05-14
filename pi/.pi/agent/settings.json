@@ -10,9 +10,9 @@
     "openai-codex/gpt-5.5"
   ],
   "packages": [
-    "npm:@ollama/pi-web-search@0.0.5",
-    "npm:@tintinweb/pi-subagents",
-    "git:github.com/dbachelder/pi-btw@6de3c06a2ff4f685bc581d84a04646e733bcd32e"
+    "git:github.com/dbachelder/pi-btw@6de3c06a2ff4f685bc581d84a04646e733bcd32e",
+    "git:github.com/tintinweb/pi-subagents@9108d05598fb05d49c8199840a11014323cd5298",
+    "npm:@ollama/pi-web-search@0.0.5"
   ],
   "hideThinkingBlock": false,
   "enableInstallTelemetry": false
