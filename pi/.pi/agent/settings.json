@@ -1,18 +1,20 @@
 {
-  "lastChangelogVersion": "0.74.1",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
-  "defaultThinkingLevel": "low",
+  "lastChangelogVersion": "0.75.3",
+  "defaultProvider": "openrouter",
+  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultThinkingLevel": "high",
   "theme": "catppuccin-mocha",
   "enabledModels": [
     "openai-codex/gpt-5.4",
     "openai-codex/gpt-5.4-mini",
-    "openai-codex/gpt-5.5"
+    "openai-codex/gpt-5.5",
+    "openrouter/deepseek/deepseek-v4-flash"
   ],
   "packages": [
     "git:github.com/dbachelder/pi-btw@6de3c06a2ff4f685bc581d84a04646e733bcd32e",
     "git:github.com/tintinweb/pi-subagents@9108d05598fb05d49c8199840a11014323cd5298",
-    "npm:@ollama/pi-web-search@0.0.5"
+    "npm:@ollama/pi-web-search@0.0.5",
+    "npm:@scnewma/pi-codex-rate-limits"
   ],
   "hideThinkingBlock": false,
   "enableInstallTelemetry": false
