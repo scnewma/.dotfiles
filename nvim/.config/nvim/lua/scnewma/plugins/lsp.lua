@@ -54,6 +54,10 @@ return {
                 },
                 gopls = {},
                 gleam = {},
+                sourcekit = {
+                    cmd = { 'xcrun', 'sourcekit-lsp' },
+                    filetypes = { 'swift' },
+                },
             },
         },
         config = function(_, opts)

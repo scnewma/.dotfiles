@@ -218,6 +218,7 @@ return {
                 css = { "prettier" },
                 html = { "prettier" },
                 markdown = { "prettier" },
+                swift = { "swiftformat" },
                 yaml = { "prettier" },
             },
             formatters = {
