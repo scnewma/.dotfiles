@@ -5,11 +5,10 @@
 - Be brief.
 - Keep it casual
 
-## Languages & Tooling
+## Tooling
 
-- **Python** for small tasks and scripts
-- **Go** for larger programs and CLI tools
-- Always use Context7 MCP when I need library/API documentation, code generation, setup or configuration steps without me having to explicitly ask.
+- `nix` is available. If you are missing a tool, you can use `nix` to execute
+it if it's from `nixpkgs`, do not execute random nix flakes automatically.
 
 ## Code Style
 
