@@ -42,7 +42,7 @@ return {
                             telemetry = { enable = false },
                             diagnostics = {
                                 -- Get the language server to recognize the `vim` global
-                                globals = {'vim'},
+                                globals = { 'vim' },
                             },
                             workspace = {
                                 -- Make the server aware of Neovim runtime files
@@ -66,8 +66,8 @@ return {
                 callback = function(args)
                     -- disable any custom formatting nvim configures. this
                     -- breaks gq line wrapping which is annoying.
-                    vim.api.nvim_set_option_value("formatexpr", "", {buf = args.buf})
-                    vim.api.nvim_set_option_value("formatprg", "", {buf = args.buf})
+                    vim.api.nvim_set_option_value("formatexpr", "", { buf = args.buf })
+                    vim.api.nvim_set_option_value("formatprg", "", { buf = args.buf })
 
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
                     if not client then
@@ -80,6 +80,7 @@ return {
                         buffer = args.buf,
                     }
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, kmopts)
+                    vim.keymap.set('n', 'grr', '<cmd>FzfLua lsp_references<CR>', kmopts)
                     vim.keymap.set('n', 'grt', vim.lsp.buf.type_definition, kmopts)
                     vim.keymap.set('n', 'grx', vim.lsp.codelens.run, kmopts)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, kmopts)
@@ -87,8 +88,8 @@ return {
                     vim.keymap.set('n', '<Leader>cr', vim.lsp.buf.rename, kmopts)
                     --  diagnostics
                     vim.keymap.set('n', '<Leader>cl', vim.diagnostic.setloclist, kmopts)
-                    vim.keymap.set('n', '[d', function() vim.diagnostic.jump({count=-1, float=true}) end, kmopts)
-                    vim.keymap.set('n', ']d', function() vim.diagnostic.jump({count=1, float=true}) end, kmopts)
+                    vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end, kmopts)
+                    vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end, kmopts)
 
                     vim.keymap.set('n', '<Leader>cf', function() vim.lsp.buf.format({ async = false }) end, kmopts)
 
@@ -97,9 +98,12 @@ return {
                     if client.name == 'gopls' then
                         vim.keymap.set('n', '<leader>mf', require("go.reftool").fillstruct, kmopts)
                         vim.keymap.set('n', '<leader>mi', ':GoImpl', kmopts)
-                        vim.keymap.set('n', '<leader>mta', ':GoAddTag json', { silent = false, noremap = true, buffer = args.buf })
-                        vim.keymap.set('n', '<leader>mtr', ':GoRmTag json', { silent = false, noremap = true, buffer = args.buf })
-                        vim.keymap.set('n', '<leader>mtc', ':GoClearTag', { silent = false, noremap = true, buffer = args.buf })
+                        vim.keymap.set('n', '<leader>mta', ':GoAddTag json',
+                            { silent = false, noremap = true, buffer = args.buf })
+                        vim.keymap.set('n', '<leader>mtr', ':GoRmTag json',
+                            { silent = false, noremap = true, buffer = args.buf })
+                        vim.keymap.set('n', '<leader>mtc', ':GoClearTag',
+                            { silent = false, noremap = true, buffer = args.buf })
                     elseif client.name == "ruff" then
                         -- Disable hover in favor of Pyright
                         client.server_capabilities.hoverProvider = false
@@ -138,8 +142,8 @@ return {
                 group = format_sync_grp,
             })
         end,
-        event = {"CmdlineEnter"},
-        ft = {"go", 'gomod'},
+        event = { "CmdlineEnter" },
+        ft = { "go", 'gomod' },
         build = ':lua require("go.install").update_all_sync()' -- install/update all binaries
     },
 
