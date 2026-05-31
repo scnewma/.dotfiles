@@ -55,8 +55,9 @@ return {
                 gopls = {},
                 gleam = {},
                 sourcekit = {
-                    cmd = { 'xcrun', 'sourcekit-lsp' },
+                    cmd = { 'xcrun', 'sourcekit-lsp', '--default-workspace-type', 'buildServer' },
                     filetypes = { 'swift' },
+                    root_markers = { 'buildServer.json', 'Package.swift', '*.xcodeproj', '*.xcworkspace', '.git' },
                 },
             },
         },
