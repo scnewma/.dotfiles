@@ -24,7 +24,9 @@ end
 
 # kubectl
 if type -q kubectl
-    source "$HOME/.local/share/kubectl-aliases/.kubectl_aliases.fish"
+    if test -f "$HOME/.local/share/kubectl-aliases/.kubectl_aliases.fish"
+        source "$HOME/.local/share/kubectl-aliases/.kubectl_aliases.fish"
+    end
     abbr -ag kctx kubectx
     abbr -ag kns kubens
 end

@@ -13,6 +13,15 @@ cd ~/.dotfiles
 exec fish
 ```
 
+Make `fish` the default shell:
+
+```
+echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/fish
+```
+
+> You will need to re-log for this to take effect.
+
 If you are doing any Rust development:
 
 ```
