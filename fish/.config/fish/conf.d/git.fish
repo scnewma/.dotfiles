@@ -7,6 +7,7 @@ abbr -ag gbd git branch -d
 abbr -ag gbD git branch -D
 
 abbr -ag gcom "git checkout (git-main-branch)"
+abbr -ag gco git checkout
 abbr -ag gcb git checkout -b
 abbr -ag grs git restore
 abbr -ag grss git restore --staged

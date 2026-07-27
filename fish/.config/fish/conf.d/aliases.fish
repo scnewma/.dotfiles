@@ -16,10 +16,10 @@ abbr -ag dev $HOME/dev
 abbr -ag tdot tmux new-session -c $HOME/.dotfiles
 
 if type -q eza
-    alias ls "eza --icons"
-    alias exa "eza --icons"
-    abbr -ag exag eza --icons --long --git --git-ignore
-    abbr -ag tree eza --icons --tree
+    alias ls "eza --icons=auto"
+    alias exa "eza --icons=auto"
+    abbr -ag exag eza --icons=auto --long --git --git-ignore
+    abbr -ag tree eza --icons=auto --tree
 end
 
 # kubectl
@@ -47,3 +47,7 @@ end
 type -q gh && abbr -ag gpr --function gh-pull-request-abbr
 
 type -q claude && abbr -ag cld "claude --allowedTools 'Bash(git:*),Bash(find:*),Bash(rg:*),Edit,Write'"
+
+abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking medium
+abbr -ag opus pi --model 'claude-opus-5' --thinking medium
+abbr -ag fable pi --model 'claude-fable-5' --thinking high
