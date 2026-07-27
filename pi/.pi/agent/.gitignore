@@ -1,0 +1,8 @@
+trust.json
+auth.json
+mcp-cache.json
+mcp-onboarding.json
+models-store.json
+git/
+npm/
+sessions/
