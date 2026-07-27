@@ -244,6 +244,12 @@ run = [
 ]
 
 [[on-window-detected]]
+if.app-id = 'com.vivaldi.Vivaldi'
+run = [
+  'move-node-to-workspace A',
+]
+
+[[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = [
   'move-node-to-workspace O',
