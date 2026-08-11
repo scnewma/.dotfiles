@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.75.4",
-  "defaultProvider": "openrouter",
-  "defaultModel": "deepseek/deepseek-v4-flash",
+  "lastChangelogVersion": "0.84.1",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "high",
   "theme": "catppuccin-mocha",
   "enabledModels": [
@@ -12,14 +12,20 @@
     "openrouter/deepseek/deepseek-v4-pro"
   ],
   "packages": [
-    "git:github.com/dbachelder/pi-btw@6de3c06a2ff4f685bc581d84a04646e733bcd32e",
-    "git:github.com/tintinweb/pi-subagents@9108d05598fb05d49c8199840a11014323cd5298",
     "npm:@ollama/pi-web-search@0.0.5",
-    "npm:@scnewma/pi-codex-rate-limits"
+    "npm:@scnewma/pi-codex-rate-limits",
+    "npm:pi-mcp-adapter",
+    "npm:@tintinweb/pi-subagents"
   ],
   "hideThinkingBlock": false,
   "enableInstallTelemetry": false,
   "branchSummary": {
     "skipPrompt": true
-  }
+  },
+  "warnings": {
+    "anthropicExtraUsage": false
+  },
+  "tuiMode": "fullscreen",
+  "defaultProjectTrust": "ask",
+  "quietStartup": true
 }

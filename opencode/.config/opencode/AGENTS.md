@@ -15,7 +15,8 @@ it if it's from `nixpkgs`, do not execute random nix flakes automatically.
 - Use automatic formatters
 - Composition over inheritance
 - Strike a balance between pure functions and structs/classes — don't over-abstract, but don't write spaghetti either
-- Only add comments when they explain something non-obvious. Never add comments that repeat what the code does.
+- Default to no comment. Only add one when it explains *why* something exists (a constraint, a gotcha, a non-obvious tradeoff), never *what* the code is doing.
+- Keep comments short — a line or two. Don't write paragraphs, restate the code, or narrate structure. Prefer deleting a comment over expanding it.
 
 ## Workflow
 
@@ -35,7 +36,7 @@ it if it's from `nixpkgs`, do not execute random nix flakes automatically.
 ## Agent Behavior
 
 ### Asking Questions
-- **Do ask** about product decisions, logic, or design tradeoffs
+- **Do ask** about product decisions, logic, or design tradeoffs. Ask before committing code
 - **Don't ask** about trivial choices (variable names, import ordering, minor style)
 
 ### File Operations

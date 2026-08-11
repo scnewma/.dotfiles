@@ -51,3 +51,6 @@ type -q claude && abbr -ag cld "claude --allowedTools 'Bash(git:*),Bash(find:*),
 abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking medium
 abbr -ag opus pi --model 'claude-opus-5' --thinking medium
 abbr -ag fable pi --model 'claude-fable-5' --thinking high
+abbr -ag sol pi --model 'gpt-5.6-sol' --thinking high
+abbr -ag terra pi --model 'gpt-5.6-terra' --thinking high
+abbr -ag luna pi --model 'gpt-5.6-luna' --thinking high
