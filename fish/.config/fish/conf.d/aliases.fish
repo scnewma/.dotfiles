@@ -52,5 +52,6 @@ abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking medium
 abbr -ag opus pi --model 'claude-opus-5' --thinking medium
 abbr -ag fable pi --model 'claude-fable-5' --thinking high
 abbr -ag sol pi --model 'gpt-5.6-sol' --thinking high
-abbr -ag terra pi --model 'gpt-5.6-terra' --thinking high
-abbr -ag luna pi --model 'gpt-5.6-luna' --thinking high
+abbr -ag terra pi --model 'gpt-5.6-terra' --thinking medium
+abbr -ag luna pi --model 'gpt-5.6-luna' --thinking medium
+abbr -ag pi-up "mise up pi@latest; and pi update --extensions"
