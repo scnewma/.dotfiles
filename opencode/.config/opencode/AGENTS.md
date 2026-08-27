@@ -9,6 +9,7 @@
 
 - `nix` is available. If you are missing a tool, you can use `nix` to execute
 it if it's from `nixpkgs`, do not execute random nix flakes automatically.
+- prefer `bun` over `node`
 
 ## Code Style
 
