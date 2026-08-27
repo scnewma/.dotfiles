@@ -9,3 +9,13 @@ pi = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
+minimum_release_age = "1d"
+minimum_release_age_excludes = [
+  "go",
+  "node",
+  "python",
+  "deno",
+  "bun",
+  "awscli",
+  "pi",
+]
