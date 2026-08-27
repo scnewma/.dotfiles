@@ -128,6 +128,7 @@ automatically-unhide-macos-hidden-apps = false
     ctrl-alt-shift-c = 'workspace C'
     ctrl-alt-shift-d = 'workspace D'
     ctrl-alt-shift-e = 'workspace "</>"'
+    ctrl-alt-shift-h = 'workspace 💻'
     ctrl-alt-shift-i = 'workspace I'
     ctrl-alt-shift-m = 'workspace M'
     ctrl-alt-shift-n = 'workspace N'
@@ -140,7 +141,6 @@ automatically-unhide-macos-hidden-apps = false
     ctrl-alt-shift-x = 'workspace X'
     ctrl-alt-shift-y = 'workspace Y'
     ctrl-alt-shift-z = 'workspace Z'
-    ctrl-alt-shift-period = 'workspace 💻'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     ctrl-alt-shift-cmd-a = 'move-node-to-workspace 🌍'
@@ -148,6 +148,7 @@ automatically-unhide-macos-hidden-apps = false
     ctrl-alt-shift-cmd-c = 'move-node-to-workspace C'
     ctrl-alt-shift-cmd-d = 'move-node-to-workspace D'
     ctrl-alt-shift-cmd-e = 'move-node-to-workspace "</>"'
+    ctrl-alt-shift-cmd-h = 'move-node-to-workspace 💻'
     ctrl-alt-shift-cmd-i = 'move-node-to-workspace I'
     ctrl-alt-shift-cmd-m = 'move-node-to-workspace M'
     ctrl-alt-shift-cmd-n = 'move-node-to-workspace N'
@@ -160,7 +161,6 @@ automatically-unhide-macos-hidden-apps = false
     ctrl-alt-shift-cmd-x = 'move-node-to-workspace X'
     ctrl-alt-shift-cmd-y = 'move-node-to-workspace Y'
     ctrl-alt-shift-cmd-z = 'move-node-to-workspace Z'
-    ctrl-alt-shift-cmd-period = 'move-node-to-workspace 💻'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     ctrl-alt-shift-tab = 'workspace-back-and-forth'
