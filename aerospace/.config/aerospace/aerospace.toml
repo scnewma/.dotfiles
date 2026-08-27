@@ -196,115 +196,37 @@ automatically-unhide-macos-hidden-apps = false
 ## Automatic assignment
 
 [[on-window-detected]]
-if.app-id = 'org.alacritty'
+if = 'test %{app-bundle-id} = org.alacritty || test %{app-bundle-id} = com.mitchellh.ghostty || test %{app-bundle-id} = net.kovidgoyal.kitty || test %{app-bundle-id} = dev.zed.Zed'
 run = [
   'move-node-to-workspace "</>"',
 ]
 
 [[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run = [
-  'move-node-to-workspace "</>"',
-]
-
-[[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-run = [
-  'move-node-to-workspace "</>"',
-]
-
-[[on-window-detected]]
-if.app-id = 'dev.zed.Zed'
-run = [
-  'move-node-to-workspace "</>"',
-]
-
-[[on-window-detected]]
-if.app-id = 'app.zen-browser.zen'
+if = 'test %{app-bundle-id} = app.zen-browser.zen || test %{window-title} ~= Orion || test %{app-bundle-id} = org.mozilla.firefox || test %{app-bundle-id} = com.google.Chrome || test %{app-bundle-id} = com.vivaldi.Vivaldi'
 run = [
   'move-node-to-workspace 🌍',
 ]
 
 [[on-window-detected]]
-if.window-title-regex-substring = "Orion"
-run = [
-    "move-node-to-workspace 🌍",
-]
-
-[[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
-run = [
-  'move-node-to-workspace 🌍',
-]
-
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = [
-  'move-node-to-workspace 🌍',
-]
-
-[[on-window-detected]]
-if.app-id = 'com.vivaldi.Vivaldi'
-run = [
-  'move-node-to-workspace 🌍',
-]
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
+if = 'test %{app-bundle-id} = com.tinyspeck.slackmacgap'
 run = [
   'move-node-to-workspace 💬',
 ]
 
 [[on-window-detected]]
-if.app-id = 'us.zoom.xos'
+if = 'test %{app-bundle-id} = us.zoom.xos || test %{app-bundle-id} = notion.id || test %{app-bundle-id} = com.cron.electron || test %{app-bundle-id} = com.apple.notes || test %{app-bundle-id} = com.apple.iCal || test %{app-bundle-id} = com.apple.mail || test %{app-bundle-id} = com.1password.1password'
 run = [
   'move-node-to-workspace 🛠️',
 ]
 
 [[on-window-detected]]
-if.app-id = 'notion.id'
-run = [
-  'move-node-to-workspace 🛠️',
-]
-
-[[on-window-detected]]
-if.app-id = 'com.cron.electron'
-run = [
-  'move-node-to-workspace 🛠️',
-]
-
-[[on-window-detected]]
-if.app-id = 'com.apple.notes'
-run = [
-  'move-node-to-workspace 🛠️',
-]
-
-[[on-window-detected]]
-if.app-id = 'com.apple.iCal'
-run = [
-  'move-node-to-workspace 🛠️',
-]
-
-[[on-window-detected]]
-if.app-id = 'com.apple.mail'
-run = [
-  'move-node-to-workspace 🛠️',
-]
-
-[[on-window-detected]]
-if.app-id = 'com.1password.1password'
-run = [
-  'move-node-to-workspace 🛠️',
-]
-
-[[on-window-detected]]
-if.app-id = 'md.obsidian'
+if = 'test %{app-bundle-id} = md.obsidian'
 run = [
   'move-node-to-workspace N',
 ]
 
 [[on-window-detected]]
-if.app-id = 'com.apple.finder'
+if = 'test %{app-bundle-id} = com.apple.finder'
 run = [
   'layout floating',
 ]
