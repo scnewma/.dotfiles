@@ -6,6 +6,7 @@ abbr -ag tmuxrc nvim $HOME/.tmux.conf
 
 abbr -ag v vim
 alias vim nvim
+alias scratch "nvim +'setlocal buftype=nofile bufhidden=wipe noswapfile'"
 
 # directory navigation
 abbr -ag cd.. cd ..
@@ -48,10 +49,10 @@ type -q gh && abbr -ag gpr --function gh-pull-request-abbr
 
 type -q claude && abbr -ag cld "claude --allowedTools 'Bash(git:*),Bash(find:*),Bash(rg:*),Edit,Write'"
 
-abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking medium
-abbr -ag opus pi --model 'claude-opus-5' --thinking medium
-abbr -ag fable pi --model 'claude-fable-5' --thinking high
-abbr -ag sol pi --model 'gpt-5.6-sol' --thinking high
+abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking low
+abbr -ag opus pi --model 'claude-opus-5' --thinking low
+abbr -ag fable pi --model 'claude-fable-5' --thinking medium
+abbr -ag sol pi --model 'gpt-5.6-sol' --thinking medium
 abbr -ag terra pi --model 'gpt-5.6-terra' --thinking medium
 abbr -ag luna pi --model 'gpt-5.6-luna' --thinking medium
 abbr -ag pi-up "mise up pi@latest; and pi update --extensions"
