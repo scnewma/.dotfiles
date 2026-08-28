@@ -15,6 +15,7 @@ function parseAction(args: string): AutoReviewAction | null {
 
 export default function (pi: ExtensionAPI) {
 	let enabled = false;
+	let lastRunAborted = false;
 
 	function updateStatus(ctx: ExtensionContext): void {
 		ctx.ui.setStatus(
@@ -43,6 +44,7 @@ export default function (pi: ExtensionAPI) {
 
 	pi.on("session_start", (event, ctx) => {
 		enabled = false;
+		lastRunAborted = false;
 		if (event.reason === "reload") {
 			const stateEntry = [...ctx.sessionManager.getBranch()]
 				.reverse()
@@ -59,9 +61,31 @@ export default function (pi: ExtensionAPI) {
 		ctx.ui.setStatus(STATUS_ID, undefined);
 	});
 
+	pi.on("agent_start", () => {
+		lastRunAborted = false;
+	});
+
+	pi.on("agent_end", (event, ctx) => {
+		const lastAssistant = [...event.messages]
+			.reverse()
+			.find((message) => message.role === "assistant");
+		lastRunAborted =
+			(lastAssistant?.role === "assistant" && lastAssistant.stopReason === "aborted") ||
+			ctx.signal?.aborted === true;
+	});
+
 	pi.on("agent_settled", () => {
-		if (!enabled) return;
+		const aborted = lastRunAborted;
+		lastRunAborted = false;
+		if (!enabled || aborted) return;
 		openLastReview();
+	});
+
+	pi.registerShortcut("ctrl+alt+l", {
+		description: "Toggle automatic Plannotator review",
+		handler: (ctx) => {
+			setEnabled(ctx, !enabled);
+		},
 	});
 
 	pi.registerCommand("plannotator-last-auto", {
