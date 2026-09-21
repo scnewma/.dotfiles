@@ -2,7 +2,10 @@ trust.json
 auth.json
 mcp-cache.json
 mcp-onboarding.json
+mcp-oauth-encrypted/
 models-store.json
 git/
 npm/
 sessions/
+**/node_modules/
+pi-review.json

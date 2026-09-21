@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp"
+    }
+  },
+  "settings": {
+    "mcpFooterStatus": "compact",
+    "oauthCredentialStore": "encrypted-file"
+  }
+}
