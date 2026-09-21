@@ -1,0 +1,59 @@
+{
+  "name": "pi-review",
+  "version": "2.1.0",
+  "description": "Review & cleanup assets for pi: /code-review and /code-simplify commands dispatching declarative prompt templates (parallel strategy as frontmatter data) plus review methodology skills and finder/verifier agent definitions. Spawning lives in @fyeeme/pi-subagents; this package registers the review_report findings sink and the generic dispatcher.",
+  "type": "module",
+  "license": "MIT",
+  "author": "fyeeme",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "pi",
+    "pi-package",
+    "code-review",
+    "simplify",
+    "cleanup",
+    "review"
+  ],
+  "files": [
+    "*.ts",
+    "src/**/*.ts",
+    "skills/**/*.md",
+    "prompts/**/*.md",
+    "agents/**/*.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ],
+    "skills": [
+      "skills/code-review",
+      "skills/code-simplify"
+    ]
+  },
+  "scripts": {
+    "test": "vitest --run",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@fyeeme/pi-subagents": "2.1.1"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": ">=0.84.4",
+    "@earendil-works/pi-coding-agent": ">=0.84.4",
+    "@earendil-works/pi-tui": ">=0.84.4",
+    "typebox": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "0.85.1",
+    "@earendil-works/pi-coding-agent": "0.85.1",
+    "@earendil-works/pi-tui": "0.85.1",
+    "@types/node": "22.19.19",
+    "jiti": "2.7.0",
+    "typebox": "1.1.38",
+    "typescript": "5.9.3"
+  }
+}
