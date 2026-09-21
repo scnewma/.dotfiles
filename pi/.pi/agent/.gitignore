@@ -9,3 +9,4 @@ npm/
 sessions/
 **/node_modules/
 pi-review.json
+AGENTS.md.local
