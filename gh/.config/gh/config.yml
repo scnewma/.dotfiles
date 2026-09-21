@@ -3,7 +3,14 @@ editor: nvim
 prompt: enabled
 aliases:
     # opens the current branch in github.com
-    open: "!gh browse --branch $(git rev-parse --abbrev-ref HEAD) $@"
+    open: |
+        !f() {
+            branch=$(git branch --show-current)
+            if [ "$branch" = "gitbutler/workspace" ]; then
+                branch=$(gh repo view --json defaultBranchRef --jq ".defaultBranchRef.name")
+            fi
+            gh browse --branch "$branch" "$@"
+        }; f
     # custom fzf filter application for listing/checking out prs
     prs: "!zsh $HOME/.config/zsh/functions/gh_fzf_pr_open $@"
     # approve and merge a given PR
