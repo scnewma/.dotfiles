@@ -3,6 +3,7 @@ if not status --is-interactive
 end
 
 fish_vi_key_bindings
+fish_user_key_bindings
 
 set -x VISUAL nvim
 set -x EDITOR $VISUAL
