@@ -29,5 +29,6 @@
   },
   "tuiMode": "fullscreen",
   "defaultProjectTrust": "ask",
-  "quietStartup": true
+  "quietStartup": true,
+  "httpIdleTimeoutMs": 30000
 }
