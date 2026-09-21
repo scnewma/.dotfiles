@@ -1,4 +1,4 @@
-alias c clear
+alias c "printf '\e[H\e[22J'"
 
 abbr -ag rc nvim $HOME/.config/fish/config.fish
 abbr -ag rclocal nvim $HOME/.config/fish/config.fish.local
@@ -49,9 +49,29 @@ type -q gh && abbr -ag gpr --function gh-pull-request-abbr
 
 type -q claude && abbr -ag cld "claude --allowedTools 'Bash(git:*),Bash(find:*),Bash(rg:*),Edit,Write'"
 
-abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking low
-abbr -ag opus pi --model 'claude-opus-5' --thinking low
-abbr -ag fable pi --model 'claude-fable-5' --thinking medium
+abbr -ag sonnet pi --model claude-sonnet-5 --thinking low
+abbr -ag opus pi --model claude-opus-5 --thinking low
+
+function '?' --description 'Start a context-free Pi session'
+    set -l temp_dir (mktemp -d)
+    or return 1
+
+    set -l original_dir $PWD
+    cd $temp_dir
+    or begin
+        command rm -rf -- $temp_dir
+        return 1
+    end
+
+    command pi --model claude-opus-5 --thinking low --no-context-files --no-session -- $argv
+    set -l pi_status $status
+
+    cd $original_dir
+    command rm -rf -- $temp_dir
+    return $pi_status
+end
+
+abbr -ag fable pi --model claude-fable-5 --thinking medium
 abbr -ag sol pi --model 'gpt-5.6-sol' --thinking medium
 abbr -ag terra pi --model 'gpt-5.6-terra' --thinking medium
 abbr -ag luna pi --model 'gpt-5.6-luna' --thinking medium
