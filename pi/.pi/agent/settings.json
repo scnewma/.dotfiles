@@ -17,6 +17,7 @@
     "npm:@scnewma/pi-codex-rate-limits",
     "npm:pi-mcp-adapter",
     "npm:@tintinweb/pi-subagents",
+    "npm:@plannotator/pi-extension",
     "packages/pi-review"
   ],
   "hideThinkingBlock": false,
