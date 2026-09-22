@@ -20,3 +20,7 @@ direnv/.config/direnv/direnvrc.local
 kitty/.config/kitty/projects_local.py
 opencode/.config/opencode/plugins/supacode.ts
 pi/.pi/agent/extensions/supacode/*
+
+herdr/.config/herdr/.plugins.lock
+herdr/.config/herdr/*.log
+herdr/.config/herdr/session.json
