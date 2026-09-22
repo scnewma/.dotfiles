@@ -25,9 +25,9 @@ abbr -ag glo git log --oneline --decorate --color
 
 abbr -ag gl git pull
 abbr -ag gp git push
-abbr -ag ggp "git push origin (git-branch-current 2>/dev/null)"
-abbr -ag gpu "git push -u origin (git-branch-current 2>/dev/null)"
-abbr -ag gpuf "git push --force-with-lease origin (git-branch-current 2>/dev/null)"
+abbr -ag ggp "git push origin HEAD"
+abbr -ag gpu "git push -u origin HEAD"
+abbr -ag gpuf "git push --force-with-lease origin HEAD"
 
 abbr -ag gsta git stash
 abbr -ag gstd git stash drop

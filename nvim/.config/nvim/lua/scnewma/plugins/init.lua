@@ -15,7 +15,6 @@ end
 
 
 return {
-    'sainnhe/gruvbox-material',
     {
         "catppuccin/nvim",
         name = "catppuccin",
@@ -33,12 +32,10 @@ return {
         end
     },
 
-    'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
     {
         "ibhagwan/fzf-lua",
         cmd = "FzfLua",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {
             defaults = {
                 file_icons = false,
@@ -86,7 +83,6 @@ return {
         end,
     },
 
-    'tpope/vim-commentary',
     'tpope/vim-repeat',
     -- substitution for abbreviations, case-respecting replacement
     'tpope/vim-abolish',
@@ -159,19 +155,13 @@ return {
         },
     },
 
-    --   Lua LSP
-    'euclidianAce/BetterLua.vim', -- better syntax highlighting
-    'onsails/lspkind-nvim',
-
     -- Languages
     'hashivim/vim-terraform',
     'jvirtanen/vim-hcl',
     'google/vim-jsonnet',
     'jjo/vim-cue',
-    'stephpy/vim-yaml',
     'elixir-editors/vim-elixir',
     'mhinz/vim-mix-format',
-    'simrat39/rust-tools.nvim',
     'pangloss/vim-javascript',
     'maxmellon/vim-jsx-pretty',
     {
@@ -256,17 +246,6 @@ return {
                 end
             }
         },
-    },
-
-    {
-        "echasnovski/mini.diff",
-        config = function()
-            local diff = require("mini.diff")
-            diff.setup({
-                -- Disabled by default
-                source = diff.gen_source.none(),
-            })
-        end,
     },
 
     kitty_scrollback_plugin,

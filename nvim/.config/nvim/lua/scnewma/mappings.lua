@@ -1,106 +1,100 @@
-local nmap = require('scnewma.keymap').nmap
-local inoremap = require('scnewma.keymap').inoremap
-local nnoremap = require('scnewma.keymap').nnoremap
-local vnoremap = require('scnewma.keymap').vnoremap
-local cnoremap = require('scnewma.keymap').cnoremap
-
-nmap { 'gQ', '<Nop>' }
-nmap { '-', '<CMD>Oil<CR>' }
-nmap { '<Leader>fp', function() require("scnewma/project").pick() end }
+vim.keymap.set('n', 'gQ', '<Nop>' )
+vim.keymap.set('n', '-', '<CMD>Oil<CR>' )
+vim.keymap.set('n', '<Leader>fp', function() require("scnewma/project").pick() end )
 
 -- window management
 --   split-below-focus
-nnoremap { '<Leader>ws', '<C-w>s<CR>' }
+vim.keymap.set('n', '<Leader>ws', '<C-w>s<CR>' )
 --   split-below
-nnoremap { '<Leader>wS', '<C-w>s<C-w>k<CR>' }
+vim.keymap.set('n', '<Leader>wS', '<C-w>s<C-w>k<CR>' )
 --   split-right-focus
-nnoremap { '<Leader>wv', '<C-w>v<CR>' }
+vim.keymap.set('n', '<Leader>wv', '<C-w>v<CR>' )
 --   split-right
-nnoremap { '<Leader>wV', '<C-w>v<C-w>h<CR>' }
+vim.keymap.set('n', '<Leader>wV', '<C-w>v<C-w>h<CR>' )
 --   delete-window
-nnoremap { '<Leader>wd', ':q<CR>' }
+vim.keymap.set('n', '<Leader>wd', ':q<CR>' )
 --   focus-left
-nnoremap { '<Leader>wh', '<C-w>h' }
+vim.keymap.set('n', '<Leader>wh', '<C-w>h' )
 --   focus-down
-nnoremap { '<Leader>wj', '<C-w>j' }
+vim.keymap.set('n', '<Leader>wj', '<C-w>j' )
 --   focus-up
-nnoremap { '<Leader>wk', '<C-w>k' }
+vim.keymap.set('n', '<Leader>wk', '<C-w>k' )
 --   focus-right
-nnoremap { '<Leader>wl', '<C-w>l' }
+vim.keymap.set('n', '<Leader>wl', '<C-w>l' )
 --   focus-only
-nnoremap { '<Leader>wo', '<C-w>o' }
+vim.keymap.set('n', '<Leader>wo', '<C-w>o' )
 --   focus-top-left
-nnoremap { '<Leader>wt', '<C-w>t' }
+vim.keymap.set('n', '<Leader>wt', '<C-w>t' )
 --   focus-bot-right
-nnoremap { '<Leader>wb', '<C-w>b' }
+vim.keymap.set('n', '<Leader>wb', '<C-w>b' )
 
 -- buffer management
 --   delete-buffer
-nnoremap { '<Leader>bd', ':bdelete<CR>' }
+vim.keymap.set('n', '<Leader>bd', ':bdelete<CR>' )
 --   next-buffer
-nnoremap { '<Leader>bn', ':bn<CR>' }
+vim.keymap.set('n', '<Leader>bn', ':bn<CR>' )
 --   previous-buffer
-nnoremap { '<Leader>bp', ':bp<CR>' }
+vim.keymap.set('n', '<Leader>bp', ':bp<CR>' )
 --   reload-buffer
-nnoremap { '<Leader>bR', ':bR<CR>' }
+vim.keymap.set('n', '<Leader>bR', ':bR<CR>' )
 
 
 -- toggles
 --   toggle-line-numbers
-nnoremap { '<Leader>tn', ':set number!<CR>' }
+vim.keymap.set('n', '<Leader>tn', ':set number!<CR>' )
 --   toggle-line-wrap
-nnoremap { '<Leader>tl', ':set wrap!<CR>' }
+vim.keymap.set('n', '<Leader>tl', ':set wrap!<CR>' )
 
 -- random
 --   yank-to-eol
-nnoremap { 'Y', 'y$' }
+vim.keymap.set('n', 'Y', 'y$' )
 
 -- interact with system clipboard
-nnoremap { '<Leader>p', '"*p' }
-vnoremap { '<Leader>p', '"*p' }
-nnoremap { '<Leader>P', '"*P' }
-vnoremap { '<Leader>P', '"*P' }
-nnoremap { '<Leader>y', '"*y' }
-nnoremap { '<Leader>Y', '"*y$' }
-vnoremap { '<Leader>y', '"*y' }
+vim.keymap.set('n', '<Leader>p', '"*p' )
+vim.keymap.set('v', '<Leader>p', '"*p' )
+vim.keymap.set('n', '<Leader>P', '"*P' )
+vim.keymap.set('v', '<Leader>P', '"*P' )
+vim.keymap.set('n', '<Leader>y', '"*y' )
+vim.keymap.set('n', '<Leader>Y', '"*y$' )
+vim.keymap.set('v', '<Leader>y', '"*y' )
 
 -- blackhole register FTW!!
-nnoremap { '<Leader>d', '"_d' }
-vnoremap { '<Leader>d', '"_d' }
+vim.keymap.set('n', '<Leader>d', '"_d' )
+vim.keymap.set('v', '<Leader>d', '"_d' )
 
 -- Easier remap for accessing alternate file. Neither ^ or 6 are easy
 -- to hit on my keyboard layout.
-nnoremap { '<Leader>a', '<C-^>' }
+vim.keymap.set('n', '<Leader>a', '<C-^>' )
 
 -- Easier quickfix list navigation
-nnoremap { ']q', ':cnext<CR>' }
-nnoremap { '[q', ':cprev<CR>' }
+vim.keymap.set('n', ']q', ':cnext<CR>' )
+vim.keymap.set('n', '[q', ':cprev<CR>' )
 
 -- Easier location list navigation
-nnoremap { ']l', ':lnext<CR>' }
-nnoremap { '[l', ':lprev<CR>' }
+vim.keymap.set('n', ']l', ':lnext<CR>' )
+vim.keymap.set('n', '[l', ':lprev<CR>' )
 
 -- Rename word under cursor on this line
-nnoremap { '<Leader>rl', ':s/\\<<C-r><C-w>\\>//g<Left><Left>' }
+vim.keymap.set('n', '<Leader>rl', ':s/\\<<C-r><C-w>\\>//g<Left><Left>' )
 -- Rename word under cursor in this buffer
-nnoremap { '<Leader>rb', ':%s/\\<<C-r><C-w>\\>//g<Left><Left>' }
+vim.keymap.set('n', '<Leader>rb', ':%s/\\<<C-r><C-w>\\>//g<Left><Left>' )
 -- Rename word under cursor in this buffer, with confirmation
-nnoremap { '<Leader>rB', ':%s/\\<<C-r><C-w>\\>//gc<Left><Left><Left>' }
+vim.keymap.set('n', '<Leader>rB', ':%s/\\<<C-r><C-w>\\>//gc<Left><Left><Left>' )
 
 -- Quickly insert the previously yanked text.
-inoremap { '<C-]>', '<C-g>u<C-r>0' }
-cnoremap { '<C-]>', '<C-r>0' }
+vim.keymap.set('i', '<C-]>', '<C-g>u<C-r>0' )
+vim.keymap.set('c', '<C-]>', '<C-r>0' )
 
 -- Start a new change before pasting from register so it's easily undoable
-inoremap { '<C-r>', '<C-g>u<C-r>' }
+vim.keymap.set('i', '<C-r>', '<C-g>u<C-r>' )
 
 -- Split line moving to the right of the cursor upward
-nnoremap { '<Leader><C-j>', 'DO<Esc>pj:s/\\s\\+$//<CR>' }
+vim.keymap.set('n', '<Leader><C-j>', 'DO<Esc>pj:s/\\s\\+$//<CR>' )
 
-nnoremap { '<Leader>fE', '<cmd>:e ~/.dotfiles/nvim/.config/nvim/lua/scnewma/plugins/init.lua<CR>' }
+vim.keymap.set('n', '<Leader>fE', '<cmd>:e ~/.dotfiles/nvim/.config/nvim/lua/scnewma/plugins/init.lua<CR>' )
 
 -- expands %% into the relative directory of the current buffer in cmd mode
-cnoremap {
+vim.keymap.set('c',
     '%%',
     function ()
         if vim.fn.getcmdtype() == ':' then
@@ -109,13 +103,13 @@ cnoremap {
             return '%%'
         end
     end,
-    { expr = true },
-}
+    { expr = true }
+)
 
 -- Maps <CR> to :write, which saves the file. This mapping only
 -- executes when in a normal buffer to avoid breaking things like the
 -- terminal or quickfix list
-nnoremap {
+vim.keymap.set('n',
     '<CR>',
     function()
         if vim.api.nvim_buf_get_option(0, 'buftype') == "" then
@@ -125,9 +119,9 @@ nnoremap {
         end
     end,
     { silent = true, expr = true }
-}
+)
 
-nnoremap { 'gp', '`[v`]' }
+vim.keymap.set('n', 'gp', '`[v`]' )
 
 -- Store relative line number jumps in the jumplist if they are given a count
 local function jumplistify(letter)
@@ -139,11 +133,11 @@ local function jumplistify(letter)
         return motion .. letter
     end
 end
-nnoremap { 'k', jumplistify('k'), { expr = true } }
-nnoremap { 'j', jumplistify('j'), { expr = true } }
+vim.keymap.set('n', 'k', jumplistify('k'), { expr = true })
+vim.keymap.set('n', 'j', jumplistify('j'), { expr = true })
 
 -- Close all floating windows when pressing Escape in normal mode
-nnoremap { '<Esc>',
+vim.keymap.set('n', '<Esc>',
     function()
         local windows = vim.api.nvim_list_wins()
         for _, win in ipairs(windows) do
@@ -155,10 +149,10 @@ nnoremap { '<Esc>',
         end
     end,
     { desc = 'Close all floating windows' }
-}
+)
 
-nnoremap { '<leader>gc', ':r! git log -1 --pretty=\\%B<CR>' }
-nnoremap { '<leader>jc', ":r! jj log -r @ --no-graph -T'description ++ \"\\n\"'<CR>" }
+vim.keymap.set('n', '<leader>gc', ':r! git log -1 --pretty=\\%B<CR>' )
+vim.keymap.set('n', '<leader>jc', ":r! jj log -r @ --no-graph -T'description ++ \"\\n\"'<CR>" )
 
 -- prevent fat-fingering commands
 vim.cmd [[

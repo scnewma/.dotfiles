@@ -8,9 +8,6 @@ vim.g.maplocalleader = ' m'
 
 require('scnewma.first-load')
 
--- Setup globals that I expect to be always available.
-require('scnewma.globals')
-
 require('lazy').setup('scnewma.plugins')
 
 -- Load neovim options

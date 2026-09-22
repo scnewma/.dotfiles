@@ -4,47 +4,7 @@ description: "Review the changed code for reuse, simplification, efficiency, and
 ---
 
 <!--
-  Origin: Claude Code built-in skill `/simplify` (CLI v2.1.227), reverse-
-  engineered from bin/claude.exe raw bytes. Pi registers it as /code-simplify.
-
-  Lineage:
-    v2.1.220 → the first reconstruction         (v1)
-    v2.1.223 → verified 2026-08-06 against bin/claude.exe strings: skill body
-               (intro, Phase 0, the 4 cleanup angles, Phase 2 apply) and the
-               PARALLEL/SINGLE-PASS split are unchanged vs v2.1.220. The 4
-               angle bodies are shared verbatim with code-review's cleanup
-               angles (same source variables in the binary).
-    v2.1.227 → symbol-level verified 2026-08-11 from raw bytes: skill bodies
-               VBv/KBv (with interpolated c$e / m7t / u$e / d$e / p$e) are
-               unchanged; the mode guard is Dii (see below); fan-out defaults
-               nJu=20 / lKs=50 are now mirrored in the subagent tool.
-    v2.1.261 → re-verified 2026-09-05 from raw bytes: the two mode bodies,
-               the 4-angle set, and the Phase 2 apply rules are unchanged;
-               the Altitude angle gained CC's root-cause phrasing + "name
-               that change" (synced here and in the review skill). The command
-               description ("Clean up the changed code without changing
-               behavior"; "Quality only — it does not hunt for bugs; use
-               /code-review for that") and the Agent-tool fan-out ("all in a
-               single message so they run concurrently") are unchanged.
-               The /code-review↔/code-simplify division of labor is now stated
-               explicitly in both skills upstream — same as here.
-
-  CC 2.1.227 empirical evidence (symbol-level, extracted from bin/claude.exe):
-    - $u({name: "simplify", ..., getPromptForCommand(args, ctx)}) registers the
-      command; no getContext → default "inline" execution: the mode body is
-      injected into the main conversation and the model dispatches the 4
-      cleanup agents itself via the Agent tool (mi = "Agent", alias oj =
-      "Task"), "all in a single message so they run concurrently".
-    - Dii(ctx) — the PARALLEL/SINGLE-PASS guard: single-pass when
-      ctx.agentContext && ok(ctx.agentContext) >= wV() (ok = depth function:
-      main=0, subagent=depth; wV() = CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH,
-      default 3, feature flag tengu_hazel_trellis) OR the Agent tool is not in
-      the options.tools allowlist (Pa matches by name/aliases).
-    - VBv / KBv — the two mode-body templates; interpolated variables shared
-      with the review skill: c$e (Phase 0), m7t/u$e/d$e/p$e (the 4 cleanup angles).
-    - nJu() = CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS ?? 20; lKs =
-      FORKED_AGENT_DEFAULT_MAX_TURNS = 50 — mirrored as the subagent tool's
-      defaults (PI_MAX_CONCURRENT_SUBAGENTS env still overrides the ceiling).
+  Reverse-engineering history: README.md
 
   Bundled: ships inside the pi-review extension (skills/code-simplify/SKILL.md).
 

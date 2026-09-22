@@ -119,29 +119,7 @@ return {
             local group = vim.api.nvim_create_augroup('ScnewmaTreesitter', { clear = true })
             vim.api.nvim_create_autocmd('FileType', {
                 group = group,
-                pattern = {
-                    'bash',
-                    'c',
-                    'dockerfile',
-                    'go',
-                    'gomod',
-                    'gotmpl',
-                    'hcl',
-                    'helm',
-                    'java',
-                    'json',
-                    'lua',
-                    'markdown',
-                    'python',
-                    'query',
-                    'ruby',
-                    'rust',
-                    'swift',
-                    'vim',
-                    'vimdoc',
-                    'yaml',
-                    'zig',
-                },
+                pattern = languages,
                 callback = function(args)
                     if not pcall(vim.treesitter.start, args.buf) then
                         return

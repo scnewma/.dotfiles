@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.85.1",
+  "lastChangelogVersion": "0.87.0",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "high",
@@ -18,7 +18,8 @@
     "npm:pi-mcp-adapter",
     "npm:@tintinweb/pi-subagents",
     "npm:@plannotator/pi-extension",
-    "packages/pi-review"
+    "packages/pi-review",
+    "git:github.com/DietrichGebert/ponytail"
   ],
   "hideThinkingBlock": false,
   "enableInstallTelemetry": false,
