@@ -1,1 +1,67 @@
-font-size = 14
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 16
+theme = Catppuccin Mocha
+
+# Send Herdr's Ctrl-Space prefix using the Kitty keyboard protocol, followed
+# by the action key. A NUL byte is ambiguous once enhanced keyboard input is
+# enabled, and macOS Command modifiers are not forwarded by Ghostty.
+keybind = cmd+t=text:\x1b[32;5uc
+keybind = cmd+d=text:\x1b[32;5uv
+keybind = cmd+shift+d=text:\x1b[32;5us
+keybind = cmd+[=text:\x1b[32;5u[
+keybind = cmd+]=text:\x1b[32;5u]
+keybind = cmd+shift+[=text:\x1b[32;5u\x1b[91;2u
+keybind = cmd+shift+]=text:\x1b[32;5u\x1b[93;2u
+keybind = cmd+w=text:\x1b[32;5u&
+keybind = cmd+x=text:\x1b[32;5ux
+keybind = cmd+z=text:\x1b[32;5uz
+keybind = cmd+arrow_left=text:\x1b[32;5u\x1b[D
+keybind = cmd+arrow_right=text:\x1b[32;5u\x1b[C
+keybind = cmd+p=text:\x1b[32;5ug
+keybind = cmd+o=text:\x1b[32;5uo
+keybind = cmd+shift+p=text:\x1b[32;5u\x1b[103;2u
+keybind = cmd+b=text:\x1b[32;5ub
+keybind = cmd+`=text:\x1b[32;5u`
+
+# Herdr tab selection.
+keybind = cmd+1=text:\x1b[32;5u1
+keybind = cmd+digit_1=text:\x1b[32;5u1
+keybind = cmd+2=text:\x1b[32;5u2
+keybind = cmd+digit_2=text:\x1b[32;5u2
+keybind = cmd+3=text:\x1b[32;5u3
+keybind = cmd+digit_3=text:\x1b[32;5u3
+keybind = cmd+4=text:\x1b[32;5u4
+keybind = cmd+digit_4=text:\x1b[32;5u4
+keybind = cmd+5=text:\x1b[32;5u5
+keybind = cmd+digit_5=text:\x1b[32;5u5
+keybind = cmd+6=text:\x1b[32;5u6
+keybind = cmd+digit_6=text:\x1b[32;5u6
+keybind = cmd+7=text:\x1b[32;5u7
+keybind = cmd+digit_7=text:\x1b[32;5u7
+keybind = cmd+8=text:\x1b[32;5u8
+keybind = cmd+digit_8=text:\x1b[32;5u8
+keybind = cmd+9=text:\x1b[32;5u9
+keybind = cmd+digit_9=text:\x1b[32;5u9
+
+# Directional Herdr pane focus.
+keybind = cmd+alt+arrow_left=text:\x1b[32;5uh
+keybind = cmd+alt+arrow_down=text:\x1b[32;5uj
+keybind = cmd+alt+arrow_up=text:\x1b[32;5uk
+keybind = cmd+alt+arrow_right=text:\x1b[32;5ul
+
+# Herdr pane resizing through prefix+Alt+h/j/k/l.
+keybind = cmd+ctrl+arrow_left=text:\x1b[32;5u\x1b[104;3u
+keybind = cmd+ctrl+arrow_down=text:\x1b[32;5u\x1b[106;3u
+keybind = cmd+ctrl+arrow_up=text:\x1b[32;5u\x1b[107;3u
+keybind = cmd+ctrl+arrow_right=text:\x1b[32;5u\x1b[108;3u
+
+# Focus detected agents by sidebar position.
+keybind = cmd+alt+1=text:\x1b[32;5u\x1b[49;3u
+keybind = cmd+alt+2=text:\x1b[32;5u\x1b[50;3u
+keybind = cmd+alt+3=text:\x1b[32;5u\x1b[51;3u
+keybind = cmd+alt+4=text:\x1b[32;5u\x1b[52;3u
+keybind = cmd+alt+5=text:\x1b[32;5u\x1b[53;3u
+keybind = cmd+alt+6=text:\x1b[32;5u\x1b[54;3u
+keybind = cmd+alt+7=text:\x1b[32;5u\x1b[55;3u
+keybind = cmd+alt+8=text:\x1b[32;5u\x1b[56;3u
+keybind = cmd+alt+9=text:\x1b[32;5u\x1b[57;3u

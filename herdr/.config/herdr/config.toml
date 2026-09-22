@@ -1,0 +1,60 @@
+onboarding = false
+
+[theme]
+name = "catppuccin"
+
+[terminal]
+new_cwd = "follow"
+
+[keys]
+# Keep the same prefix and core navigation as tmux.
+prefix = "ctrl+space"
+
+# Tabs are the Herdr equivalent of tmux windows.
+new_tab = ["prefix+c", "cmd+t"]
+close_tab = ["prefix+ampersand", "cmd+w"]
+previous_tab = ["prefix+[", "cmd+["]
+next_tab = ["prefix+]", "cmd+]"]
+move_tab_previous = ["prefix+left", "cmd+left"]
+move_tab_next = ["prefix+right", "cmd+right"]
+switch_tab = "prefix+1..9"
+
+# Panes.
+split_vertical = "prefix+v"
+split_horizontal = ["prefix+s", "prefix+enter"]
+close_pane = ["prefix+x", "cmd+x"]
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+cycle_pane_previous = ["prefix+shift+[", "cmd+shift+["]
+cycle_pane_next = ["prefix+shift+]", "cmd+shift+]"]
+last_pane = "prefix+backtick"
+zoom = ["prefix+z", "cmd+z"]
+resize_pane_left = "prefix+alt+h"
+resize_pane_down = "prefix+alt+j"
+resize_pane_up = "prefix+alt+k"
+resize_pane_right = "prefix+alt+l"
+
+# Workspaces are the closest Herdr equivalent to tmux sessions.
+workspace_picker = "prefix+ctrl+t"
+goto = ["prefix+g", "cmd+p"]
+open_notification_target = ["prefix+o", "cmd+o"]
+new_worktree = ["prefix+shift+g", "cmd+shift+p"]
+focus_agent = "prefix+alt+1..9"
+toggle_sidebar = "prefix+b"
+previous_workspace = "prefix+shift+9"
+next_workspace = "prefix+shift+0"
+
+# Avoid conflicts introduced by the tmux-style bindings above.
+settings = "prefix+comma"
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+edit_scrollback = ["prefix+escape", "prefix+t"]
+
+[ui]
+mouse_capture = true
+prompt_new_tab_name = false
+pane_outer_borders = false
+pane_gaps = false
+tab_bar_position = "bottom"

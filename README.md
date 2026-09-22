@@ -9,7 +9,7 @@ The below commands are ordered so that all of the `.config` directories are syml
 git clone https://github.com/scnewma/.dotfiles.git ~/.dotfiles
 /opt/homebrew/bin/brew bundle install --file=~/.dotfiles/homebrew/.homebrew/Brewfile
 cd ~/.dotfiles
-/opt/homebrew/bin/stow bat gh git kitty nvim pi starship tmux zsh
+/opt/homebrew/bin/stow bat gh git ghostty herdr kitty nvim pi starship tmux zsh
 exec fish
 ```
 

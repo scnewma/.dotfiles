@@ -49,8 +49,8 @@ type -q gh && abbr -ag gpr --function gh-pull-request-abbr
 
 type -q claude && abbr -ag cld "claude --allowedTools 'Bash(git:*),Bash(find:*),Bash(rg:*),Edit,Write'"
 
-abbr -ag sonnet pi --model claude-sonnet-5 --thinking low
-abbr -ag opus pi --model claude-opus-5 --thinking low
+abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking low
+abbr -ag opus pi --model 'claude-opus-5' --thinking low
 
 function '?' --description 'Start a context-free Pi session'
     set -l temp_dir (mktemp -d)
@@ -71,7 +71,8 @@ function '?' --description 'Start a context-free Pi session'
     return $pi_status
 end
 
-abbr -ag fable pi --model claude-fable-5 --thinking medium
+abbr -ag fable pi --model 'claude-fable-5' --thinking medium
+abbr -ag astra pi --model 'gpt-6-astra' --thinking medium
 abbr -ag sol pi --model 'gpt-5.6-sol' --thinking medium
 abbr -ag terra pi --model 'gpt-5.6-terra' --thinking medium
 abbr -ag luna pi --model 'gpt-5.6-luna' --thinking medium
