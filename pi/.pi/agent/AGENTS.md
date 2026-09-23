@@ -37,6 +37,7 @@
 - Keep messages short and descriptive
 - Always include a commit attribution in any commits/PRs you write. Run $HOME/.dotfiles/llm-commit-attribution.sh to get the correct value.
 - When creating branches, prefix them with `sn-` (i.e. `sn-<branch-name>`).
+- Prefer `but` if configured, fallback to `git` if `but` is not setup for the repo.
 
 ## Agent Behavior
 
