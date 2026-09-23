@@ -49,9 +49,6 @@ type -q gh && abbr -ag gpr --function gh-pull-request-abbr
 
 type -q claude && abbr -ag cld "claude --allowedTools 'Bash(git:*),Bash(find:*),Bash(rg:*),Edit,Write'"
 
-abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking low
-abbr -ag opus pi --model 'claude-opus-5' --thinking low
-
 function '?' --description 'Start a context-free Pi session'
     set -l temp_dir (mktemp -d)
     or return 1
@@ -71,15 +68,29 @@ function '?' --description 'Start a context-free Pi session'
     return $pi_status
 end
 
+function pi
+    switch "$argv[1]"
+        case install remove uninstall update list config
+            command pi $argv
+            return
+    end
+
+    set -l args
+    set -q PI_ENABLED_MODELS[1]; and set args --models (string join , $PI_ENABLED_MODELS)
+    command pi $args $argv
+end
+
 function pi-openai
     if not test -f "$PI_OPENAI_MCP_CONFIG"
         echo "OpenAI MCP config missing" >&2
         return 1
     end
 
-    command pi --mcp-config "$PI_OPENAI_MCP_CONFIG" $argv
+    pi --mcp-config "$PI_OPENAI_MCP_CONFIG" $argv
 end
 
+abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking low
+abbr -ag opus pi --model 'claude-opus-5-5' --thinking low
 abbr -ag fable pi --model 'claude-fable-5' --thinking medium
 abbr -ag astra pi-openai --model 'gpt-6-astra' --thinking medium
 abbr -ag sol pi-openai --model 'gpt-6-sol' --thinking medium

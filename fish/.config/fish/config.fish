@@ -26,6 +26,8 @@ test -d "$HOME/.local/bin" && fish_add_path $HOME/.local/bin
 test -d $HOME/dev/bin && fish_add_path $HOME/dev/bin
 test -d $HOME/bin && fish_add_path $HOME/bin
 
+set -gx PI_ENABLED_MODELS openai-codex/gpt-6-sol openai-codex/gpt-6-luna openai-codex/gpt-5.6-terra
+
 # Load local config if it exists
 if test -f $HOME/.config/fish/config.fish.local
     source $HOME/.config/fish/config.fish.local
