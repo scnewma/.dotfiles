@@ -71,9 +71,18 @@ function '?' --description 'Start a context-free Pi session'
     return $pi_status
 end
 
+function pi-openai
+    if not test -f "$PI_OPENAI_MCP_CONFIG"
+        echo "OpenAI MCP config missing" >&2
+        return 1
+    end
+
+    command pi --mcp-config "$PI_OPENAI_MCP_CONFIG" $argv
+end
+
 abbr -ag fable pi --model 'claude-fable-5' --thinking medium
-abbr -ag astra pi --model 'gpt-6-astra' --thinking medium
-abbr -ag sol pi --model 'gpt-5.6-sol' --thinking medium
-abbr -ag terra pi --model 'gpt-5.6-terra' --thinking medium
-abbr -ag luna pi --model 'gpt-5.6-luna' --thinking medium
+abbr -ag astra pi-openai --model 'gpt-6-astra' --thinking medium
+abbr -ag sol pi-openai --model 'gpt-6-sol' --thinking medium
+abbr -ag terra pi-openai --model 'gpt-5.6-terra' --thinking medium
+abbr -ag luna pi-openai --model 'gpt-6-luna' --thinking medium
 abbr -ag pi-up "mise up pi@latest; and pi update --extensions"
