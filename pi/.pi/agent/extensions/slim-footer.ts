@@ -1,3 +1,4 @@
+import { stripVTControlCharacters } from "node:util";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 
@@ -55,7 +56,11 @@ export default function (pi: ExtensionAPI) {
 					const statuses = footerData.getExtensionStatuses();
 					const statusText = Array.from(statuses.entries())
 						.sort(([a], [b]) => a.localeCompare(b))
-						.map(([, text]) => sanitize(text))
+						.map(([key, text]) =>
+							key === "ponytail"
+								? stripVTControlCharacters(sanitize(text)).replace(/^[●○] 🐴 ponytail: /, "🐴: ")
+								: sanitize(text),
+						)
 						.join(" ");
 
 					const stats: string[] = [];
