@@ -38,13 +38,14 @@ resize_pane_right = "prefix+alt+l"
 
 # Workspaces are the closest Herdr equivalent to tmux sessions.
 workspace_picker = "prefix+ctrl+t"
+new_workspace = ["prefix+shift+n", "cmd+n"]
 goto = ["prefix+g", "cmd+p"]
 open_notification_target = ["prefix+o", "cmd+o"]
 new_worktree = ["prefix+shift+g", "cmd+shift+p"]
 focus_agent = "prefix+alt+1..9"
 toggle_sidebar = "prefix+b"
-previous_workspace = "prefix+shift+9"
-next_workspace = "prefix+shift+0"
+previous_workspace = ["prefix+shift+9", "cmd+ctrl+up"]
+next_workspace = ["prefix+shift+0", "cmd+ctrl+down"]
 
 # Avoid conflicts introduced by the tmux-style bindings above.
 settings = "prefix+comma"

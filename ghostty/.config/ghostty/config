@@ -6,6 +6,7 @@ theme = Catppuccin Mocha
 # by the action key. A NUL byte is ambiguous once enhanced keyboard input is
 # enabled, and macOS Command modifiers are not forwarded by Ghostty.
 keybind = cmd+t=text:\x1b[32;5uc
+keybind = cmd+n=text:\x1b[32;5u\x1b[110;2u
 keybind = cmd+d=text:\x1b[32;5uv
 keybind = cmd+shift+d=text:\x1b[32;5us
 keybind = cmd+[=text:\x1b[32;5u[
@@ -49,10 +50,12 @@ keybind = cmd+alt+arrow_down=text:\x1b[32;5uj
 keybind = cmd+alt+arrow_up=text:\x1b[32;5uk
 keybind = cmd+alt+arrow_right=text:\x1b[32;5ul
 
-# Herdr pane resizing through prefix+Alt+h/j/k/l.
+# Herdr space navigation.
+keybind = cmd+ctrl+arrow_up=text:\x1b[32;5u\x1b[57;2u
+keybind = cmd+ctrl+arrow_down=text:\x1b[32;5u\x1b[48;2u
+
+# Herdr pane resizing through prefix+Alt+h/l.
 keybind = cmd+ctrl+arrow_left=text:\x1b[32;5u\x1b[104;3u
-keybind = cmd+ctrl+arrow_down=text:\x1b[32;5u\x1b[106;3u
-keybind = cmd+ctrl+arrow_up=text:\x1b[32;5u\x1b[107;3u
 keybind = cmd+ctrl+arrow_right=text:\x1b[32;5u\x1b[108;3u
 
 # Focus detected agents by sidebar position.
