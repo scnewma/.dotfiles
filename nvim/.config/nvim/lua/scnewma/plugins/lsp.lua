@@ -3,7 +3,7 @@ return {
         'neovim/nvim-lspconfig',
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
-            'j-hui/fidget.nvim',
+            { 'j-hui/fidget.nvim', opts = {} },
             'saghen/blink.cmp',
         },
         opts = {
@@ -81,9 +81,6 @@ return {
                     }
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, kmopts)
                     vim.keymap.set('n', 'grr', '<cmd>FzfLua lsp_references<CR>', kmopts)
-                    vim.keymap.set('n', 'grt', vim.lsp.buf.type_definition, kmopts)
-                    vim.keymap.set('n', 'grx', vim.lsp.codelens.run, kmopts)
-                    vim.keymap.set('n', 'K', vim.lsp.buf.hover, kmopts)
                     -- code-rename
                     vim.keymap.set('n', '<Leader>cr', vim.lsp.buf.rename, kmopts)
                     --  diagnostics
@@ -149,7 +146,7 @@ return {
 
     {
         'mrcjkb/rustaceanvim',
-        version = '^6',
+        version = '^9',
         lazy = false, -- This plugin is already lazy
     }
 }

@@ -23,10 +23,6 @@ return {
             require("catppuccin").setup {
                 flavour = "mocha",
                 no_italic = true,
-                integrations = {
-                    -- breaks the colorscheme a bit, but unsetting this doesn't fully fix it
-                    treesitter = false,
-                }
             }
             vim.cmd.colorscheme "catppuccin"
         end
@@ -134,7 +130,7 @@ return {
         opts = {
             view_options = { show_hidden = true },
         },
-        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
     },
 
     -- completion
@@ -159,7 +155,6 @@ return {
     'hashivim/vim-terraform',
     'jvirtanen/vim-hcl',
     'google/vim-jsonnet',
-    'jjo/vim-cue',
     'elixir-editors/vim-elixir',
     'mhinz/vim-mix-format',
     'pangloss/vim-javascript',
