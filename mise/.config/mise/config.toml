@@ -6,6 +6,7 @@ deno = "latest"
 bun = "latest"
 awscli = "latest"
 pi = "latest"
+uv = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
