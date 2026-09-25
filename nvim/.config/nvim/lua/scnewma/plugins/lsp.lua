@@ -34,7 +34,7 @@ return {
                 vimls = {},
                 yamlls = {},
                 -- denols = {},
-                ts_ls = {},
+                tsc = {},
                 lua_ls = {
                     settings = {
                         Lua = {
