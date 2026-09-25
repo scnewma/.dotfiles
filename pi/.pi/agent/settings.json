@@ -24,5 +24,8 @@
   "tuiMode": "fullscreen",
   "defaultProjectTrust": "ask",
   "quietStartup": true,
-  "httpIdleTimeoutMs": 30000
+  "httpIdleTimeoutMs": 30000,
+  "retry": {
+    "maxRetries": 6
+  }
 }
