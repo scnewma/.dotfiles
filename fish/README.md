@@ -24,7 +24,7 @@ Set the path to an MCP config file for OpenAI Pi sessions:
 set -gx PI_OPENAI_MCP_CONFIG $HOME/.local/share/pi/mcp-openai.json
 ```
 
-Pi loads this file with `--mcp-config` in place of `~/.pi/agent/mcp.json`. `~/.config/mcp/mcp.json` still loads first. Disable any shared server by name:
+The `pi-openai` shim passes this file to pi-mcp-adapter with `--mcp-config` instead of `~/.pi/agent/mcp-adapter.json`. `~/.config/mcp/mcp.json` still loads first. Disable any shared server by name:
 
 ```json
 {
@@ -44,4 +44,4 @@ To add a server that only OpenAI sessions get, give its full definition:
 }
 ```
 
-Copy any adapter `settings` you need from `~/.pi/agent/mcp.json`, because the replaced file's settings do not load.
+Copy any adapter `settings` you need from `~/.pi/agent/mcp-adapter.json`, because the replaced file's settings do not load.
