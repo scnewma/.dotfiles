@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "linear": {
+      "url": "https://mcp.linear.app/mcp"
+    },
+    "notion": {
+      "url": "https://mcp.notion.com/mcp"
+    },
+    "slack": {
+      "url": "https://mcp.slack.com/mcp",
+      "headers": {
+        "Authorization": "!printf 'Bearer %s' \"$(cat \"$HOME/.auth/pi-slack-mcp-token\")\""
+      }
+    },
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp",
+      "enabled": false
+    }
+  }
+}

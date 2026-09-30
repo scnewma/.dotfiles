@@ -20,6 +20,7 @@ direnv/.config/direnv/direnvrc.local
 kitty/.config/kitty/projects_local.py
 opencode/.config/opencode/plugins/supacode.ts
 pi/.pi/agent/extensions/supacode/*
+pi/.pi/agent/mcp-auth.json
 
 herdr/.config/herdr/.plugins.lock
 herdr/.config/herdr/*.log
