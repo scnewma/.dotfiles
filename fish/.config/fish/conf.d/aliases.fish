@@ -81,7 +81,7 @@ function pi
 end
 
 abbr -ag sonnet pi --model 'claude-sonnet-5' --thinking low
-abbr -ag opus pi --model 'claude-opus-5-5' --thinking low
+abbr -ag opus pi --model 'claude-opus-5-5' --thinking medium
 abbr -ag fable pi --model 'claude-fable-5' --thinking medium
 abbr -ag astra pi --model 'gpt-6-astra' --thinking medium
 abbr -ag sol pi --model 'gpt-6.1-sol' --thinking medium
