@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "0.99.1",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.1-sol",
   "defaultThinkingLevel": "high",
@@ -7,10 +7,10 @@
   "packages": [
     "npm:@ollama/pi-web-search@0.0.5",
     "npm:@scnewma/pi-codex-rate-limits",
-    "npm:@tintinweb/pi-subagents",
     "npm:@plannotator/pi-extension",
     "packages/pi-review",
-    "git:github.com/DietrichGebert/ponytail"
+    "git:github.com/DietrichGebert/ponytail",
+    "git:github.com/Arteiimis/pi-subagents@dd12bee7726bc82bd7de87f31ea21042efddce8b"
   ],
   "hideThinkingBlock": false,
   "enableInstallTelemetry": false,
