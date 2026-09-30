@@ -25,3 +25,4 @@ pi/.pi/agent/mcp-auth.json
 herdr/.config/herdr/.plugins.lock
 herdr/.config/herdr/*.log
 herdr/.config/herdr/session.json
+herdr/.config/herdr/release-notes.json
