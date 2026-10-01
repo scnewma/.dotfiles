@@ -5,6 +5,7 @@ function fish_user_key_bindings
 
     for mode in insert default
         bind -M $mode alt-b,alt-b fzf_but_branches
+        bind -M $mode alt-b,alt-f fzf_but_changes
     end
 end
 
