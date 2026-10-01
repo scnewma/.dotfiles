@@ -5,7 +5,7 @@ python = "latest"
 deno = "latest"
 bun = "latest"
 awscli = "latest"
-pi = "latest"
+"npm:@earendil-works/pi-coding-agent" = "latest"
 uv = "latest"
 
 [settings]
@@ -18,5 +18,5 @@ minimum_release_age_excludes = [
   "deno",
   "bun",
   "awscli",
-  "pi",
+  "npm:@earendil-works/pi-coding-agent",
 ]
