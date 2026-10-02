@@ -1,0 +1,4 @@
+\.git
+\.gitignore
+node_modules
+^/\.pi/agent/(?!AGENTS\.md$|agents(?:/|$)|extensions(?:/|$)|mcp\.json$|packages(?:/|$)|prompts(?:/|$)|settings\.json$|skills(?:/|$)|themes(?:/|$)|web-search\.json$)[^/]+

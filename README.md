@@ -9,9 +9,19 @@ The below commands are ordered so that all of the `.config` directories are syml
 git clone https://github.com/scnewma/.dotfiles.git ~/.dotfiles
 /opt/homebrew/bin/brew bundle install --file=~/.dotfiles/homebrew/.homebrew/Brewfile
 cd ~/.dotfiles
-/opt/homebrew/bin/stow bat gh git ghostty herdr kitty nvim pi starship tmux zsh
+./scripts/stow.sh
 exec fish
 ```
+
+To link selected packages, run `./scripts/stow.sh pi fish`.
+
+The wrapper creates real `~/.pi/agent/skills` parent directories, links dotfiles-owned
+skills, and leaves links into `~/.agents/skills` to the skills installer. Install
+those skills separately with your usual `npx skills` commands.
+
+If `~/.pi`, `~/.pi/agent`, or `~/.pi/agent/skills` is already a symlink, migrate it
+to a real directory first, preserving runtime data and recreating installer links
+with targets relative to their new location. Then run the wrapper.
 
 Make `fish` the default shell:
 
