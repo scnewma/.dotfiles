@@ -4,12 +4,8 @@
 
 Put machine-specific settings in `~/.config/fish/config.fish.local`. Git ignores this file.
 
-### `PI_ENABLED_MODELS`
+### Pi
 
-The `pi` function passes these models to `pi --models` for startup selection and Ctrl+P cycling. `config.fish` sets the default OpenAI models. Append machine-specific models:
+Use `sol`, `luna`, `astra`, `terra`, `opus`, `sonnet`, or `fable` to launch the corresponding model. Bare `pi` defaults to Sol.
 
-```fish
-set -gxa PI_ENABLED_MODELS claude-opus-5 claude-sonnet-5
-```
-
-Do not set `enabledModels` in `~/.pi/agent/settings.json`.
+Configure subagent roles under `subagents.agentOverridesByProvider`; mappings follow the current parent provider, including model switches inside Pi.

@@ -60,7 +60,7 @@ function '?' --description 'Start a context-free Pi session'
         return 1
     end
 
-    command pi --model claude-opus-5 --thinking low --no-context-files --no-session -- $argv
+    pi --model claude-opus-5-5 --thinking low --no-context-files --no-session -- $argv
     set -l pi_status $status
 
     cd $original_dir
@@ -68,23 +68,11 @@ function '?' --description 'Start a context-free Pi session'
     return $pi_status
 end
 
-function pi
-    switch "$argv[1]"
-        case install remove uninstall update list config
-            command pi $argv
-            return
-    end
-
-    set -l args
-    set -q PI_ENABLED_MODELS[1]; and set args --models (string join , $PI_ENABLED_MODELS)
-    command pi $args $argv
-end
-
-abbr -ag sonnet pi --model 'claude-sonnet-5-5' --thinking medium
-abbr -ag opus pi --model 'claude-opus-5-5' --thinking medium
-abbr -ag fable pi --model 'claude-fable-5' --thinking medium
-abbr -ag astra pi --model 'gpt-6-astra' --thinking medium
+abbr -ag sonnet pi --model claude-sonnet-5-5 --thinking medium
+abbr -ag opus pi --model claude-opus-5-5 --thinking medium
+abbr -ag fable pi --model claude-fable-5 --thinking medium
+abbr -ag astra pi --model gpt-6-astra --thinking medium
 abbr -ag sol pi --model 'gpt-6.1-sol' --thinking medium
 abbr -ag terra pi --model 'gpt-5.6-terra' --thinking medium
-abbr -ag luna pi --model 'gpt-6-luna' --thinking medium
+abbr -ag luna pi --model gpt-6-luna --thinking medium
 abbr -ag pi-up "mise up npm:@earendil-works/pi-coding-agent@latest; and pi update --extensions"
