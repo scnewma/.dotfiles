@@ -37,8 +37,6 @@
 - The commit title should be descriptive of what changed. The body should include details on why the code changed.
 - Always include a commit attribution in any commits/PRs you write. Run $HOME/.dotfiles/llm-commit-attribution.sh to get the correct value.
 - When creating branches, prefix them with `sn-` (i.e. `sn-<branch-name>`).
-- Prefer `but` if configured, fallback to `git` if `but` is not setup for the repo.
-- When I say "land", use `but land`. Do not substitute a PR merge or push.
 
 ### Polling
 - If you need to poll for changes, never `sleep` for more than 60 seconds.
