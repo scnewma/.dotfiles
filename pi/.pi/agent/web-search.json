@@ -1,0 +1,13 @@
+{
+  "provider": "ollama",
+  "ollamaApiKey": "$OLLAMA_API_KEY",
+  "webSearch": {
+    "allowedProviders": ["ollama"]
+  },
+  "fetchRouting": {
+    "providers": ["http", "ollama"],
+    "allowRemoteHostedProviders": true
+  },
+  "workflow": "none",
+  "toolActivation": "eager"
+}
