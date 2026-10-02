@@ -73,9 +73,6 @@
         "spec-reviewer": {
           "model": "openai-codex/gpt-6.1-sol"
         },
-        "code-quality-reviewer": {
-          "model": "openai-codex/gpt-6.1-sol"
-        },
         "review-runner": {
           "model": "openai-codex/gpt-6.1-sol"
         }
@@ -116,9 +113,6 @@
           "model": "anthropic/claude-opus-5-5"
         },
         "spec-reviewer": {
-          "model": "anthropic/claude-opus-5-5"
-        },
-        "code-quality-reviewer": {
           "model": "anthropic/claude-opus-5-5"
         },
         "review-runner": {
