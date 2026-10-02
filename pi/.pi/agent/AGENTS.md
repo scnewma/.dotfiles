@@ -34,7 +34,7 @@
 
 ### Commits
 - Freeform commit messages — no conventional commits
-- Keep messages short and descriptive
+- The commit title should be descriptive of what changed. The body should include details on why the code changed.
 - Always include a commit attribution in any commits/PRs you write. Run $HOME/.dotfiles/llm-commit-attribution.sh to get the correct value.
 - When creating branches, prefix them with `sn-` (i.e. `sn-<branch-name>`).
 - Prefer `but` if configured, fallback to `git` if `but` is not setup for the repo.
@@ -50,9 +50,6 @@
 - **Don't ask** about trivial choices (variable names, import ordering, minor style)
 
 ### File Operations
-- Act with agency — create files when the task requires it
-- Never create unnecessary "nice to have" files
-- Never create a docs file unless I asked for one. A plan you wrote yourself is not a request from me.
 - Never commit plan, scratch, or report files
 
 ### Prohibited Actions
