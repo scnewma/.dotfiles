@@ -1,3 +1,4 @@
+import { execFile } from "node:child_process";
 import { stripVTControlCharacters } from "node:util";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
@@ -10,14 +11,54 @@ function formatTokens(count: number): string {
 	return `${Math.round(count / 1e6)}M`;
 }
 
-const sanitize = (text: string) => text.replace(/[\r\n\t]/g, " ").replace(/ +/g, " ").trim();
+const sanitize = (text: string) =>
+	text
+		.replace(/[\r\n\t]/g, " ")
+		.replace(/ +/g, " ")
+		.trim();
 
 export default function (pi: ExtensionAPI) {
+	let disposeFooter = () => {};
+	pi.on("session_shutdown", () => disposeFooter());
 	pi.on("session_start", async (_event, ctx) => {
+		if (ctx.mode !== "tui") return;
 		ctx.ui.setFooter((tui, theme, footerData) => {
-			const unsub = footerData.onBranchChange(() => tui.requestRender());
+			let jjPrompt = "";
+			let refreshing = false;
+			let disposed = false;
+			const refresh = () => {
+				if (refreshing || disposed) return;
+				refreshing = true;
+				execFile(
+					"fish",
+					["-c", "fish_jj_prompt"],
+					{ cwd: ctx.sessionManager.getCwd(), timeout: 4000 },
+					(error, stdout) => {
+						refreshing = false;
+						if (disposed) return;
+						const next = error ? "" : sanitize(stripVTControlCharacters(stdout));
+						if (next !== jjPrompt) {
+							jjPrompt = next;
+							tui.requestRender();
+						}
+					},
+				);
+			};
+			const unsub = footerData.onBranchChange(() => {
+				refresh();
+				tui.requestRender();
+			});
+			const timer = setInterval(refresh, 5000);
+			timer.unref();
+			refresh();
+			disposeFooter = () => {
+				if (disposed) return;
+				disposed = true;
+				clearInterval(timer);
+				unsub();
+			};
 			return {
-				dispose: unsub,
+				dispose: disposeFooter,
 				invalidate() {},
 				render(width: number): string[] {
 					let input = 0;
@@ -25,11 +66,7 @@ export default function (pi: ExtensionAPI) {
 					let cost = 0;
 					for (const entry of ctx.sessionManager.getEntries() as any[]) {
 						const usage =
-							entry.type === "usage"
-								? entry.usage
-								: entry.type === "message"
-									? entry.message.usage
-									: entry.usage;
+							entry.type === "usage" ? entry.usage : entry.type === "message" ? entry.message.usage : entry.usage;
 						if (!usage) continue;
 						input += usage.input ?? 0;
 						output += usage.output ?? 0;
@@ -40,7 +77,8 @@ export default function (pi: ExtensionAPI) {
 					let pwd = ctx.sessionManager.getCwd();
 					if (home && pwd.startsWith(home)) pwd = `~${pwd.slice(home.length)}`;
 					const branch = footerData.getGitBranch();
-					if (branch === "gitbutler/workspace") pwd = `${pwd} [but]`;
+					if (jjPrompt) pwd = `${pwd} ${jjPrompt}`;
+					else if (branch === "gitbutler/workspace") pwd = `${pwd} [but]`;
 					else if (branch) pwd = `${pwd} (${branch})`;
 					const name = ctx.sessionManager.getSessionName?.() ?? pi.getSessionName();
 					if (name) pwd = `${pwd} \u2022 ${name}`;
@@ -67,7 +105,9 @@ export default function (pi: ExtensionAPI) {
 					if (input) stats.push(`\u2191${formatTokens(input)}`);
 					if (output) stats.push(`\u2193${formatTokens(output)}`);
 					if (cost) stats.push(`$${cost.toFixed(3)}`);
-					stats.push(pct > 90 ? theme.fg("error", pctDisplay) : pct > 70 ? theme.fg("warning", pctDisplay) : pctDisplay);
+					stats.push(
+						pct > 90 ? theme.fg("error", pctDisplay) : pct > 70 ? theme.fg("warning", pctDisplay) : pctDisplay,
+					);
 					if (statusText) stats.push(statusText);
 
 					let statsLeft = stats.join(" ");
