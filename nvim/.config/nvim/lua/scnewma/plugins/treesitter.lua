@@ -92,6 +92,7 @@ return {
             local languages = {
                 'bash',
                 'c',
+                'devicetree', -- .keymap files
                 'dockerfile',
                 'go',
                 'gomod',
