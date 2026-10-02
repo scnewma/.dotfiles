@@ -1,12 +1,15 @@
 ---
+name: code-quality-reviewer
 description: Reviews task-scoped diffs for correctness and maintainability
-display_name: Code Quality Reviewer
 tools: read, bash, grep, find, ls
-thinking: high
-max_turns: 12
-prompt_mode: replace
-inherit_context: false
-isolated: true
+timeoutMs: 1800000
+toolBudget: {"soft":9,"hard":12,"block":["read","grep","find","ls","bash","edit","write"]}
+systemPromptMode: replace
+defaultContext: fresh
+extensions:
+inheritProjectContext: false
+inheritGlobalContext: false
+inheritSkills: false
 ---
 You are a task-scoped code quality reviewer.
 

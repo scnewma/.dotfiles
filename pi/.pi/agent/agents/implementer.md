@@ -1,12 +1,15 @@
 ---
+name: implementer
 description: Task-scoped implementation agent for approved plans
-display_name: Implementer
 tools: read, bash, edit, write, grep, find, ls
-thinking: medium
-max_turns: 30
-prompt_mode: replace
-inherit_context: false
-isolated: true
+timeoutMs: 1800000
+toolBudget: {"soft":22,"hard":30,"block":["read","grep","find","ls","bash","edit","write"]}
+systemPromptMode: replace
+defaultContext: fresh
+extensions:
+inheritProjectContext: false
+inheritGlobalContext: false
+inheritSkills: false
 ---
 You are a task-scoped implementation subagent.
 

@@ -12,20 +12,31 @@
  * this module only executes them. Adding a new prompt/skill requires no
  * change here — the templates and skills are the registration surface.
  */
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { CONFIG_DIR_NAME, getAgentDir, parseFrontmatter } from "@earendil-works/pi-coding-agent";
-import { isFanoutToolAllowed } from "@fyeeme/pi-subagents";
+
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadTurnBudgets } from "./config.ts";
-import { DIFF_SCOPES, buildContextPackage, getRepoDiff, verifyLine } from "./diff.ts";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import {
+	CONFIG_DIR_NAME,
+	getAgentDir,
+	parseFrontmatter,
+} from "@earendil-works/pi-coding-agent";
+import { loadBudgets } from "./config.ts";
+import {
+	buildContextPackage,
+	DIFF_SCOPES,
+	getRepoDiff,
+	verifyLine,
+} from "./diff.ts";
 import { extractLoopFlag, runLoopFixing } from "./loop.ts";
 import { bundledSkillPath } from "./skills.ts";
 import { parseGuards, selectVariant } from "./strategy.ts";
 
 // This file lives at <pkg>/src/ → ".." is the package root.
-const PKG_ROOT = fs.realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."));
+const PKG_ROOT = fs.realpathSync(
+	path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."),
+);
 
 /** Absolute path to a prompt template bundled in this package's prompts/ dir. */
 function bundledPromptPath(rel: string): string {
@@ -33,11 +44,28 @@ function bundledPromptPath(rel: string): string {
 }
 
 /** Load a bundled template: frontmatter map + body. */
-function loadTemplate(rel: string): { frontmatter: Record<string, unknown>; body: string } {
+function loadTemplate(rel: string): {
+	frontmatter: Record<string, unknown>;
+	body: string;
+} {
 	const { frontmatter, body } = parseFrontmatter<Record<string, unknown>>(
 		fs.readFileSync(bundledPromptPath(rel), "utf8"),
 	);
 	return { frontmatter, body };
+}
+
+export function loadRolePrompts(): Record<string, string> {
+	const dir = path.join(PKG_ROOT, "roles");
+	return Object.fromEntries(
+		fs
+			.readdirSync(dir)
+			.filter((file) => file.endsWith(".md"))
+			.sort()
+			.map((file) => [
+				file.slice(0, -3),
+				parseFrontmatter(fs.readFileSync(path.join(dir, file), "utf8")).body,
+			]),
+	);
 }
 
 /** Substitute {{var}} placeholders. An unknown placeholder is an error at
@@ -46,8 +74,26 @@ function loadTemplate(rel: string): { frontmatter: Record<string, unknown>; body
  *  Pure — unit-testable. */
 export function render(body: string, vars: Record<string, string>): string {
 	return body.replace(/\{\{([a-z-]+)\}\}/g, (whole, name: string) =>
-		name in vars ? vars[name]! : whole,
+		name in vars ? (vars[name] ?? whole) : whole,
 	);
+}
+
+export function nativeFanoutAvailable(pi: {
+	getActiveTools(): string[];
+	getAllTools(): { name: string }[];
+}): boolean {
+	const active = pi.getActiveTools();
+	return (
+		active.includes("subagent") ||
+		(active.includes("subagents_enable") &&
+			pi.getAllTools().some((tool) => tool.name === "subagent"))
+	);
+}
+export function parentModel(
+	model: { provider: string; id: string },
+	thinking: string,
+): string {
+	return `${model.provider}/${model.id}:${thinking}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -77,10 +123,13 @@ export function usesFanout(level: ReviewLevel): boolean {
 	return level === "xhigh" || level === "max";
 }
 
-export function parseReviewArgs(args: string): { level: ReviewLevel | undefined; rest: string } {
+export function parseReviewArgs(args: string): {
+	level: ReviewLevel | undefined;
+	rest: string;
+} {
 	const tokens = (args ?? "").trim().split(/\s+/).filter(Boolean);
 	if (tokens.length === 0) return { level: undefined, rest: "" };
-	const first = tokens[0]!.toLowerCase();
+	const first = (tokens[0] ?? "").toLowerCase();
 	const isLevel = (REVIEW_LEVELS as readonly string[]).includes(first);
 	return {
 		level: isLevel ? (first as ReviewLevel) : undefined,
@@ -105,9 +154,12 @@ export function resolveEffort(
 // invariant; a read/write failure must not break the review.
 function readLastEffort(): ReviewLevel | undefined {
 	try {
-		const raw = JSON.parse(fs.readFileSync(STATE_FILE, "utf8")) as { codeReviewLastEffort?: unknown };
+		const raw = JSON.parse(fs.readFileSync(STATE_FILE, "utf8")) as {
+			codeReviewLastEffort?: unknown;
+		};
 		const v = raw.codeReviewLastEffort;
-		return typeof v === "string" && (REVIEW_LEVELS as readonly string[]).includes(v)
+		return typeof v === "string" &&
+			(REVIEW_LEVELS as readonly string[]).includes(v)
 			? (v as ReviewLevel)
 			: undefined;
 	} catch {
@@ -155,8 +207,20 @@ export function registerDispatcher(pi: ExtensionAPI): void {
 		description:
 			"Usage: /code-review [low|medium|high|xhigh|max] [--fix] [--loop] [--comment] [--share] [<pr#>|<branch>|<path>]. Review the current diff using the code-review skill. low/medium/high review in a single pass in this session; xhigh/max fan out finder/verifier agents.",
 		getArgumentCompletions(prefix) {
-			const tokens = ["low", "medium", "high", "xhigh", "max", "--fix", "--loop", "--comment", "--share"];
-			return tokens.filter((t) => t.startsWith(prefix)).map((t) => ({ label: t, value: t }));
+			const tokens = [
+				"low",
+				"medium",
+				"high",
+				"xhigh",
+				"max",
+				"--fix",
+				"--loop",
+				"--comment",
+				"--share",
+			];
+			return tokens
+				.filter((t) => t.startsWith(prefix))
+				.map((t) => ({ label: t, value: t }));
 		},
 		async handler(args, ctx) {
 			const { level: explicit, rest } = parseReviewArgs(args ?? "");
@@ -164,7 +228,7 @@ export function registerDispatcher(pi: ExtensionAPI): void {
 			const lastUsed = explicit ? undefined : readLastEffort();
 			if (explicit) writeLastEffort(explicit); // remember the explicit level
 			const { level, source } = resolveEffort(explicit, lastUsed);
-			const budgets = loadTurnBudgets();
+			const budgets = loadBudgets(ctx.cwd);
 
 			// Effort split: low/medium/high review in ONE pass in the main session
 			// (no subprocess fan-out); xhigh/max keep the finder/verifier pipeline.
@@ -182,8 +246,17 @@ export function registerDispatcher(pi: ExtensionAPI): void {
 				);
 			}
 
-			const { body } = loadTemplate(fanout ? "review.parallel.md" : "review.single.md");
+			const { body } = loadTemplate(
+				fanout ? "review.parallel.md" : "review.single.md",
+			);
 			const shared = {
+				"parent-model": ctx.model
+					? parentModel(ctx.model, pi.getThinkingLevel())
+					: "",
+				"fanout-available": String(
+					nativeFanoutAvailable(pi) && Boolean(ctx.model),
+				),
+				"timeout-ms": String(budgets.timeoutMs),
 				effort: level,
 				"effort-source": source,
 				"extra-args": flagsRest ? `; extra args: ${flagsRest}` : "",
@@ -197,9 +270,10 @@ export function registerDispatcher(pi: ExtensionAPI): void {
 					fanout
 						? {
 								...shared,
-								"finder-max-turns": String(budgets.subagent),
-								"verifier-max-turns": String(budgets.verifier),
-								"gap-hunt-max-turns": String(budgets.gapHunt),
+								"role-prompts": JSON.stringify(loadRolePrompts()),
+								"finder-tool-calls": String(budgets.finder),
+								"verifier-tool-calls": String(budgets.verifier),
+								"gap-hunt-tool-calls": String(budgets.gapHunt),
 							}
 						: {
 								...shared,
@@ -228,13 +302,24 @@ export function registerDispatcher(pi: ExtensionAPI): void {
 		async handler(args, ctx) {
 			try {
 				// ctx.signal (undefined while idle) lets Esc abort an in-flight diff.
-			const outcome = await getRepoDiff(ctx.cwd, args?.trim() || undefined, undefined, ctx.signal);
+				const outcome = await getRepoDiff(
+					ctx.cwd,
+					args?.trim() || undefined,
+					undefined,
+					ctx.signal,
+				);
 				if (outcome.kind === "no-repo") {
-					ctx.ui.notify(`/code-simplify: ${ctx.cwd} is not inside a git repo — nothing to clean up.`, "warning");
+					ctx.ui.notify(
+						`/code-simplify: ${ctx.cwd} is not inside a git repo — nothing to clean up.`,
+						"warning",
+					);
 					return;
 				}
 				if (outcome.kind === "git-error") {
-					ctx.ui.notify(`/code-simplify: git failed — ${outcome.message}`, "error");
+					ctx.ui.notify(
+						`/code-simplify: git failed — ${outcome.message}`,
+						"error",
+					);
 					return;
 				}
 				if (outcome.kind === "empty") {
@@ -246,19 +331,29 @@ export function registerDispatcher(pi: ExtensionAPI): void {
 				}
 
 				const usage = ctx.getContextUsage();
-				const budgets = loadTurnBudgets(ctx.cwd);
+				const budgets = loadBudgets(ctx.cwd);
 				const parallelTemplate = loadTemplate("simplify.parallel.md");
-				const { variant, reasons } = selectVariant(parseGuards(parallelTemplate.frontmatter), {
-					tokens: usage?.tokens ?? null,
-					contextWindow: usage?.contextWindow ?? 0,
-					diffChars: outcome.diff.length,
-					fanoutAvailable: isFanoutToolAllowed(),
-				});
-				const pct = usage && usage.percent != null ? `${Math.round(usage.percent)}%` : "?";
+				const { variant, reasons } = selectVariant(
+					parseGuards(parallelTemplate.frontmatter),
+					{
+						tokens: usage?.tokens ?? null,
+						contextWindow: usage?.contextWindow ?? 0,
+						diffChars: outcome.diff.length,
+						fanoutAvailable: nativeFanoutAvailable(pi) && Boolean(ctx.model),
+					},
+				);
+				const pct =
+					usage && usage.percent != null
+						? `${Math.round(usage.percent)}%`
+						: "?";
 				const target = args || "(whole diff)";
 				const skill = bundledSkillPath("code-simplify/SKILL.md");
 				const scopeLabel = DIFF_SCOPES[outcome.scopeKind];
-				const contextPackage = buildContextPackage(outcome.diff, outcome.gitRoot, scopeLabel);
+				const contextPackage = buildContextPackage(
+					outcome.diff,
+					outcome.gitRoot,
+					scopeLabel,
+				);
 				const verify = verifyLine(outcome.gitRoot);
 
 				if (variant === "single-pass") {
@@ -284,17 +379,25 @@ export function registerDispatcher(pi: ExtensionAPI): void {
 				pi.sendUserMessage(
 					render(parallelTemplate.body, {
 						target,
+						"role-prompts": JSON.stringify(loadRolePrompts()),
 						pct,
 						"scope-label": scopeLabel,
 						"git-command": outcome.gitCommand,
 						"context-package": contextPackage,
 						skill,
 						verify,
-						"simplify-max-turns": String(budgets.simplify),
+						"simplify-tool-calls": String(budgets.simplify),
+						"parent-model": ctx.model
+							? parentModel(ctx.model, pi.getThinkingLevel())
+							: "",
+						"timeout-ms": String(budgets.timeoutMs),
 					}),
 				);
 			} catch (err) {
-				ctx.ui.notify(`/code-simplify failed: ${err instanceof Error ? err.message : String(err)}`, "error");
+				ctx.ui.notify(
+					`/code-simplify failed: ${err instanceof Error ? err.message : String(err)}`,
+					"error",
+				);
 			}
 		},
 	});

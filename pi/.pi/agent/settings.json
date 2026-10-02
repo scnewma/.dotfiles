@@ -2,16 +2,131 @@
   "lastChangelogVersion": "1.0.4",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.1-sol",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "theme": "catppuccin-mocha",
   "packages": [
-    "npm:@ollama/pi-web-search@0.0.5",
     "npm:@scnewma/pi-codex-rate-limits",
     "npm:@plannotator/pi-extension",
-    "packages/pi-review",
+    "./packages/pi-review",
     "git:github.com/DietrichGebert/ponytail",
-    "git:github.com/Arteiimis/pi-subagents@dd12bee7726bc82bd7de87f31ea21042efddce8b"
+    "git:github.com/nicobailon/pi-subagents@5da808168c097ea0d56616644773efe0f6f87938",
+    "npm:pi-web-access@0.37.0"
   ],
+  "subagents": {
+    "agentOverrides": {
+      "codex-exec": {
+        "disabled": true
+      },
+      "codex-exec-writer": {
+        "disabled": true
+      },
+      "claude-code": {
+        "disabled": true
+      },
+      "claude-code-writer": {
+        "disabled": true
+      },
+      "cursor-agent": {
+        "disabled": true
+      },
+      "cursor-agent-writer": {
+        "disabled": true
+      }
+    },
+    "defaultThinking": "medium",
+    "agentOverridesByProvider": {
+      "openai-codex": {
+        "researcher": {
+          "model": "openai-codex/gpt-5.6-sol",
+          "thinking": "off"
+        },
+        "evidence-auditor": {
+          "model": "openai-codex/gpt-6.1-sol"
+        },
+        "scout": {
+          "model": "openai-codex/gpt-6-luna",
+          "thinking": "low"
+        },
+        "worker": {
+          "model": "openai-codex/gpt-6.1-sol",
+          "thinking": "medium"
+        },
+        "delegate": {
+          "model": "openai-codex/gpt-6.1-sol",
+          "thinking": "medium"
+        },
+        "implementer": {
+          "model": "openai-codex/gpt-6.1-sol",
+          "thinking": "medium"
+        },
+        "oracle": {
+          "model": "openai-codex/gpt-6-astra",
+          "thinking": "xhigh"
+        },
+        "advisor": {
+          "model": "openai-codex/gpt-6-astra",
+          "thinking": "xhigh"
+        },
+        "reviewer": {
+          "model": "openai-codex/gpt-6.1-sol"
+        },
+        "spec-reviewer": {
+          "model": "openai-codex/gpt-6.1-sol"
+        },
+        "code-quality-reviewer": {
+          "model": "openai-codex/gpt-6.1-sol"
+        },
+        "review-runner": {
+          "model": "openai-codex/gpt-6.1-sol"
+        }
+      },
+      "anthropic": {
+        "researcher": {
+          "model": "anthropic/claude-sonnet-5-5",
+          "thinking": "low"
+        },
+        "evidence-auditor": {
+          "model": "anthropic/claude-opus-5-5"
+        },
+        "scout": {
+          "model": "anthropic/claude-sonnet-5-5",
+          "thinking": "low"
+        },
+        "worker": {
+          "model": "anthropic/claude-opus-5-5",
+          "thinking": "medium"
+        },
+        "delegate": {
+          "model": "anthropic/claude-opus-5-5",
+          "thinking": "medium"
+        },
+        "implementer": {
+          "model": "anthropic/claude-opus-5-5",
+          "thinking": "medium"
+        },
+        "oracle": {
+          "model": "anthropic/claude-fable-5-1",
+          "thinking": "xhigh"
+        },
+        "advisor": {
+          "model": "anthropic/claude-fable-5-1",
+          "thinking": "xhigh"
+        },
+        "reviewer": {
+          "model": "anthropic/claude-opus-5-5"
+        },
+        "spec-reviewer": {
+          "model": "anthropic/claude-opus-5-5"
+        },
+        "code-quality-reviewer": {
+          "model": "anthropic/claude-opus-5-5"
+        },
+        "review-runner": {
+          "model": "anthropic/claude-opus-5-5"
+        }
+      }
+    }
+  },
   "hideThinkingBlock": false,
   "enableInstallTelemetry": false,
   "branchSummary": {
@@ -22,9 +137,18 @@
   },
   "tuiMode": "fullscreen",
   "defaultProjectTrust": "ask",
-  "quietStartup": true,
+  "quietStartup": false,
   "httpIdleTimeoutMs": 30000,
   "retry": {
     "maxRetries": 6
-  }
+  },
+  "enabledModels": [
+    "openai-codex/gpt-6.1-sol",
+    "openai-codex/gpt-6-luna",
+    "openai-codex/gpt-6-astra",
+    "openai-codex/gpt-5.6-terra",
+    "anthropic/claude-opus-5-5",
+    "anthropic/claude-sonnet-5-5",
+    "anthropic/claude-fable-5"
+  ]
 }

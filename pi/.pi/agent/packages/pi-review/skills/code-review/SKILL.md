@@ -28,7 +28,7 @@ description: "Review the current diff, or a PR number/branch/path target, for co
                   --comment. If the tool is absent, fall back to printing the
                   Markdown as text.
     2. Fan-out  — CC uses the Agent tool; Pi uses the `subagent` tool
-                  (mode: parallel), or runs angles sequentially if unavailable.
+                  (via await runs.all config objects), or runs angles sequentially if unavailable.
                   v2.1: fan-out is the XHIGH/MAX path only — low/medium/high
                   run as a single pass in the main session (no subagents).
     3. Verify   — CC uses the Agent tool; Pi uses `subagent` for the
@@ -36,7 +36,7 @@ description: "Review the current diff, or a PR number/branch/path target, for co
     4. Workflow — CC 2.1.217 routed high/xhigh/max to a background Workflow
                   (phases Scope/Find/Verify/Sweep/Synthesize); 2.1.261 removed
                   it and runs the phases inline via its Agent tool, with high+
-                  inside a background agent. Pi has neither host capability, so
+                  inside a background agent. Pi preserves the parent methodology, so
                   this skill runs INLINE and linearizes those phases into the
                   flow below; the Phase 0.5 scope block is our absorption of
                   the old workflow's Scope phase (kept: it still turns N
@@ -49,7 +49,7 @@ description: "Review the current diff, or a PR number/branch/path target, for co
                   posts GitLab MRs as one general note via `glab mr note`; Pi
                   mirrors both fallbacks (see the --comment section).
 
-  Prerequisite: the `subagent` tool (@fyeeme/pi-subagents; parallel mode) for
+  Prerequisite: the `subagent` tool (separately installed nicobailon/pi-subagents; native workflows) for
                 xhigh/max only (finder/verifier/gap-hunt fan-out). lavish-axi
                 for --share. low/medium/high run standalone in this session
                 (no subagents).
@@ -58,6 +58,10 @@ description: "Review the current diff, or a PR number/branch/path target, for co
 You are reviewing the current diff for correctness bugs and reuse /
 simplification / efficiency cleanups. Correctness bugs always outrank cleanup,
 altitude, and conventions findings when the output cap forces a cut.
+
+Review-only by default: stop after reporting. Do not edit files, post comments,
+or publish a page unless the corresponding flag was explicitly passed.
+An armed `--loop` authorizes fixes only when the extension sends a fix prompt.
 
 ## Effort levels
 
@@ -76,7 +80,7 @@ default path: the 8–10 finder + grouped-verifier pipeline cost tens of
 minutes per run and twice produced zero findings when spawned subprocesses
 failed to boot — unacceptable ROI for a daily-driver review.
 
-**max is structurally identical to xhigh** — fan-out / verify / sweep are the same; only the model's reasoning effort differs (CC v2.1.226 comment: `max → same structure as xhigh (the API reasoning effort differs, not the fan-out)`). If the runtime cannot vary reasoning effort, max degrades structurally to xhigh — do not expect more fan-out from the name alone.
+**max is structurally identical to xhigh** — fan-out / verify / sweep are the same; the native children always inherit the parent's current model and thinking explicitly, not review effort (upstream CC v2.1.226 comment: `max → same structure as xhigh (the API reasoning effort differs, not the fan-out)`). If the runtime cannot vary reasoning effort, max degrades structurally to xhigh — do not expect more fan-out from the name alone.
 
 The quad tuple parameterizes the XHIGH/MAX fan-out only (CC inline semantics,
 verified 2.1.227):
@@ -249,7 +253,7 @@ previous run.
 
 Reached only at effort xhigh/max — low/medium/high use the SINGLE-PASS FLOW
 above. Launch finder agents through the `subagent` tool in a single batch
-(mode: parallel) so they run concurrently; if it is unavailable, do not fake
+(via await runs.all config objects) so they run concurrently; if it is unavailable, do not fake
 the fan-out — work the angles yourself in sequence in this same context, or
 report that the subagent capability is unavailable.
 
@@ -261,28 +265,41 @@ answers "No tools matching subagent" even when the tool is registered and
 callable. If it is in your toolset, use it without further verification; if it
 is genuinely absent, take the sequential fallback above.
 
-**Finder turn budget（Pi adaptation — the same runaway-exploration guard the
-Phase 3 gap-hunt already carries）** — a finder that exhausts its turn cap
-mid-read returns NOTHING and silently loses its whole angle (observed on a
-168-file diff: 7/10 finders burned their full turn budget with zero output,
-and the coverage hole cascaded into two extra compensation waves). Constrain
-every finder batch:
+## Private policies and the sole executable agent
 
-1. **Set `maxTurns: 20` on the `subagent` call** — the slowest finder pins
-   the wave's wall time; 20 turns covers the highest-risk hunks of any
-   single angle, and a capped finder still owes partial output (next item).
-   (20 is the built-in default — if the trigger message states a different
-   finder budget, use that instead.)
-2. **Declare the budget inside each finder prompt** — e.g. "You have ~15
-   tool calls. Spend them on the highest-risk hunks first; when half are
-   spent, stop opening new files."
-3. **Final-message contract** — the finder's LAST assistant message must be
-   its JSON candidate array (an empty `[]` is a valid answer). Partial
-   output beats none: candidates that never reach text never reach verify.
-4. **A finder that hits max-turns with no JSON is a FAILED finder**, not an
-   empty angle: re-dispatch that single angle on a narrower file slice
-   before Phase 2 (or fold it into the xhigh/max gap-hunt), and note the
-   re-dispatch in the report.
+`review-runner` is the ONLY executable package agent. Finder, cleaner,
+verifier and gap-hunter labels identify PRIVATE policies and result keys,
+not agents. Separate tasks still create independent fresh sessions.
+
+Before assembling tasks (including direct skill invocation without a command),
+read the required policy files with `read`. Resolve these paths relative to
+this SKILL.md's directory: `../../roles/<label>.md`. Read the Markdown body
+AFTER frontmatter verbatim; do not substitute these abbreviated angle summaries.
+For the ten finder sessions, load in order:
+
+- `../../roles/finder-diff-scan.md` (A)
+- `../../roles/finder-removed-behavior.md` (B)
+- `../../roles/finder-cross-file.md` (C)
+- `../../roles/finder-language-pitfall.md` (D)
+- `../../roles/finder-wrapper-proxy.md` (E)
+- `../../roles/cleaner-reuse.md`
+- `../../roles/cleaner-simplification.md`
+- `../../roles/cleaner-efficiency.md`
+- `../../roles/cleaner-altitude.md`
+- `../../roles/finder-conventions.md`
+
+Also load `../../roles/verifier.md` before grouped verification and
+`../../roles/gap-hunter.md` before the fresh sweep. Command-rendered workflows
+already supply these exact bodies in `rolePrompts`; reuse that map if present.
+For EVERY task use `agent:"review-runner"`, retain the angle/group ID as `key`,
+and set `task` to the exact specialist body plus the parent scope packet
+(scope/diff/relevant context and numbered candidates for verifiers; all
+pre-gathered context and deduplicated findings for gap-hunt). For example:
+`{key:angle,agent:"review-runner",task:rolePrompts[angle]+"\n\n"+packet,...}`.
+Missing/unreadable policy text is a contract failure: disclose missing coverage,
+never silently launch a generic reviewer or invoke a private label as an agent.
+
+**Native child contract** — use a same-reply `js workflow` block and subagent({workflow:true,async:false,context:"fresh",isolation:"none",mission:false,model:"<parent-provider>/<parent-id>:<current-thinking>",timeoutMs:1800000}). Activate subagents_enable first if needed. Await runs.all config objects; results are an ordered array of {key,ok,runId,error,structuredOutput}. Each finder has toolBudget:{soft:10,hard:20,block:["read","grep","find","ls","bash"]}; trigger overrides win. outputSchema must be an object schema with required findings array, whose entries require file/category/short_summary/summary/failure_scenario and optional integer line. short_summary is required, a ≤60-character bare declarative label (schema maxLength:60). Children submit structured_output({value:{findings:[]}}). Never block structured_output. Failed or missing output is missing coverage, not an empty angle: retry narrowly or include the gap in the sweep and disclose unrecovered coverage. All children are read-only and cannot delegate.
 
 **Finder allocation** (CC inline, verified 2.1.227): xhigh/max run all five
 correctness angles — **10 finders**: A, B, C, D, E + one finder each for
@@ -394,16 +411,8 @@ are kept per the suppression ban).
 
 Then verify each candidate **grouped by location**. If the `subagent` tool is
 available: group the deduplicated candidates by `(file, line)`; dispatch ONE
-independent verify agent per group (mode: parallel, one prompt per group),
-giving it the scope block, the diff, the relevant file(s), and the full
-candidate list for that location with each candidate's index. Set
-`maxTurns: 15` on each verifier call (15 is the built-in default — a
-different verifier budget stated in the trigger message wins). The verifier
-returns a verdict per candidate:
-
-```
-[{ "index": <candidate index>, "verdict": "CONFIRMED" | "PLAUSIBLE" | "REFUTED", "evidence": "<quote/argument>" }, ...]
-```
+independent verify agent per group (via await runs.all, one task per group),
+giving it the scope block, diff, relevant files, and full indexed candidate list. Use toolBudget:{soft:7,hard:15,block:["read","grep","find","ls","bash"]} (trigger overrides win) and an object outputSchema requiring verdicts array with entries {index:integer,verdict:enum CONFIRMED/PLAUSIBLE/REFUTED,evidence:string}. Require structured_output({value:{verdicts:[...]}}). Validate exactly the supplied indices, reject duplicates/foreign indices, and drop omitted indices. Never parse final prose as success.
 
 Grouping is by location, NOT dedup — each candidate is judged independently;
 same-location candidates may describe different defects. A candidate the
@@ -465,12 +474,8 @@ this differently):
    results: the diff, the enclosing functions, the deduplicated finding list,
    and any search results. The gap-hunt agent **analyzes**, it does not
    **discover**.
-2. **Set `maxTurns: 15`** on the `subagent` call — caps it at 15 assistant turns
-   (built-in default — a different gap-hunt budget stated in the trigger
-   message wins).
-3. **Declare a tool-call budget in the prompt** — e.g. "You have ONLY 3 tool
-   calls to read files. Read them now, then analyze from this message's
-   context."
+2. Use toolBudget:{soft:10,hard:20,block:["read","grep","find","ls","bash"]} and the findings object schema above (trigger overrides win). The deadline is 30 minutes by default, not an assistant-turn limit.
+3. Ask for only 3 initial read calls, then analysis from embedded context. Submit partial findings through structured_output before further exploration.
 
 Feed anything it finds back through Phase 2 verify before keeping it. If the
 `subagent` tool is unavailable, take one self-sweep instead and note the
@@ -536,9 +541,9 @@ blocks as text instead; do not error.
 
 ## Applying fixes (--fix)
 
-The `--fix` flag was passed (the extension-driven `--loop` sends the same
-fix prompts between re-review passes — follow them identically). After
-producing the findings list, apply the
+Follow this section only if `--fix` was explicitly passed or the extension
+sent a fix prompt for an armed `--loop`. Otherwise stop after the report.
+After producing the findings list, apply the
 findings to the working tree instead of stopping at the report: fix each one
 directly — correctness bugs and reuse/simplification/efficiency cleanups alike.
 Skip any finding whose fix would change intended behavior, require changes well
@@ -560,7 +565,8 @@ fixed and what was skipped.
 
 ## Posting comments (--comment)
 
-The `--comment` flag was passed. After producing the findings list:
+Follow this section only if `--comment` was explicitly passed. Otherwise do
+not post comments. After producing the findings list:
 
 - **GitHub PR target** — post each finding as an inline PR comment on the
   corresponding `file`/`line`, one call per finding; include a suggestion
@@ -580,8 +586,9 @@ The `--comment` flag was passed. After producing the findings list:
 
 ## Publishing a shareable review (--share)
 
-The `--share` flag was passed. After producing the findings list, also publish
-them as an artifact so they can be shared and iterated on outside the terminal.
+Follow this section only if `--share` was explicitly passed. Otherwise do
+not publish an artifact. After producing the findings list, publish them as
+an artifact so they can be shared and iterated on outside the terminal.
 
 1. Write a self-contained HTML review page to `.lavish/review-<n>.html`
    (create `.lavish/` in the repo root if missing). The page must render with no

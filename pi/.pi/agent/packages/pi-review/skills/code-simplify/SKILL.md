@@ -15,7 +15,7 @@ description: "Review the changed code for reuse, simplification, efficiency, and
   Pi ADAPTATIONS (differ from the CC runtime)
   ════════════════════════════════════════════════════════════════════════
     1. Fan-out tool — CC uses the Agent tool; Pi uses the `subagent` tool
-       (mode: parallel). Where CC says "the Agent tool", read `subagent`.
+       (native workflow runs.all). Where CC says "the Agent tool", read `subagent`.
     2. Mode guard  — CC's Dii has two clauses: (a) spawn-depth — single-pass when
        agent depth >= CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH (default 3); (b) the
        Agent tool must be in the allowlist. On Pi: (a) is N/A — the `subagent`
@@ -38,23 +38,23 @@ description: "Review the changed code for reuse, simplification, efficiency, and
        code: the trigger message carries the handler-resolved scope, the
        changed-file index, and the exact `git -C … diff …` command; the model
        runs it, reads the diff, writes a change-intent summary, and THEN calls
-       the `subagent` tool in parallel mode (the counterpart of CC's Agent
-       call) with the 4 bundled cleaner agents; the tool result carries the
+       the `subagent` tool through a native workflow (the counterpart of CC's Agent
+       call) with 4 independent review-runner sessions using private cleaner policies; the tool result carries the
        findings back into the same turn for Phase 2.
 
   Prerequisite: the `review_report` tool (provided by the pi-review extension)
                 for the Phase 2 structured outcome report. PARALLEL MODE
-                additionally needs the `subagent` tool (@fyeeme/pi-subagents;
+                additionally needs the `subagent` tool (separately installed nicobailon/pi-subagents;
                 registered whenever fan-out is allowed for this process — the
                 recursion guard; the dispatcher only picks PARALLEL when it
-                is) plus the bundled agents cleaner-reuse /
+                is) plus review-runner and the private policies cleaner-reuse /
                 cleaner-simplification / cleaner-efficiency / cleaner-altitude.
                 SINGLE-PASS MODE runs standalone apart from `review_report`.
 -->
 
 You are improving the quality of the changed code, not hunting for bugs. Review
 it for reuse, simplification, efficiency, and altitude issues, then fix what you
-find. Do not look for correctness bugs — that is what `/code-review` is for.
+find. Preserve existing observable behavior, including incorrect results. Do not look for or fix correctness bugs — that is what `/code-review` is for.
 
 The `/code-simplify` handler has already chosen the mode (PARALLEL or
 SINGLE-PASS) from real context usage and announced it in the trigger message.
@@ -87,25 +87,31 @@ review that target instead. Treat this diff as the review scope.)
 
 `/code-simplify → visible Phase 0 (read the diff, summarize) → subagent tool (parallel, 4 cleaner agents) → apply the fixes`
 
+## Private policies and the sole executable agent
+
+`review-runner` is the ONLY executable package agent; cleaner labels are
+PRIVATE policy IDs and result keys, never agent values. Each task still runs
+in its own independent fresh session. Before assembling tasks, read the
+required files with `read`, resolving paths relative to this SKILL.md:
+
+- `../../roles/cleaner-reuse.md`
+- `../../roles/cleaner-simplification.md`
+- `../../roles/cleaner-efficiency.md`
+- `../../roles/cleaner-altitude.md`
+
+Use each full body AFTER frontmatter verbatim, not the abbreviated summaries
+below. This applies to direct skill invocation too. Command-rendered workflows
+already supply exact bodies in `rolePrompts`; reuse that map if present.
+Set every task's `agent` to `"review-runner"`, `key` to the cleaner ID, and
+`task` to its body plus the parent target/scope packet (including the exact git
+command). Append the cleanup-only constraint: preserve existing observable behavior, including incorrect results; do not propose correctness fixes. Missing/unreadable policy text is a contract failure: disclose the
+gap, never silently fall back to a generic reviewer or execute a private label.
+
 ## Phase 1 — Review (4 cleanup agents in parallel)
 
-After your Phase 0 summary, call the `subagent` tool exactly as the trigger
-message instructs: parallel mode, 4 tasks, one per bundled agent —
-cleaner-reuse, cleaner-simplification, cleaner-efficiency, cleaner-altitude —
-each with `maxTurns: 15` (set it on the call; 15 is the built-in default — a
-different budget stated in the trigger message wins). The agents' angle guidance
-rides their own definitions (read-only tool whitelist read/grep/find/ls/bash);
-each returns its findings with `file`, `line`, a one-line `summary`, and the
-concrete cost (what is duplicated, wasted, or harder to maintain). The agent
-rows appear live in the agent widget / FleetView and respect the
-`maxConcurrency` setting.
+After Phase 0, write one `js workflow` block in the SAME reply as subagent({workflow:true,async:false,context:"fresh",isolation:"none",mission:false,model:"<parent-provider>/<parent-id>:<current-thinking>",timeoutMs:1800000}). If only subagents_enable is active, activate it first. Await runs.all([{key,agent:"review-runner",task,outputSchema,toolBudget},...]) for the four private role keys cleaner-reuse, cleaner-simplification, cleaner-efficiency, cleaner-altitude. Each task contains its exact specialist body plus the trigger's target and exact git command; do not inline the diff. Each child has toolBudget:{soft:7,hard:15,block:["read","grep","find","ls","bash"]} (trigger overrides win), and an object schema requiring findings array, entries requiring file/category/short_summary/summary/failure_scenario and optional integer line. short_summary is required, a ≤60-character bare declarative label (schema maxLength:60). Require structured_output({value:{findings:[]}}); NEVER block structured_output.
 
-Do NOT write the four agent prompts yourself or inline the diff into any
-prompt. If the fan-out conditions no longer hold (context grew while you read
-the diff), fall back to the SINGLE-PASS body below and report `fanned_out:
-false`. When the tool result arrives, merge and deduplicate the findings
-against your first-hand Phase 0 reading. The four angles below are what the
-agents were asked to find.
+Results are an ordered array {key,ok,runId,error,structuredOutput}. Await all children before merging/dedup. Failed or missing output is missing coverage, not an empty angle: record failure evidence and self-run that angle or retry narrowly via the same native protocol. Disclose unrecovered coverage. Children only inspect via read/grep/find/ls/bash, never mutate or delegate. If fan-out becomes unavailable, run the single-pass body and report fanned_out:false. Only the parent applies/verifies/rolls back/reports.
 
 ### Reuse
 
@@ -225,7 +231,7 @@ that would discard the user's intended changes too.
 ## Step 2 — Apply the fixes
 
 Apply each surviving finding directly. Skip any finding whose fix would change
-intended behavior, require changes well outside the reviewed diff, or that you
+existing outputs, errors or side effects, even if it restores documented behavior or is labeled altitude. Also skip fixes that require changes well outside the reviewed diff, or that you
 judge to be a false positive — note the skip (it will be reported as
 `skipped`).
 

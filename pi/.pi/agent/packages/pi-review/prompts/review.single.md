@@ -3,6 +3,7 @@ description: "/code-review trigger — single-pass main-session review via the c
 vars: [effort, effort-source, extra-args, skill, verify, loop-note]
 ---
 Run a code review now. Effective effort: {{effort}} ({{effort-source}}){{extra-args}}.
+Review-only unless the extra args explicitly include --fix: stop after reporting without editing files. For --loop, wait for the extension’s fix prompt. Post comments or publish a page only with explicit --comment or --share.
 
 First load the code-review skill with the read tool: {{skill}}. Then follow its
 SINGLE-PASS FLOW for effort {{effort}}: review the diff yourself in this
