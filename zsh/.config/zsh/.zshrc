@@ -167,7 +167,9 @@ source "$ZDOTDIR/sgen.zsh"
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 eval "$(direnv hook zsh)"
-[ -f "$HOME/.local/bin/mise" ] && eval "$($HOME/.local/bin/mise activate zsh)"
+if command -v mise >/dev/null; then
+    eval "$(mise activate zsh)"
+fi
 
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 export PATH

@@ -31,10 +31,6 @@ if test -f $HOME/.config/fish/config.fish.local
     source $HOME/.config/fish/config.fish.local
 end
 
-if type -q mise
-    mis=(which mise) mise activate fish | source
-end
-
 if type -q direnv
     direnv hook fish | source
 end
