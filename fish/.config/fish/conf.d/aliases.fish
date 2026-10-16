@@ -1,4 +1,4 @@
-alias c "printf '\e[H\e[22J'"
+alias c "printf '\e[H\e[2J'"
 
 abbr -ag rc nvim $HOME/.config/fish/config.fish
 abbr -ag rclocal nvim $HOME/.config/fish/config.fish.local
