@@ -196,7 +196,7 @@ automatically-unhide-macos-hidden-apps = false
 ## Automatic assignment
 
 [[on-window-detected]]
-if = 'test %{app-bundle-id} = org.alacritty || test %{app-bundle-id} = com.mitchellh.ghostty || test %{app-bundle-id} = net.kovidgoyal.kitty || test %{app-bundle-id} = dev.zed.Zed'
+if = 'test %{app-bundle-id} = org.alacritty || test %{app-bundle-id} = com.mitchellh.ghostty || test %{app-bundle-id} = net.kovidgoyal.kitty || test %{app-bundle-id} = dev.zed.Zed || test %{app-bundle-id} = com.superlogical.rex'
 run = [
   'move-node-to-workspace "</>"',
 ]
