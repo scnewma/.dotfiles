@@ -65,3 +65,13 @@ Open both PNGs as images and check every label is legible in both, nothing overl
 ## 6. Placement
 
 Prefer the doc that already explains the flow (a `## Flow diagram` section) and link it from the PR description. If asked for PR-body only, put it there, and keep it a compact overview a reviewer can scan in one screen (~15 messages or nodes); exhaustive detail belongs in a doc, not the PR body.
+
+## 7. Open in mermaid.live
+
+Always open every diagram you create in mermaid.live, after the theme checks pass:
+
+```sh
+open "$(bun -e 'const code=await Bun.file(process.argv[1]).text();const s=JSON.stringify({code,mermaid:JSON.stringify({theme:"default"}),autoSync:true,updateDiagram:true});console.log("https://mermaid.live/edit#pako:"+require("zlib").deflateSync(s,{level:9}).toString("base64url"))' d.mmd)"
+```
+
+Run it before you delete the `.mmd` file.
