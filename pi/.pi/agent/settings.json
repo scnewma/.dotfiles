@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.0",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.1-sol",
   "defaultThinkingLevel": "medium",
@@ -9,7 +9,7 @@
     "npm:@plannotator/pi-extension",
     "./packages/pi-review",
     "git:github.com/DietrichGebert/ponytail",
-    "git:github.com/nicobailon/pi-subagents@5da808168c097ea0d56616644773efe0f6f87938",
+    "git:github.com/nicobailon/pi-subagents@v0.83.0",
     "npm:pi-web-access@0.37.0"
   ],
   "subagents": {
