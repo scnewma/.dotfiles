@@ -1,12 +1,19 @@
 {
-  "provider": "ollama",
+  "searchRouting": {
+    "providers": ["openai", "exa"],
+    "fallbackOn": ["transient", "quota", "network", "invalid-response", "unsupported"]
+  },
   "ollamaApiKey": "$OLLAMA_API_KEY",
   "webSearch": {
-    "allowedProviders": ["ollama"]
+    "allowedProviders": ["openai", "exa"]
   },
   "fetchRouting": {
-    "providers": ["http", "ollama"],
-    "allowRemoteHostedProviders": true
+    "providers": ["http"],
+    "allowRemoteHostedProviders": false
+  },
+  "fetch": {
+    "answerProvider": "openai-codex",
+    "answerModel": "gpt-6.1-sol"
   },
   "workflow": "none",
   "toolActivation": "eager"
