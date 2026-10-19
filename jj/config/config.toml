@@ -1,6 +1,12 @@
 [ui]
 paginate = "never"
-default-command = ["log", "--limit=10"]
+default-command = [
+  "log",
+  "--no-pager",
+  "--limit=10",
+  "-T",
+  "builtin_log_compact ++ if(current_working_copy, diff.summary())",
+]
 show-cryptographic-signatures = false
 
 [templates]
@@ -16,7 +22,13 @@ concat(
 )
 '''
 
+[git]
+private-commits = 'bookmarks(exact:workspace)'
+
 [aliases]
+push = ["git", "push", "--revision", "@"]
+pull = ["git", "fetch"]
+
 pr-fetch = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
 jj git fetch
@@ -24,13 +36,26 @@ jj bookmark track ${1}@origin
 jj new ${1}
 """, ""]
 
-pr = ["util", "exec", "--", "bash", "-c", """
+pr = [
+  "util",
+  "exec",
+  "--",
+  "bash",
+  "-c",
+  """
 set -euo pipefail
 BRANCH="$(jj bookmark list --revisions @ --template 'name')"
 TEMPLATE=""
 [ -f .github/pull_request_template.md ] && TEMPLATE="--template pull_request_template.md"
 gh pr create --head $BRANCH --draft $TEMPLATE --editor
-""", ""]
+""",
+  "",
+]
 
 [user]
 name = "Shaun Newman"
+
+[[--scope]]
+--when.commands = ["diff", "log", "show"]
+[--scope.ui]
+paginate = "auto"
