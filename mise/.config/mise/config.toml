@@ -36,6 +36,7 @@ lua-language-server = "latest"
 "npm:typescript-language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
 "npm:yaml-language-server" = "latest"
+prettier = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
