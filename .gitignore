@@ -24,6 +24,9 @@ opencode/.config/opencode/plugins/supacode.ts
 pi/.pi/agent/extensions/supacode/*
 pi/.pi/agent/mcp-auth.json
 
+# orbstack symlinks this
+fish/.config/fish/completions/kubectl.fish
+
 herdr/.config/herdr/.plugins.lock
 herdr/.config/herdr/*.log
 herdr/.config/herdr/session.json
