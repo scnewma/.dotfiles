@@ -78,6 +78,12 @@
     }
   },
   {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "escape": "project_panel::Toggle"
+    }
+  },
+  {
     "context": "Editor && vim_mode == normal",
     "bindings": {
       "-": "pane::RevealInProjectPanel"

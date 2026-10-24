@@ -16,6 +16,7 @@ fish/.config/fish/functions/fish_local_prompt.fish
 zed/.config/zed/conversations/*
 zed/.config/zed/prompts/*
 zed/.config/zed/*_backup.json
+zed/.config/zed/development_credentials
 
 direnv/.config/direnv/direnvrc.local
 kitty/.config/kitty/projects_local.py

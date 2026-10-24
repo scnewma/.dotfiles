@@ -7,20 +7,25 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "agent": {
-    "default_model": {
-      "effort": "high",
-      "provider": "copilot_chat",
-      "model": "gpt-5.4"
-    },
-    "editor_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4o"
-    },
-    "version": "2"
+  "ensure_final_newline_on_save": false,
+  "tabs": {
+    "git_status": false,
+    "file_icons": false
   },
-  "features": {
-    "edit_prediction_provider": "copilot"
+  "agent": {
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {}
+    },
+    "default_profile": "write",
+    "default_model": {
+      "provider": "openai-subscribed",
+      "model": "gpt-6.1-sol",
+      "enable_thinking": true,
+      "effort": "medium"
+    },
+    "favorite_models": [],
+    "model_parameters": []
   },
   "telemetry": {
     "metrics": false
@@ -46,6 +51,7 @@
   "vertical_scroll_margin": 1,
   "use_smartcase_search": true,
   "tab_bar": {
+    "show_tab_bar_buttons": true,
     "show": false
   },
   "theme": {
@@ -72,6 +78,8 @@
     "code_actions": false,
     "runnables": false,
     "breakpoints": false,
+    "bookmarks": false,
+    "min_line_number_digits": 1,
     "folds": false
   },
   "terminal": {
